@@ -32,3 +32,15 @@ Most Generative models can be accessible using Rest Api
 
 
 
+## Gen AI for .Net: Build LLM Apps with OpenAI and Ollama (Udumy) :
+
+Github Link : https://github.com/mehmetozkaya/genai-for-dotnet/tree/main
+
+
+## What are Large Language Model (LLM)?
+* LLMs are advanced AI models trained on large datasets - massive amounts of text data from books, websites, research papers
+* They can understand, generate and process natural language that mimics natural human communication.
+* These models are heart of AI chatbots,  content creation tools, translation services
+* Basically LLMs are AI specialized natural language.
+
+
