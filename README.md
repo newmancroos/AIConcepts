@@ -45,16 +45,21 @@ Github Link : https://github.com/mehmetozkaya/genai-for-dotnet/tree/main
 
 - LLM first tokenize the sentance into small tokens
 
-- What is Token?
+
+**- What is Token?**
      * A token is a small unit of text that the model can understand
      * Toekn can be a entire word, a punctuation or a piece of a word
 	 * Ex.
     		"Hello, how are you?"  -> "Hello", "How", "Are" and "you"
      * LLM don't read sentances the way humans do;, instead, they rely on tokens to process the information
-  - What is Tokenization?
+     
+  **- What is Tokenization?**
     	- Process of splitting text into tokens
-    	- LLMs use toekns to process and generate response
+    	- LLMs use tokens to process and generate response
     
-    
+URL : https://platform.openai.com/tokenizer
+<img width="1615" height="998" alt="image" src="https://github.com/user-attachments/assets/2865a7db-4e98-4f32-92fc-4592cd3afa5b" />
+
+
        
   
