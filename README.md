@@ -89,4 +89,21 @@ URL : https://platform.openai.com/tokenizer
 
 * When we create prompt, along with the subject, context is more important.
        
-  
+
+**What Can I build with AI and .NET?**
+- Language Processing
+	 Build <b>chatbot</b> that can understand and response to user queries or create <b>assistants</b> that generate new content. 
+- Computer Vision
+	Integrate models to identify object in images or videos -  useful for sueveillance, Inverntory management
+- Audio Generation
+	 Synthesized voices to intract with customers in a more natural way, creating voice-based assistants or audio notifications
+- Classification and Prediction
+	Predict the severity of the customer-reported issue or categorize product information
+
+**AI frameworks and SDKs for .NET**
+
+- net offers rich set of libraries and SDKs for integrating AI into apps
+
+
+  <img width="1490" height="393" alt="image" src="https://github.com/user-attachments/assets/f2da2cbc-1a7a-4701-a00d-76482c4e3965" />
+
