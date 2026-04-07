@@ -107,3 +107,13 @@ URL : https://platform.openai.com/tokenizer
 
   <img width="1490" height="393" alt="image" src="https://github.com/user-attachments/assets/f2da2cbc-1a7a-4701-a00d-76482c4e3965" />
 
+
+- Microsoft.Extensions.Ai Library
+	Collection of libraries is designed to simplify AI integrations, consistent way to interact with different AI services.
+- Sematic Kernel for .NET
+	Structure complex AI workflow, combine multiple AI services and data sources w/ Plugins and Extensions.
+- .NET SDKs for OpenAI Models
+	Official packages that make request to OpenAI's GPT and embedding endpoints
+- .NET SDKs for Azure AI Services
+	Including vision, speech, language understanding  , leverage pre-trained models.
+
