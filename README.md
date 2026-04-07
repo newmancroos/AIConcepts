@@ -60,6 +60,33 @@ Github Link : https://github.com/mehmetozkaya/genai-for-dotnet/tree/main
 URL : https://platform.openai.com/tokenizer
 <img width="1615" height="998" alt="image" src="https://github.com/user-attachments/assets/2865a7db-4e98-4f32-92fc-4592cd3afa5b" />
 
+**- What is Small Language Models (SLM)?**
+- Smaller, more efficient and scaled-down version of LLMs
+- Retain key functionalities like text generation, classification, language understanding but with significantly fewer parameters (Millions of parameters but LLM trillions)
+- This makes them faster, cheaper and more efficient to run.
+- LLMS are powerful but it needs lot of computational power, Memory and storage but SLM are tuned for lower computational requirement, lower resource consumption
+- Suitable for real-time apps, mobile, edge devices and specific tasks.
+- 
+    LLM Examples:
+	    - ChatGpt 4O  (170 trillion params)
+	    - Gemini (540 billions params)
+	    - Llama (70 billions params)
+	SLM Examples:
+		- Llama3 (8 billions)
+		- Phi-3 ( 3.8 - 7 billions) (Microsoft)
+		- Gemma ( 2 - billions)  (Google)
+		- Mixtral 8x7B ( 7 billions)
+		- OpenELM ( .27 - 3 billions) Apple
 
+- **Prompt Engineering**
+	<b>What is Prompt?</b>
+- Input or instruction you give to an LLM to guide its response
+- It could be a question, a command or even just a phrase
+- Prompt is a huge role in how the model responds
+
+<b>What is Prompt Engineering?</b>
+- Crafting and refining prompts to improve model responses
+
+* When we create prompt, along with the subject, context is more important.
        
   
