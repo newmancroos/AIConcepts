@@ -130,7 +130,8 @@ URL : https://platform.openai.com/tokenizer
   <img width="1558" height="766" alt="image" src="https://github.com/user-attachments/assets/376029f9-8117-444b-a281-40f4c5ba2160" />
 
   
-** Semantic Kernel (AI Orchestration Framework) **
+**Semantic Kernel (AI Orchestration Framework)**
+
 - Open source SDK designed to streamline the integration of AI capabilities into existing apps.
 - Building blocks
 	- <b>Connections</b> - Bridge between your application code and external A services
