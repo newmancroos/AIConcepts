@@ -129,3 +129,11 @@ URL : https://platform.openai.com/tokenizer
 
   <img width="1558" height="766" alt="image" src="https://github.com/user-attachments/assets/376029f9-8117-444b-a281-40f4c5ba2160" />
   
+** Semantic Kernel (AI Orchestration Framework**
+- Open source SDK designed to streamline the integration of AI capabilities into existing apps.
+- Building blocks
+	- <b>Connections</b> - Bridge between your application code and external A services
+	- <b>Plugins</b> - Encapsulate functionalities that your AI application might need. We may call Sematic function that is  AI functions and Native functions that is our code base like API
+	- <b>Planner</b> - Orchestrates user requests by dynamically calling the right plugins and AI models
+	- <b>Memory</b> Manage context and stored data for AI apps, leverage vector databases or cache (Use for history in the Chatbot application)
+   
