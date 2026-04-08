@@ -117,3 +117,15 @@ URL : https://platform.openai.com/tokenizer
 - .NET SDKs for Azure AI Services
 	Including vision, speech, language understanding  , leverage pre-trained models.
 
+
+ **Microsoft.Extensions.Ai Library**
+- Using Microsoft.Extensions.Ai library reference we can use the functionalities within Microsoft.Extensions.Ai.Abstractions provide connection between our application and LLM clients and AI services  like
+					- Semantic Kernet
+					- OpenAI
+					- LLM Communitity pacjages
+					- Azure AI Inference 
+					- Ollama
+					- Github Models
+
+  <img width="1558" height="766" alt="image" src="https://github.com/user-attachments/assets/376029f9-8117-444b-a281-40f4c5ba2160" />
+  
