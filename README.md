@@ -142,7 +142,7 @@ URL : https://platform.openai.com/tokenizer
 
 
 **Setup LLM Provider:** <br/>
-	- Github Models (Free Service)<br/>
+	- Github Models (Free Service)    - https://github.com/marketplace/models <br/> 
 	- Ollama (Local AI Model)  (Free Service)<br/>
 	- Azure AI Foundry (Paid Service)   - https://ai.azure.com<br/>
 	- OpenAI (ChatGpt)  (Paid Service) - https://platform.openai.com (https://developers.openai.com/api/docs/models)<br/>
