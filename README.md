@@ -141,7 +141,7 @@ URL : https://platform.openai.com/tokenizer
    
 
 
-**Setup LLM Provider:**
+**Setup LLM Provider:** <br/>
 	- Github Models (Free Service)
 	- Ollama (Local AI Model)  (Free Service)
 	- Azure AI Foundry (Paid Service)   - https://ai.azure.com
