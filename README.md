@@ -149,11 +149,11 @@ URL : https://platform.openai.com/tokenizer
 	
 
 **How to choose AI Model:** <br/>
-	- <u>Cost and Subscription</u> <br/>
+	- <u><b>Cost and Subscription</b></u> <br/>
 			If budget aren't an issue choose Azure AI services or start with Github models and easily shift to Azure AI services for production with changing API keys only.<br/>
-	- <u>Performance ans Scalability</u> <br/>
+	- <u><b>Performance ans Scalability</b></u> <br/>
 		   Azure Open AI typically provides high availbility and can scale easily. Ollama relies on your local hardware <br/>
-	- <u>Ease of Setup</u> <br/>
+	- <u><b>Ease of Setup</b></u> <br/>
 		  Github models can be integrated quickly. Ollama setup might be more involved initially. <br/>
 
 
