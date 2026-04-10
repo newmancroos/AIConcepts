@@ -139,3 +139,21 @@ URL : https://platform.openai.com/tokenizer
 	- <b>Planner</b> - Orchestrates user requests by dynamically calling the right plugins and AI models
 	- <b>Memory</b> Manage context and stored data for AI apps, leverage vector databases or cache (Use for history in the Chatbot application)
    
+
+
+**Setup LLM Provider:**
+	- Github Models (Free Service)
+	- Ollama (Local AI Model)  (Free Service)
+	- Azure AI Foundry (Paid Service)   - https://ai.azure.com
+	- OpenAI (ChatGpt)  (Paid Service) - https://platform.openai.com (https://developers.openai.com/api/docs/models)
+	
+
+**How to choose AI Model:**
+	- <u>Cost and Subscription</u>
+			If budget aren't an issue choose Azure AI services or start with Github models and easily shift to Azure AI services for production with changing API keys only.
+	- <u>Performance ans Scalability</u>
+		   Azure Open AI typically provides high availbility and can scale easily. Ollama relies on your local hardware
+	- <u>Ease of Setup</u>
+		  Github models can be integrated quickly. Ollama setup might be more involved initially.
+
+
