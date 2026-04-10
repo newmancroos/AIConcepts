@@ -158,12 +158,12 @@ URL : https://platform.openai.com/tokenizer
 
 
 **Note:** 
-Even though we need to pay for Azure Ai models, using Github models and then using Azure Ai models is free with some Token limit. 
-					- Go to [https://github.com/marketplace/models](https://github.com/marketplace/models)
-					- Select Models -> Catalog
-					- In the Publisher dropdown select Azure OpenAI Service 
-					- Select any model
-					- Select any message in the header - This will give response 
-					- You can select Code tab to see code for accessing that model
+Even though we need to pay for Azure Ai models, using Github models and then using Azure Ai models is free with some Token limit. <br/>
+					- Go to [https://github.com/marketplace/models](https://github.com/marketplace/models) <br/>
+					- Select Models -> Catalog <br/>
+					- In the Publisher dropdown select Azure OpenAI Service <br/>
+					- Select any model <br/>
+					- Select any message in the header - This will give response  <br/>
+					- You can select Code tab to see code for accessing that model <br/>
 
 					
