@@ -167,3 +167,12 @@ Even though we need to pay for Azure Ai models, using Github models and then usi
 					- You can select Code tab to see code for accessing that model <br/>
 
 					
+**Create Access token in GitHub for a model:**
+
+1. Select the model using this url https://github.com/marketplace/models
+		ex. : OpenAI -GPT-4o mini
+2.  Click Use this model
+
+
+<img width="964" height="656" alt="image" src="https://github.com/user-attachments/assets/99bbd0fd-511a-4c86-b01f-10509c7becc7" />
+
