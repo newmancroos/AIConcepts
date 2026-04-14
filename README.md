@@ -189,4 +189,23 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 
    
 
+**What is Ollama  (Run LLMs locally)**
+- Ollama is a platform to run LLM or SLM locally
+- Offers private, secure AI solutions without requireing the cloud.
+- Ideal of developers and businesses seeking offline AI capabilities w/ privacy, low latency and comntrol over AI model
+- Excellent choice for those looking to integrate AI without depending on constant internet access.
+- **Key  Feature of Ollama:** 
+
+	-  Local Execution : Run LLMs and SMLs directly on your device
+	-  Pre-built Models : Included optimize models for coding, chat, creative tasks and more
+	- Privacy-First : All data remain on your machine, protecting sensitive info.
+	-  Customization : Allow model fine-tuning and adaptation for a specific needs
+	- Low latency : Fast response without network dependency.
+- **Available Model in Ollama:**
+
+	- Models : Llama, Gemma, qwen, phi, mistral
+	- Code generation Models : codegemma, codellama  - AI assistants specialized in code generation
+	- Creative Model : llva  - Text-to-image, story generation and poetry models
+	- Domain-Specific Models : medllama  - Finance, healthcare and other inductry-specific LLMs
+
 
