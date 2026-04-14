@@ -174,5 +174,19 @@ Even though we need to pay for Azure Ai models, using Github models and then usi
 2.  Click Use this model
 
 
-<img width="964" height="656" alt="image" src="https://github.com/user-attachments/assets/99bbd0fd-511a-4c86-b01f-10509c7becc7" />
+<img width="973" height="648" alt="image" src="https://github.com/user-attachments/assets/2905c22f-ab68-40e2-8fd6-3a4ebe017752" />
+
+This dialog explain how to create Access token and enitre sample code is avaolable in gthis dialog
+
+3.  Add Permission and select Model
+
+   <img width="1394" height="787" alt="image" src="https://github.com/user-attachments/assets/6cb7c536-ad6a-4246-8c38-ee57ac675d53" />
+
+   
+   <img width="964" height="533" alt="image" src="https://github.com/user-attachments/assets/7efab2c8-4446-422d-906e-2b0db9b8fd21" />
+
+   and Click Generate Token and copy the token becuase we cannot see gthe token again.
+
+   
+
 
