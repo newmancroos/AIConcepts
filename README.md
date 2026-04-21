@@ -209,3 +209,26 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 	- Domain-Specific Models : medllama  - Finance, healthcare and other inductry-specific LLMs
 
 
+**Download Ollama and Llams 3.2  with Docker**
+
+* https://ollama.com     - This step is need when we install Ollama locally
+* Download Ollama      - This step is need when we install Ollama locally
+* Download and Install Docker desktop
+* We are going to run Ollama in docker
+	* Goto dockerhub and  adn search for Ollama container image (https://hub.docker.com/)
+		* https://hub.docker.com/r/ollama/ollama
+		* docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+			* Run above command in powershell as administrator 
+			* docker ps will list down all running containers, so ollama is one of them
+* Download Ollama model
+	* Gt https://ollama.com
+	* Click on Models
+	* Search for llama and select/click on llama 3.2   (llama 3.3 is big so selected 3.2)
+	* Select ollama:latest and copy the command to pull ollama to the docker
+		* start interactive terminal in docker using following powershell command
+			* docker exec -it ollama bash          --- Here ollama is container name
+			* Run <b>ollama list </b> in the interactive terminal that listdown if any ollama model 
+			* Run <b>ollama run llama3.2 </b>   --- This will pull ollama 3.2 model locally
+			* Once it is available, we can even interact with ollama model in the interactive terminal itself
+				* Ex. explain microservices in 20 words   -> ollama will respond to this prompt
+ 
