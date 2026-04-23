@@ -232,3 +232,15 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 			* Once it is available, we can even interact with ollama model in the interactive terminal itself
 				* Ex. explain microservices in 20 words   -> ollama will respond to this prompt
  
+
+**Text Completion using Github gpt-5-mini**
+
+1. Using Guthub models with OpenAi gpt-5-mini (Minimal overhead to authenticating and sending the promqpt)
+2. Switching OpenAi gpt-5-mini to to Ollama's Local Llama3.2 (It is online premises support without internet)
+
+<p>
+	Core Packages  : Microsoft.Extensions.AI
+</p>
+
+<img width="1212" height="770" alt="image" src="https://github.com/user-attachments/assets/6ce69a22-1993-4487-af7d-af34749dfd4a" />
+
