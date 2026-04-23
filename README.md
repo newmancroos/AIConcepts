@@ -247,3 +247,15 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 
 <img width="1503" height="781" alt="image" src="https://github.com/user-attachments/assets/b429ad9f-271f-412a-8dca-3a71bb87dbaa" />
 
+
+
+
+ <p>
+	 We are going to develop .Net solution for
+	 - Text Completion
+	 - Summarization
+	 - Classification
+	 - Sentiment Analysis
+ </p>
+
+ 
