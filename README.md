@@ -248,7 +248,7 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 
 
 <p>
-	- Core Packages  : <br/>
+ <b>Core Packages  :</b> <br/>
 		- Microsoft.Extensions.AI <br/>
 		-  Microsoft.Extension.AI.OpenAI <br/>
 		- Microsoft.Extensions.Configuration <br/>
