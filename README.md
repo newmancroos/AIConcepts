@@ -189,4 +189,86 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 
    
 
+**What is Ollama  (Run LLMs locally)**
+- Ollama is a platform to run LLM or SLM locally
+- Offers private, secure AI solutions without requireing the cloud.
+- Ideal of developers and businesses seeking offline AI capabilities w/ privacy, low latency and comntrol over AI model
+- Excellent choice for those looking to integrate AI without depending on constant internet access.
+- **Key  Feature of Ollama:** 
+
+	-  Local Execution : Run LLMs and SMLs directly on your device
+	-  Pre-built Models : Included optimize models for coding, chat, creative tasks and more
+	- Privacy-First : All data remain on your machine, protecting sensitive info.
+	-  Customization : Allow model fine-tuning and adaptation for a specific needs
+	- Low latency : Fast response without network dependency.
+- **Available Model in Ollama:**
+
+	- Models : Llama, Gemma, qwen, phi, mistral
+	- Code generation Models : codegemma, codellama  - AI assistants specialized in code generation
+	- Creative Model : llva  - Text-to-image, story generation and poetry models
+	- Domain-Specific Models : medllama  - Finance, healthcare and other inductry-specific LLMs
+
+
+**Download Ollama and Llams 3.2  with Docker**
+
+* https://ollama.com     - This step is need when we install Ollama locally
+* Download Ollama      - This step is need when we install Ollama locally
+* Download and Install Docker desktop
+* We are going to run Ollama in docker
+	* Goto dockerhub and  adn search for Ollama container image (https://hub.docker.com/)
+		* https://hub.docker.com/r/ollama/ollama
+		* docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+			* Run above command in powershell as administrator 
+			* docker ps will list down all running containers, so ollama is one of them
+* Download Ollama model
+	* Gt https://ollama.com
+	* Click on Models
+	* Search for llama and select/click on llama 3.2   (llama 3.3 is big so selected 3.2)
+	* Select ollama:latest and copy the command to pull ollama to the docker
+		* start interactive terminal in docker using following powershell command
+			* docker exec -it ollama bash          --- Here ollama is container name
+			* Run <b>ollama list </b> in the interactive terminal that listdown if any ollama model 
+			* Run <b>ollama run llama3.2 </b>   --- This will pull ollama 3.2 model locally
+			* Once it is available, we can even interact with ollama model in the interactive terminal itself
+				* Ex. explain microservices in 20 words   -> ollama will respond to this prompt
+ 
+
+**Text Completion using Github gpt-5-mini**
+
+1. Using Guthub models with OpenAi gpt-5-mini (Minimal overhead to authenticating and sending the promqpt)
+2. Switching OpenAi gpt-5-mini to to Ollama's Local Llama3.2 (It is online premises support without internet)
+
+
+
+<img width="1212" height="770" alt="image" src="https://github.com/user-attachments/assets/6ce69a22-1993-4487-af7d-af34749dfd4a" />
+<br/>
+
+<img width="1503" height="781" alt="image" src="https://github.com/user-attachments/assets/b429ad9f-271f-412a-8dca-3a71bb87dbaa" />
+
+
+
+<p>
+ <b>Core Packages  :</b> <br/>
+		- Microsoft.Extensions.AI <br/>
+		-  Microsoft.Extension.AI.OpenAI <br/>
+		- Microsoft.Extensions.Configuration <br/>
+		- Microsoft.Extensions.Configurations.UserSecret
+	</p>
+ 
+ <p>
+	 We are going to develop .Net solution for
+	 - Text Completion
+	 - Summarization
+	 - Classification
+	 - Sentiment Analysis
+ </p>
+
+Setps:
+1. Open https://github.com/marketplace/models/azure-openai/gpt-5-mini
+2. Click on Use this model, that open another page for that model
+3. Select C# as Language and Azure Foundry Interface SDk as SDK
+4. Follow the steps on the Model page
+
+
+
 
