@@ -89,6 +89,18 @@ URL : https://platform.openai.com/tokenizer
 
 * When we create prompt, along with the subject, context is more important.
        
+## RAG
+
+Retrieval-Augmented Generation (RAG) is an AI framework that improves Large Language Model (LLM) accuracy by retrieving data from external, trusted knowledge sources before generating a response. It acts like an "open-book exam" for AI, reducing hallucinations and allowing for up-to-date, specialized answers without retraining the model.
+
+**Key Components and Benefits:**
+
+-   **How it Works:** When a user asks a question, the system searches (retrieves) relevant documents or data, appends them to the prompt, and asks the LLM to generate an answer based on this new information.
+-   **External Knowledge:** RAG can access internal company databases, PDFs, or live web data, which are not included in the LLM's static training data.
+-   **Key Benefits:**
+    -   **Accuracy:** Reduces hallucinations by grounding answers in retrieved facts.
+    -   **Up-to-date Information:** Accesses the latest data without needing to retrain the model.
+
 
 **What Can I build with AI and .NET?**
 - Language Processing
@@ -270,5 +282,8 @@ Setps:
 4. Follow the steps on the Model page
 
 
+
+Note:
+IChatClient is not only for request-response, chat like purpose it is also helps in Classification, Data Extraction, Translation etc. It is a universal task engine.
 
 
