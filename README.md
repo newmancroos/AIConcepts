@@ -283,4 +283,7 @@ Setps:
 
 
 
+Note:
+IChatClient is not only for request-response, chat like purpose it is also helps in Classification, Data Extraction, Translation etc. It is a universal task engine.
+
 
