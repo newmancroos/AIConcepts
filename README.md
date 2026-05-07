@@ -239,7 +239,8 @@ This dialog explain how to create Access token and enitre sample code is avaolab
 	* Select ollama:latest and copy the command to pull ollama to the docker
 		* start interactive terminal in docker using following powershell command
 			* docker exec -it ollama bash          --- Here ollama is container name
-			* Run <b>ollama list </b> in the interactive terminal that listdown if any ollama model 
+			* Run <b>ollama list </b> in the interactive terminal that listdown if any ollama model
+     		* Run <b>ollama pull  llama3.2</b> in the interactive terminal that pull lamma3.2 model 
 			* Run <b>ollama run llama3.2 </b>   --- This will pull ollama 3.2 model locally
 			* Once it is available, we can even interact with ollama model in the interactive terminal itself
 				* Ex. explain microservices in 20 words   -> ollama will respond to this prompt
