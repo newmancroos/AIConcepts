@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using OpenAI;
 using System.ClientModel;
+using System.Text.Json.Serialization;
 
 IConfigurationRoot config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
@@ -89,17 +90,133 @@ IChatClient client = new OpenAIClient(credential, options).GetChatClient("openai
 #endregion
 
 #region Sentiment Analysis
-var analysisPrompt = """
-    You will analyze the sentiment of the following product reviews. Each line is its own review. Output the sentiment of each review in a bulleted list and then provide a generate sentiment of all reviews.
-    
-    I bought this product and it's amazing. I love it!
-    This product is terrible.  I hate it.
-    I'm not sure about this product. It's okay.
-    I found this product based on the other reviews. It worked for a bit, and then it didn't.
-    """;
+//var analysisPrompt = """
+//    You will analyze the sentiment of the following product reviews. Each line is its own review. Output the sentiment of each review in a bulleted list and then provide a generate sentiment of all reviews.
 
-ChatResponse analysisResponse = await client.GetResponseAsync(analysisPrompt);
+//    I bought this product and it's amazing. I love it!
+//    This product is terrible.  I hate it.
+//    I'm not sure about this product. It's okay.
+//    I found this product based on the other reviews. It worked for a bit, and then it didn't.
+//    """;
 
-Console.WriteLine($"assistant  >>>\n {analysisResponse}");
+//ChatResponse analysisResponse = await client.GetResponseAsync(analysisPrompt);
+
+//Console.WriteLine($"assistant  >>>\n {analysisResponse}");
+
+#endregion
+
+#region Structured output
+
+//var carListings = new[]
+//{
+//    "Check out this stylish 2019 Toyota Camry. It has a clean title, only 40,000 miles on the odometer, and a well-maintained interior. The car offers great fuel efficiency, a spacious trunk, and modern safety features like lane departure alert. Minimum offer price: $18,000. Contact Metro Auto at (555) 111-2222 to schedule a test drive.",
+//    "Lease this sporty 2021 Honda Civic! With only 10,000 miles, it includes a sunroof, premium sound system, and backup camera. Perfect for city driving with its compact size and great fuel mileage. Located in Uptown Motors, monthly lease starts at $250 (excl. taxes). Call (555) 333-4444 for more info.",
+//    "A classic 1968 Ford Mustang, perfect for enthusiasts. The vehicle needs some interior restoration, but the engine runs smoothly. V8 engine, manual transmission, around 80,000 miles. This vintage gem is priced at $25,000. Contact Retro Wheels at (555) 777-8888 if you’re interested.",
+//    "Brand new 2023 Tesla Model 3 for lease. Zero miles, fully electric, autopilot capabilities, and a sleek design. Monthly lease starts at $450. Clean lines, minimalist interior, top-notch performance. For more details, call EVolution Cars at (555) 999-0000.",
+//    "Selling a 2015 Subaru Outback in good condition. 60,000 miles on it, includes all-wheel drive, heated seats, and ample cargo space for family getaways. Minimum offer price: $14,000. Contact Forrest Autos at (555) 222-1212 if you want a reliable adventure companion.",
+//};
+
+
+//foreach (var listing in carListings)
+//{
+//    var prompt = $"""
+//        Convert the following car listing into a JSON object matching this C$ schema:
+//        Condition: "New" or "Used"
+//        Make: (car manufacturer)
+//        Model: (car model)
+//        Year: (four-digit year)
+//        ListingType: "Sale" or "Lease"
+//        Price: integer only
+//        Features: array of short starings
+//        TenWordSummary: exactly ten words to summarize this listing
+
+//        Here is the listing:
+//        {listing}
+//        """;
+
+//    var response = await client.GetResponseAsync<CarDetails>(prompt);
+
+//    if (response.TryGetResult(out CarDetails? carDetails))
+//    { 
+//        //Convert theCarDetails object to Json for display
+//        Console.WriteLine(System.Text.Json.JsonSerializer.Serialize
+//            (carDetails, new System.Text.Json.JsonSerializerOptions() { WriteIndented = true }));
+//    }
+//    else
+//    {
+//        Console.WriteLine("Failed to parse the response into CarDetails.");
+//    }
+//}
+
+
+//// Define the type we want to extract
+
+//class CarDetails
+//{
+//    public required string Condition { get; set; }
+//    public required string Make { get; set; }
+//    public required string Model { get; set; }
+//    public int Year { get; set; }
+
+//    public CarListingType ListingType { get; set; }
+//    public int Price { get; set; }
+//    public required string[] Features { get; set; }
+//    public required string TenWordSummary { get; set; }
+//}
+
+//[JsonConverter(typeof(JsonStringEnumConverter))]
+//enum CarListingType
+//{
+//    Sale,
+//    Lease
+//}
+
+#endregion
+
+#region Chat Application
+//SYstem Message : Invisible instrcutions guiding the model's personality, style or domain expertise
+//User Message : The prompt or question from the user
+//Assistant Message : The response from the model, which incorporates context from both the system and user messages
+
+List<ChatMessage> chatHistory = new()
+    {
+        new ChatMessage(ChatRole.System, """
+            You are a friendly hiking enthusiast who helps people discover fun hikes in their area.
+            You introduce yourself when first saying hello.
+            When helping people out, you always ask them for this information
+            to inform the hiking recommendation you provide:
+
+            1. The location where they would like to hike
+            2. What hiking intensity they are looking for
+
+            You will then provide three suggestions for nearby hikes that vary in length
+            after you get that information. You will also share an interesting fact about
+            the local nature on the hikes when making a recommendation. At the end of your
+            response, ask if there is anything else you can help with.
+        """)
+    };
+
+
+while (true)
+{
+    //Get the user prompt and add to chat history
+    Console.WriteLine("Your Prompt : ");
+    var userPrompt = Console.ReadLine();
+    chatHistory.Add(new ChatMessage(ChatRole.User, userPrompt ?? string.Empty));
+
+    //Stream the AI response and add to chat history
+    var response = "";
+    await foreach (var message in client.GetStreamingResponseAsync(chatHistory))
+    {
+        Console.Write(message);
+        response += message;
+    }
+
+    chatHistory.Add(new ChatMessage(ChatRole.Assistant, response));
+
+    Console.WriteLine();
+
+}
+
 
 #endregion
