@@ -287,4 +287,8 @@ Setps:
 Note:
 IChatClient is not only for request-response, chat like purpose it is also helps in Classification, Data Extraction, Translation etc. It is a universal task engine.
 
+## Using Ollama Local LLM Vs Cloud Trad-off :
+
+- **Ollama :** Total data privacy and offline capabilities. Zero API costs but, it uses your own computer resources
+- **GitHub Model :** Incredible speed and access to the most powerful hardware. Zero local resource usage. But it required an internet connection, has potential cost
 
