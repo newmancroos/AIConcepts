@@ -292,3 +292,10 @@ IChatClient is not only for request-response, chat like purpose it is also helps
 - **Ollama :** Total data privacy and offline capabilities. Zero API costs but, it uses your own computer resources
 - **GitHub Model :** Incredible speed and access to the most powerful hardware. Zero local resource usage. But it required an internet connection, has potential cost
 
+## Function Calling in LLM
+
+LLMs can trigger external functions or APIs goes beyond text generation to perform actoions, Execute tasks like retriving data or booking appointments.
+
+**What is Function for LLMs?**
+Tool or API that can be invoked by the LLM, has spectifc name and set of parameters that passed to execute the function.
+A function that retrive the current weather in a given location might need parameters like City and unit of measurement.
