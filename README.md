@@ -305,7 +305,7 @@ A function that retrive the current weather in a given location might need param
 ## .Net AI Vector searching using Vector embeddings and Vector
 
 <br/>
-What is Vector? <br/>
+<b>What is Vector?</b> <br/>
 A Vector is a mathematical object that has both **magnitude and direction**, represented as a list of numbers : [1.2,3.4,-0.8]
 Vectors are used to represent complex data in a way that AI models can process, numberical summaries of information.
 
@@ -313,7 +313,7 @@ Vectors are used to represent complex data in a way that AI models can process, 
 <img width="989" height="710" alt="image" src="https://github.com/user-attachments/assets/4276700c-f3ed-4e41-bfc5-9d5b829cd54f" />
 <br/><br/>
 
-What is Vector Embeddings? <br/>
+<b>What is Vector Embeddings?</b> <br/>
 Dense numerical representation of data, capture the semantic meaning of text, image, audio or other data types.
 <br/>
 **Step1 : Input Data**
@@ -324,4 +324,21 @@ Pass the data through an AI model, like a Transformer model
 <br/>
 **Step 3 : Output Embedding**
 Transforms the input into a vector embedding, list of numbers
+
+<br/>
+https://platform.openai.com/tokenizer
+
+<br/>
+<img width="1415" height="872" alt="image" src="https://github.com/user-attachments/assets/764990a1-007d-4188-a990-8089f66a4b0f" />
+
+<br/>
+
+<b>Why are Embedding important</b> <br/>
+Compare and analyze data based on sematic meaning rather than surface-level features. If two sentances have similar meaning, their embedding will be close in high-dimensional space 
+<br/>
+<img width="892" height="673" alt="image" src="https://github.com/user-attachments/assets/148fe06b-674f-42cb-a4ad-b1a060798fa5" />
+
+<br/>
+
+
 
