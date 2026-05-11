@@ -311,3 +311,15 @@ Vectors are used to represent complex data in a way that AI models can process, 
 <img width="989" height="710" alt="image" src="https://github.com/user-attachments/assets/4276700c-f3ed-4e41-bfc5-9d5b829cd54f" />
 
 
+What is Vector Embeddings?
+Dense numerical representation of data, capture the semantic meaning of text, image, audio or other data types.
+
+**Step1 : Input Data**
+Start with raw data like a sentence, an image or a sound file
+
+**Step2 : Use an AI Embedding Model**
+Pass the data through an AI model, like a Transformer model
+
+**Step 3 : Output Embedding**
+Transforms the input into a vector embedding, list of numbers
+
