@@ -299,3 +299,15 @@ LLMs can trigger external functions or APIs goes beyond text generation to perfo
 **What is Function for LLMs?**
 Tool or API that can be invoked by the LLM, has spectifc name and set of parameters that passed to execute the function.
 A function that retrive the current weather in a given location might need parameters like City and unit of measurement.
+
+
+
+## .Net AI Vector searching using Vector embeddings and Vector
+
+What is Vector?
+A Vector is a mathematical object that has both **magnitude and direction**, represented as a list of numbers : [1.2,3.4,-0.8]
+Vectors are used to represent complex data in a way that AI models can process, numberical summaries of information.
+
+<img width="989" height="710" alt="image" src="https://github.com/user-attachments/assets/4276700c-f3ed-4e41-bfc5-9d5b829cd54f" />
+
+
