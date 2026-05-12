@@ -292,3 +292,53 @@ IChatClient is not only for request-response, chat like purpose it is also helps
 - **Ollama :** Total data privacy and offline capabilities. Zero API costs but, it uses your own computer resources
 - **GitHub Model :** Incredible speed and access to the most powerful hardware. Zero local resource usage. But it required an internet connection, has potential cost
 
+## Function Calling in LLM
+
+LLMs can trigger external functions or APIs goes beyond text generation to perform actoions, Execute tasks like retriving data or booking appointments.
+
+**What is Function for LLMs?**
+Tool or API that can be invoked by the LLM, has spectifc name and set of parameters that passed to execute the function.
+A function that retrive the current weather in a given location might need parameters like City and unit of measurement.
+
+
+
+## .Net AI Vector searching using Vector embeddings and Vector
+
+<br/>
+<b>What is Vector?</b> <br/>
+A Vector is a mathematical object that has both **magnitude and direction**, represented as a list of numbers : [1.2,3.4,-0.8]
+Vectors are used to represent complex data in a way that AI models can process, numberical summaries of information.
+
+<br/><br/>
+<img width="989" height="710" alt="image" src="https://github.com/user-attachments/assets/4276700c-f3ed-4e41-bfc5-9d5b829cd54f" />
+<br/><br/>
+
+<b>What is Vector Embeddings?</b> <br/>
+Dense numerical representation of data, capture the semantic meaning of text, image, audio or other data types.
+<br/>
+**Step1 : Input Data**
+Start with raw data like a sentence, an image or a sound file
+<br/>
+**Step2 : Use an AI Embedding Model**
+Pass the data through an AI model, like a Transformer model
+<br/>
+**Step 3 : Output Embedding**
+Transforms the input into a vector embedding, list of numbers
+
+<br/>
+https://platform.openai.com/tokenizer
+
+<br/>
+<img width="1415" height="872" alt="image" src="https://github.com/user-attachments/assets/764990a1-007d-4188-a990-8089f66a4b0f" />
+
+<br/>
+
+<b>Why are Embedding important</b> <br/>
+Compare and analyze data based on sematic meaning rather than surface-level features. If two sentances have similar meaning, their embedding will be close in high-dimensional space 
+<br/>
+<img width="892" height="673" alt="image" src="https://github.com/user-attachments/assets/148fe06b-674f-42cb-a4ad-b1a060798fa5" />
+
+<br/>
+
+
+
