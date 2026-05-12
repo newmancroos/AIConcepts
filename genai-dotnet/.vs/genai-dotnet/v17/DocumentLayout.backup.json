@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC277B-3CC2-4204-B165-33F597634756}|TextCompletion_Ollama\\TextCompletion_Ollama.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\textcompletion_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC277B-3CC2-4204-B165-33F597634756}|TextCompletion_Ollama\\TextCompletion_Ollama.csproj|solutionrelative:textcompletion_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CFD4C62C-2986-4C2A-9059-8B4A5940ABC2}|TextCompletion\\TextCompletion.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\textcompletion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFD4C62C-2986-4C2A-9059-8B4A5940ABC2}|TextCompletion\\TextCompletion.csproj|solutionrelative:textcompletion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5BF2B5AC-4EE1-4395-A7E2-9FC3C8FB1564}|Embeddings\\Embeddings.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\embeddings\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BF2B5AC-4EE1-4395-A7E2-9FC3C8FB1564}|Embeddings\\Embeddings.csproj|solutionrelative:embeddings\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\TextCompletion\\Program.cs",
-              "RelativeDocumentMoniker": "TextCompletion\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\TextCompletion\\Program.cs",
-              "RelativeToolTip": "TextCompletion\\Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAAK8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-29T03:07:10.179Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\TextCompletion_Ollama\\Program.cs",
-              "RelativeDocumentMoniker": "TextCompletion_Ollama\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\TextCompletion_Ollama\\Program.cs",
-              "RelativeToolTip": "TextCompletion_Ollama\\Program.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAAAJsAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\Embeddings\\Program.cs",
+              "RelativeDocumentMoniker": "Embeddings\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\Embeddings\\Program.cs",
+              "RelativeToolTip": "Embeddings\\Program.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAACYAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T21:44:18.921Z",
+              "WhenOpened": "2026-05-12T03:24:33.284Z",
               "EditorCaption": ""
             }
           ]

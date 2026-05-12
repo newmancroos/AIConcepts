@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TextCompletion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96baccf5c76c4f18a3018cd5c40bb308992254a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2e3135bb4fddd7158bc9677366b098980f5f002")]
 [assembly: System.Reflection.AssemblyProductAttribute("TextCompletion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TextCompletion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
