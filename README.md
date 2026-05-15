@@ -369,21 +369,22 @@ Sample Vector databases: <br />
 - Pinecone
 - Weaviate
 
-Onlhy problem using these database is it has its own sdks, so if you use one database and in future is you want to change to another we need to rewrite our data access layer. For this the reason Microsoft.Extensions.VectorData.Abstractions  is designed to solve. It is a kind of adapter for vector databases. This sits between your application and vector database.
+<br />
+Only problem using these database is it has its own sdks, so if you use one database and in future is you want to change to another we need to rewrite our data access layer. For this the reason Microsoft.Extensions.VectorData.Abstractions  is designed to solve. It is a kind of adapter for vector databases. This sits between your application and vector database.
 
 - Provides Common Interfaces
-		- Abstract CRUD on vector data, standardized to connect vector Dbs  (Chroma, Qdrant, Pinecone, Weaviate)
+		- Abstract CRUD on vector data, standardized to connect vector Dbs  (Chroma, Qdrant, Pinecone, Weaviate) <br />
 - Supports Vector and Text Search
-		-  Unified methods for unserting embeddings, high-level search functions
+		-  Unified methods for unserting embeddings, high-level search functions <br />
 -  Decouples your app from Vendor SDKs
-		- App code remains flexible, swap underlying vector store implementation with minimal changes
+		- App code remains flexible, swap underlying vector store implementation with minimal changes <br />
 
 * To use it in ASP.NET CORE/C#
-	*	Nuget Packages  : Microsoft.Extensions.VectorData.Abstractions, Microsoft.Extensions.AI
-	*	VectorData Stores : Configure VectorData store in your app, Vectordata.Abstractions provides interfaces to Add, Update, Delete and search vector records
-	*	Vector and Text Search :  
-			*	Vector Search : Query a vector store by specifying an embedding vector and similarity metric, 
-			*	Text Search : Convert text into embedding, then query the store using the same semantic approaches.
+	*	Nuget Packages  : Microsoft.Extensions.VectorData.Abstractions, Microsoft.Extensions.AI<br />
+	*	VectorData Stores : Configure VectorData store in your app, Vectordata.Abstractions provides interfaces to Add, Update, Delete and search vector records<br />
+	*	Vector and Text Search :  <br />
+			*	Vector Search : Query a vector store by specifying an embedding vector and similarity metric, <br />
+			*	Text Search : Convert text into embedding, then query the store using the same semantic approaches.<br />
 
 
 
