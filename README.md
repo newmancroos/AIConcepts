@@ -415,30 +415,8 @@ await qdrantClient.UpsertAsync("my-collection", new[] { new PointStruct { ... } 
 
 What the Abstraction Gives You
 The library defines common interfaces your application code depends on:
-<pre>
-	// ✅ Your business logic depends only on the abstraction
-public class SemanticSearchService
-{
-    private readonly IVectorStore _vectorStore;
 
-    public SemanticSearchService(IVectorStore vectorStore)
-    {
-        _vectorStore = vectorStore;
-    }
-
-    public async Task StoreDocumentAsync(Document doc)
-    {
-        var collection = _vectorStore.GetCollection<string, Document>("documents");
-        await collection.UpsertAsync(doc);
-    }
-
-    public async Task<IEnumerable<Document>> SearchAsync(float[] queryVector)
-    {
-        var collection = _vectorStore.GetCollection<string, Document>("documents");
-        return await collection.VectorizedSearchAsync(queryVector);
-    }
-}
-</pre>
+<img width="732" height="568" alt="image" src="https://github.com/user-attachments/assets/463a56dc-cd20-4da7-b155-81c221d887de" />
 
 <br/>
 * <b>Swapping Backends via DI</b>
