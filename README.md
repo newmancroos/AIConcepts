@@ -431,3 +431,13 @@ builder.Services.AddAzureAISearchVectorStore(new Uri(endpoint), new AzureKeyCred
 builder.Services.AddQdrantVectorStore("localhost");
 </pre>
   </p>
+
+
+## RAG
+- Retrival-Agumented-Generation enhances the model's ability to generate more accurate and relevant information by integrating external knowledge into the response.
+- Bridge the gap with pre-trained knowledge and the real-time information that is not part of its training data.
+- It pulls information from real-time or external knowledge sources, make responses more accurate and relevant to specific queries.
+
+
+  <img width="2048" height="1365" alt="image" src="https://github.com/user-attachments/assets/2068aaff-4b12-4866-a3db-3cfe7a348709" />
+  
