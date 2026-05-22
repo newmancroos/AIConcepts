@@ -440,4 +440,16 @@ public class SemanticSearchService
 }
 </pre>
 
+<br/>
+* <b>Swapping Backends via DI</b>
+<pre>
+	// Development — use in-memory store
+builder.Services.AddInMemoryVectorStore();
+
+// Production — swap to Azure AI Search, zero app code changes
+builder.Services.AddAzureAISearchVectorStore(new Uri(endpoint), new AzureKeyCredential(key));
+
+// Or Qdrant, Postgres (pgvector), Redis, etc.
+builder.Services.AddQdrantVectorStore("localhost");
+</pre>
   </p>
