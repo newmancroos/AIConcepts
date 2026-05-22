@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TextCompletion_Ollama")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2e3135bb4fddd7158bc9677366b098980f5f002")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd4975a08dfab781b080e3586dff0633afb5b2ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("TextCompletion_Ollama")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TextCompletion_Ollama")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

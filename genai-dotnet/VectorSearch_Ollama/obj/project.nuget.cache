@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "dgSpecHash": "vTAecA+RWeI=",
+  "success": true,
+  "projectFilePath": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\VectorSearch_Ollama.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.ai\\10.6.0\\microsoft.extensions.ai.10.6.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\10.6.0\\microsoft.extensions.ai.abstractions.10.6.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.8\\microsoft.extensions.caching.abstractions.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.8\\microsoft.extensions.dependencyinjection.abstractions.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.8\\microsoft.extensions.logging.abstractions.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.8\\microsoft.extensions.primitives.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.vectordata.abstractions\\10.1.0\\microsoft.extensions.vectordata.abstractions.10.1.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.semantickernel.connectors.inmemory\\1.74.0-preview\\microsoft.semantickernel.connectors.inmemory.1.74.0-preview.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\ollamasharp\\5.4.25\\ollamasharp.5.4.25.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.8\\system.diagnostics.diagnosticsource.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.io.pipelines\\10.0.8\\system.io.pipelines.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.linq.asyncenumerable\\10.0.4\\system.linq.asyncenumerable.10.0.4.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.numerics.tensors\\10.0.8\\system.numerics.tensors.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.text.encodings.web\\10.0.8\\system.text.encodings.web.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.text.json\\10.0.8\\system.text.json.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.threading.channels\\10.0.8\\system.threading.channels.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.10\\microsoft.windowsdesktop.app.ref.9.0.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.10\\microsoft.netcore.app.ref.9.0.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.10\\microsoft.aspnetcore.app.ref.9.0.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.10\\microsoft.netcore.app.host.win-x64.9.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}

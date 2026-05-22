@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5BF2B5AC-4EE1-4395-A7E2-9FC3C8FB1564}|Embeddings\\Embeddings.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\embeddings\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5BF2B5AC-4EE1-4395-A7E2-9FC3C8FB1564}|Embeddings\\Embeddings.csproj|solutionrelative:embeddings\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|solutionrelative:vectorsearch_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|solutionrelative:vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch_ollama\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|solutionrelative:vectorsearch_ollama\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +30,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
+              "RelativeDocumentMoniker": "VectorSearch\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
+              "RelativeToolTip": "VectorSearch\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAUwDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T00:02:08.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Movie.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Movie.cs",
+              "RelativeDocumentMoniker": "VectorSearch_Ollama\\Movie.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Movie.cs",
+              "RelativeToolTip": "VectorSearch_Ollama\\Movie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T00:01:46.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\Embeddings\\Program.cs",
-              "RelativeDocumentMoniker": "Embeddings\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\Embeddings\\Program.cs",
-              "RelativeToolTip": "Embeddings\\Program.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAACYAAABEAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Program.cs",
+              "RelativeDocumentMoniker": "VectorSearch_Ollama\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Program.cs",
+              "RelativeToolTip": "VectorSearch_Ollama\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-12T03:24:33.284Z",
+              "WhenOpened": "2026-05-21T23:59:04.411Z",
               "EditorCaption": ""
             }
           ]
