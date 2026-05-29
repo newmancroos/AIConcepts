@@ -441,3 +441,8 @@ builder.Services.AddQdrantVectorStore("localhost");
 
   <img width="2048" height="1365" alt="image" src="https://github.com/user-attachments/assets/2068aaff-4b12-4866-a3db-3cfe7a348709" />
   
+
+Why RAG?
+	* Pre-trained models are outdated and gives us inaccurate result. LLMs are only as current as their training data. GPT was trained on 2021, won't give any information from 2022 or beyond.
+	* LLMs cannot access specific or proprietary data. Can't provide information from specific manuals or private database.
+	
