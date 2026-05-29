@@ -451,3 +451,12 @@ Why RAG?
 
 
 
+
+<b>Steps in RAG :</b>
+1. Ingestion / Indexing   : 
+	 - Collect information :  into to the knowledgebase (database, documents, real-time from Api)
+	 - Organizing Information : Organize data for easily accessible in the retrieval step. Separate chunks, insert embedding and create indexes.
+2. Retrieval :  Pulling information from external sources (knowledgebase) and creating the prompt. (Knowledgebase + query)
+3. Generation : Go to the generation by sending query and knowledgebase to the LLM and get the final response
+
+
