@@ -484,6 +484,7 @@ These templates streamline the entire development process by offering the follow
 
 <p>
 
-	<b>Installation:</b> <br/>
+	Installation:
 	dotnet new install Microsoft.Extensions.AI.Templates
+	dotnet new install Microsoft.McpServer.ProjectTemplates
 </p>
