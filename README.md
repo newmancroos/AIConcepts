@@ -460,3 +460,24 @@ Why RAG?
 3. Generation : Go to the generation by sending query and knowledgebase to the LLM and get the final response
 
 
+
+## Installing .Net AI Template
+
+<p>
+The purpose of installing the .NET AI templates in Visual Studio is to **instantly scaffold production-ready AI applications** without writing boilerplate setup code from scratch
+</p>
+<p>
+These templates streamline the entire development process by offering the following core benefits and capabilities:
+</p>
+<p>
+-   **Retrieval Augmented Generation (RAG):** Quickly build Blazor-based chat web apps that can ingest, search, and chat with your own custom documents (like PDFs and custom datasets)
+</p>
+<p>
+- **Seamless Service Integrations:** Pre-configured scaffolding to connect with **GitHub Models**, **OpenAI**, **Azure OpenAI**, and local AI hosting environments (like Ollama via Docker)
+</p>
+<p>
+**ector Data Support:** Built-in code for processing, embedding, and caching data, using either local vector stores or cloud services like **Azure AI Search** and **Qdrant**
+</p>
+<p>
+**Modern .NET Abstractions:** Projects are built using the official `Microsoft.Extensions.AI` packages, making it simple to plug in custom behaviors or C# functions for the AI to execute
+</p>
