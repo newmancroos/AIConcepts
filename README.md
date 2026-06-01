@@ -476,8 +476,8 @@ These templates streamline the entire development process by offering the follow
 - **Seamless Service Integrations:** Pre-configured scaffolding to connect with **GitHub Models**, **OpenAI**, **Azure OpenAI**, and local AI hosting environments (like Ollama via Docker)
 </p>
 <p>
-**ector Data Support:** Built-in code for processing, embedding, and caching data, using either local vector stores or cloud services like **Azure AI Search** and **Qdrant**
+- **Vector Data Support:** Built-in code for processing, embedding, and caching data, using either local vector stores or cloud services like **Azure AI Search** and **Qdrant**
 </p>
 <p>
-**Modern .NET Abstractions:** Projects are built using the official `Microsoft.Extensions.AI` packages, making it simple to plug in custom behaviors or C# functions for the AI to execute
+- **Modern .NET Abstractions:** Projects are built using the official `Microsoft.Extensions.AI` packages, making it simple to plug in custom behaviors or C# functions for the AI to execute
 </p>
