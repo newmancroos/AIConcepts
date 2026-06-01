@@ -481,3 +481,9 @@ These templates streamline the entire development process by offering the follow
 <p>
 - **Modern .NET Abstractions:** Projects are built using the official `Microsoft.Extensions.AI` packages, making it simple to plug in custom behaviors or C# functions for the AI to execute
 </p>
+
+<p>
+
+	<b>Installation:</b> <br/>
+	dotnet new install Microsoft.Extensions.AI.Templates
+</p>
