@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|solutionrelative:vectorsearch_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\chatapp_rag\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|solutionrelative:chatapp_rag\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|solutionrelative:vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\chatapp_rag\\services\\semanticsearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|solutionrelative:chatapp_rag\\services\\semanticsearch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch_ollama\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A5C48D-045D-42B6-B777-86F3D0398A63}|VectorSearch_Ollama\\VectorSearch_Ollama.csproj|solutionrelative:vectorsearch_ollama\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\chatapp_rag\\services\\ingestion\\dataingestor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|solutionrelative:chatapp_rag\\services\\ingestion\\dataingestor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\chatapp_rag\\components\\pages\\chat\\chat.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9E5321F7-B84F-D51F-273D-2D47A58E1332}|ChatApp_RAG\\ChatApp_RAG.csproj|solutionrelative:chatapp_rag\\components\\pages\\chat\\chat.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,41 +34,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
-              "RelativeDocumentMoniker": "VectorSearch\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
-              "RelativeToolTip": "VectorSearch\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAUwDoAAAABAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Program.cs",
+              "RelativeDocumentMoniker": "ChatApp_RAG\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Program.cs",
+              "RelativeToolTip": "ChatApp_RAG\\Program.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAADwvxYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T00:02:08.546Z",
+              "WhenOpened": "2026-06-01T22:14:22.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Chat.razor",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Components\\Pages\\Chat\\Chat.razor",
+              "RelativeDocumentMoniker": "ChatApp_RAG\\Components\\Pages\\Chat\\Chat.razor",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Components\\Pages\\Chat\\Chat.razor",
+              "RelativeToolTip": "ChatApp_RAG\\Components\\Pages\\Chat\\Chat.razor",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAE0AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-01T19:31:41.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SemanticSearch.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Services\\SemanticSearch.cs",
+              "RelativeDocumentMoniker": "ChatApp_RAG\\Services\\SemanticSearch.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Services\\SemanticSearch.cs",
+              "RelativeToolTip": "ChatApp_RAG\\Services\\SemanticSearch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-01T19:28:54.321Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Movie.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Movie.cs",
-              "RelativeDocumentMoniker": "VectorSearch_Ollama\\Movie.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Movie.cs",
-              "RelativeToolTip": "VectorSearch_Ollama\\Movie.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "Title": "DataIngestor.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Services\\Ingestion\\DataIngestor.cs",
+              "RelativeDocumentMoniker": "ChatApp_RAG\\Services\\Ingestion\\DataIngestor.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ChatApp_RAG\\Services\\Ingestion\\DataIngestor.cs",
+              "RelativeToolTip": "ChatApp_RAG\\Services\\Ingestion\\DataIngestor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T00:01:46.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Program.cs",
-              "RelativeDocumentMoniker": "VectorSearch_Ollama\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch_Ollama\\Program.cs",
-              "RelativeToolTip": "VectorSearch_Ollama\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-21T23:59:04.411Z",
+              "WhenOpened": "2026-06-01T19:25:28.677Z",
               "EditorCaption": ""
             }
           ]
