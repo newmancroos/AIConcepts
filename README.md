@@ -431,3 +431,60 @@ builder.Services.AddAzureAISearchVectorStore(new Uri(endpoint), new AzureKeyCred
 builder.Services.AddQdrantVectorStore("localhost");
 </pre>
   </p>
+
+
+## RAG
+- Retrival-Agumented-Generation enhances the model's ability to generate more accurate and relevant information by integrating external knowledge into the response.
+- Bridge the gap with pre-trained knowledge and the real-time information that is not part of its training data.
+- It pulls information from real-time or external knowledge sources, make responses more accurate and relevant to specific queries.
+
+
+  <img width="2048" height="1365" alt="image" src="https://github.com/user-attachments/assets/2068aaff-4b12-4866-a3db-3cfe7a348709" />
+  
+
+Why RAG?
+	* Pre-trained models are outdated and gives us inaccurate result. LLMs are only as current as their training data. GPT was trained on 2021, won't give any information from 2022 or beyond.
+	* LLMs cannot access specific or proprietary data. Can't provide information from specific manuals or private database.
+
+
+<img width="1595" height="604" alt="image" src="https://github.com/user-attachments/assets/04fc016c-cd99-4b0d-a573-a88210786f05" />
+
+
+
+
+<b>Steps in RAG :</b>
+1. Ingestion / Indexing   : 
+	 - Collect information :  into to the knowledgebase (database, documents, real-time from Api)
+	 - Organizing Information : Organize data for easily accessible in the retrieval step. Separate chunks, insert embedding and create indexes.
+2. Retrieval :  Pulling information from external sources (knowledgebase) and creating the prompt. (Knowledgebase + query)
+3. Generation : Go to the generation by sending query and knowledgebase to the LLM and get the final response
+
+
+
+## Installing .Net AI Template
+
+<p>
+The purpose of installing the .NET AI templates in Visual Studio is to **instantly scaffold production-ready AI applications** without writing boilerplate setup code from scratch
+</p>
+<p>
+These templates streamline the entire development process by offering the following core benefits and capabilities:
+</p>
+<p>
+-   **Retrieval Augmented Generation (RAG):** Quickly build Blazor-based chat web apps that can ingest, search, and chat with your own custom documents (like PDFs and custom datasets)
+</p>
+<p>
+- **Seamless Service Integrations:** Pre-configured scaffolding to connect with **GitHub Models**, **OpenAI**, **Azure OpenAI**, and local AI hosting environments (like Ollama via Docker)
+</p>
+<p>
+- **Vector Data Support:** Built-in code for processing, embedding, and caching data, using either local vector stores or cloud services like **Azure AI Search** and **Qdrant**
+</p>
+<p>
+- **Modern .NET Abstractions:** Projects are built using the official `Microsoft.Extensions.AI` packages, making it simple to plug in custom behaviors or C# functions for the AI to execute
+</p>
+
+<p>
+
+	Installation:
+	dotnet new install Microsoft.Extensions.AI.Templates
+	dotnet new install Microsoft.McpServer.ProjectTemplates
+</p>
