@@ -1,0 +1,79 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ChatApp_RAG_Ollama
+build_property.RootNamespace = ChatApp_RAG_Ollama
+build_property.ProjectDir = C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Ollama\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Ollama
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Layout/LoadingSpinner.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9hZGluZ1NwaW5uZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-v2wg6obtrl
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-qmaebi06uu
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Layout/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcU3VydmV5UHJvbXB0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-20665i0w7s
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/Chat.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-91n4bkpxx9
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/ChatCitation.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXRDaXRhdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-j0dpb5m36p
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/ChatHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXRIZWFkZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5ekm21lqha
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/ChatInput.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXRJbnB1dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-wfegaa12en
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/ChatMessageItem.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXRNZXNzYWdlSXRlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-z196x1t99q
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/ChatMessageList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXRNZXNzYWdlTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-huo4aoww6h
+
+[C:/Developments/Git/AIConcepts/genai-dotnet/ChatApp_RAG_Ollama/Components/Pages/Chat/ChatSuggestions.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDaGF0XENoYXRTdWdnZXN0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-d37gjkc8ay

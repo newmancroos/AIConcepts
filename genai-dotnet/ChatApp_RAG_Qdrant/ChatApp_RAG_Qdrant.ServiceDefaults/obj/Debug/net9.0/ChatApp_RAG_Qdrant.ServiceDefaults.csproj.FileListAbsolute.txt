@@ -1,0 +1,13 @@
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\bin\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.deps.json
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\bin\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\bin\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.pdb
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.csproj.AssemblyReference.cache
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.AssemblyInfoInputs.cache
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.AssemblyInfo.cs
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.sourcelink.json
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\refint\ChatApp_RAG_Qdrant.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ChatApp_RAG_Qdrant.ServiceDefaults.pdb
+C:\Developments\Git\AIConcepts\genai-dotnet\ChatApp_RAG_Qdrant\ChatApp_RAG_Qdrant.ServiceDefaults\obj\Debug\net9.0\ref\ChatApp_RAG_Qdrant.ServiceDefaults.dll

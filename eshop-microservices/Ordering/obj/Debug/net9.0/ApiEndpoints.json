@@ -1,0 +1,81 @@
+[
+  {
+    "ContainingType": "Ordering.Endpoints.OrderEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOrderEndpoints\u003Eb__0_0",
+    "RelativePath": "orders/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Ordering.Models.Order, Ordering, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetAllOrders"
+  },
+  {
+    "ContainingType": "Ordering.Endpoints.OrderEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOrderEndpoints\u003Eb__0_2",
+    "RelativePath": "orders/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order",
+        "Type": "Ordering.Models.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Ordering.Models.Order",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ],
+    "EndpointName": "CreateOrder"
+  },
+  {
+    "ContainingType": "Ordering.Endpoints.OrderEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapOrderEndpoints\u003Eb__0_1",
+    "RelativePath": "orders/{userName}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Ordering.Models.Order, Ordering, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetOrderByUserName"
+  }
+]

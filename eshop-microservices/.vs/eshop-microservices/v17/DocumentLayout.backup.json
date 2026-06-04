@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\components\\chatbox.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\chatbox.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\components\\chatbox.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\chatbox.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\apiclients\\catalogapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\apiclients\\catalogapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:120672179:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "WebApp\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "WebApp\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-04T16:11:07.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatBox.razor.css",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\ChatBox.razor.css",
+              "RelativeDocumentMoniker": "WebApp\\Components\\ChatBox.razor.css",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\ChatBox.razor.css",
+              "RelativeToolTip": "WebApp\\Components\\ChatBox.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-06-04T15:44:40.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatBox.razor",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\ChatBox.razor",
+              "RelativeDocumentMoniker": "WebApp\\Components\\ChatBox.razor",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\ChatBox.razor",
+              "RelativeToolTip": "WebApp\\Components\\ChatBox.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-04T15:43:31.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CatalogApiClient.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\ApiClients\\CatalogApiClient.cs",
+              "RelativeDocumentMoniker": "WebApp\\ApiClients\\CatalogApiClient.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\ApiClients\\CatalogApiClient.cs",
+              "RelativeToolTip": "WebApp\\ApiClients\\CatalogApiClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-04T15:40:40.146Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

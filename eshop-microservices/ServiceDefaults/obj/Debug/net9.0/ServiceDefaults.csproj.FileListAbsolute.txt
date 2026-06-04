@@ -1,0 +1,13 @@
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\bin\Debug\net9.0\ServiceDefaults.deps.json
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\bin\Debug\net9.0\ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\bin\Debug\net9.0\ServiceDefaults.pdb
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.csproj.AssemblyReference.cache
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.AssemblyInfoInputs.cache
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.AssemblyInfo.cs
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.sourcelink.json
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\refint\ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ServiceDefaults.pdb
+C:\Developments\Git\AIConcepts\eshop-microservices\ServiceDefaults\obj\Debug\net9.0\ref\ServiceDefaults.dll

@@ -1,0 +1,57 @@
+.input-box[b-wfegaa12en] {
+    display: flex; 
+    flex-direction: column; 
+    background: white;
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.75rem; 
+}
+
+    .input-box:focus-within[b-wfegaa12en] {
+        outline: 2px solid #4152d5;
+    }
+
+textarea[b-wfegaa12en] {
+    resize: none;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+}
+
+    textarea:placeholder-shown + .tools[b-wfegaa12en] {
+        --send-button-color: #aaa;
+    }
+
+.tools[b-wfegaa12en] {
+    display: flex; 
+    margin-top: 1rem; 
+    align-items: center;
+}
+
+.tool-icon[b-wfegaa12en] {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.send-button[b-wfegaa12en] {
+    color: var(--send-button-color);
+    margin-left: auto;
+}
+
+    .send-button:hover[b-wfegaa12en] {
+        color: black;
+    }
+
+.attach[b-wfegaa12en] {
+    background-color: white;
+    border-style: dashed;
+    color: #888;
+    border-color: #888;
+    padding: 3px 8px;
+}
+
+    .attach:hover[b-wfegaa12en] {
+        background-color: #f0f0f0;
+        color: black;
+    }

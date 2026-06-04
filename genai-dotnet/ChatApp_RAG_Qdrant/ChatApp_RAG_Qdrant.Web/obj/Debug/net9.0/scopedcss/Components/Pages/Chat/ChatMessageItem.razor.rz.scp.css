@@ -1,0 +1,120 @@
+.user-message[b-kl4dfdfbdb] {
+    background: rgb(182 215 232);
+    align-self: flex-end;
+    min-width: 25%;
+    max-width: calc(100% - 5rem);
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.25rem; 
+    color: #1F2937; 
+    white-space: pre-wrap; 
+}
+
+.assistant-message[b-kl4dfdfbdb], .assistant-search[b-kl4dfdfbdb] {
+    display: grid;
+    grid-template-rows: min-content;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.25rem; 
+}
+
+.assistant-message-header[b-kl4dfdfbdb] {
+    font-weight: 600;
+}
+
+.assistant-message-text[b-kl4dfdfbdb] {
+    grid-column-start: 2;
+}
+
+.assistant-message-icon[b-kl4dfdfbdb] {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 9999px; 
+    width: 1.5rem; 
+    height: 1.5rem; 
+    color: #ffffff; 
+    background: #9b72ce;
+}
+
+    .assistant-message-icon svg[b-kl4dfdfbdb] {
+        width: 1rem; 
+        height: 1rem; 
+    }
+
+.assistant-search[b-kl4dfdfbdb] {
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+}
+
+.assistant-search-icon[b-kl4dfdfbdb] {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 1.5rem; 
+    height: 1.5rem; 
+}
+
+    .assistant-search-icon svg[b-kl4dfdfbdb] {
+        width: 1rem; 
+        height: 1rem; 
+    }
+
+.assistant-search-content[b-kl4dfdfbdb] {
+    align-content: center;
+}
+
+.assistant-search-phrase[b-kl4dfdfbdb] {
+    font-weight: 600;
+}
+
+/* Default styling for markdown-formatted assistant messages */
+[b-kl4dfdfbdb] ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+[b-kl4dfdfbdb] ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+}
+
+[b-kl4dfdfbdb] li {
+    margin: 0.5rem 0;
+}
+
+[b-kl4dfdfbdb] strong {
+    font-weight: 600;
+}
+
+[b-kl4dfdfbdb] h3 {
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+[b-kl4dfdfbdb] p + p {
+    margin-top: 1rem;
+}
+
+[b-kl4dfdfbdb] table {
+    margin: 1rem 0;
+}
+
+[b-kl4dfdfbdb] th {
+    text-align: left;
+    border-bottom: 1px solid silver;
+}
+
+[b-kl4dfdfbdb] th, [b-kl4dfdfbdb] td {
+    padding: 0.1rem 0.5rem;
+}
+
+[b-kl4dfdfbdb] th, [b-kl4dfdfbdb] tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[b-kl4dfdfbdb] pre > code {
+    background-color: white;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
