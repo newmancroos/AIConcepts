@@ -488,3 +488,9 @@ These templates streamline the entire development process by offering the follow
 	dotnet new install Microsoft.Extensions.AI.Templates
 	dotnet new install Microsoft.McpServer.ProjectTemplates
 </p>
+
+## Why Qdrant?
+
+- Vector search engine, [erfect for storing emeddings from text, images or other high-dimensional data
+- Enable semantic searches and is strightforward to setup in .NET Aspire with **Aspire.Hosting.Qdrant** package.
+ 
