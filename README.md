@@ -494,3 +494,19 @@ These templates streamline the entire development process by offering the follow
 - Vector search engine, [erfect for storing emeddings from text, images or other high-dimensional data
 - Enable semantic searches and is strightforward to setup in .NET Aspire with **Aspire.Hosting.Qdrant** package.
  
+
+**Microsoft.Extensions.VectorData.Abstractions**
+   - This gives us common interfaces : Abstract CRUD on vector data, standardized to connect VectorDBs (Chroma, Qdrant, Pinecode, Weaviate)
+   - Supports Vector and Text Search : Unified method for inserting embedding, High-level search functions
+
+   - Decouple your Application from Vendor SDKs : App code remain flexible, Swap underlying vector store implementations (local or could-based) with minimal changes.
+   - **The Foundation :** Microsoft.Extensions.VectorData : It is like Entity Framework for vector. Unified way to perform CRUD and search operations
+   - **Implementation - Semaintc Kernal Connectors  :**  Simantic Kernal team provides a connector for Qdtrant, another for Chroma, another for Pinecone ..
+   - **Integration - Aspire Client Library :** Aspire.Qdrant.Client, makes dependency injection and configuration effortless.
+
+## Required Packages for .Net Aspire and Qdrant:
+
+- **Aspre hosting Integration :** Aspire.Qdrant.Client
+- **Microsoft.SemanticKernel.Connectors.Qdrant :** Actual Qdrant driver from Semantic Kernal team that works with the VectorData abstractions
+- ***Note:***  If we notice we don't install Microsoft.Extensions.VectorData.Abstractions explicitly because Microsoft.SemanticKernel.Connectors.Qdrant brings it automatically
+  
