@@ -3,11 +3,26 @@
 namespace Projects;
 
 #pragma warning disable CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
+/// <summary>
+/// Metadata for the Basket project.
+/// </summary>
 [global::System.CodeDom.Compiler.GeneratedCode("Aspire.Hosting", null)]
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage(Justification = "Generated code.")]
 [global::System.Diagnostics.DebuggerDisplay("Type = {GetType().Name,nq}, ProjectPath = {ProjectPath}")]
 public class Basket : global::Aspire.Hosting.IProjectMetadata
 #pragma warning restore CS8981
 {
+    /// <summary>
+    /// The path to the Basket project.
+    /// </summary>
     public string ProjectPath => """C:\Developments\Git\AIConcepts\eshop-microservices\Basket\Basket.csproj""";
+
+    /// <summary>
+    /// Gets a value indicating whether building the project before running it should be suppressed.
+    /// </summary>
+    /// <remarks>
+    /// Projects added via ProjectReference items in the AppHost project file are built as part of building the AppHost project process
+    /// so building them again before running is unnecessary. This property always returns true.
+    /// </remarks>
+    public bool SuppressBuild => true;
 }

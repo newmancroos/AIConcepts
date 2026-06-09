@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EB755DD0-7DDB-48B8-9B48-42806F466ABF}|ImageAnalysis_Ollama\\ImageAnalysis_Ollama.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\imageanalysis_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB755DD0-7DDB-48B8-9B48-42806F466ABF}|ImageAnalysis_Ollama\\ImageAnalysis_Ollama.csproj|solutionrelative:imageanalysis_ollama\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|solutionrelative:vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,13 +24,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ImageAnalysis_Ollama\\Program.cs",
-              "RelativeDocumentMoniker": "ImageAnalysis_Ollama\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ImageAnalysis_Ollama\\Program.cs",
-              "RelativeToolTip": "ImageAnalysis_Ollama\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAA3AAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
+              "RelativeDocumentMoniker": "VectorSearch\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
+              "RelativeToolTip": "VectorSearch\\Program.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-03T16:35:34.076Z",
+              "WhenOpened": "2026-06-04T18:07:23.283Z",
               "EditorCaption": ""
             }
           ]

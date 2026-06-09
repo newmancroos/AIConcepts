@@ -21,9 +21,19 @@ var options = new OpenAIClientOptions
     Endpoint = new Uri("https://models.github.ai/inference")
 };
 
-IChatClient claint = new OpenAIClient(credentials, options).GetChatClient("openai/gpt-4o-mini").AsIChatClient();
+var openAIClient = new OpenAIClient(credentials, options);
+IChatClient claint = openAIClient.GetChatClient("openai/gpt-4o-mini").AsIChatClient();
 
+var embeddingGenerator = openAIClient.GetEmbeddingClient("openai/text-embedding-3-small").AsIEmbeddingGenerator();
 builder.Services.AddChatClient(claint);
+builder.Services.AddEmbeddingGenerator(embeddingGenerator);
+
+
+
+
+//Add vector db search operations
+builder.AddQdrantClient("vectordb");
+builder.Services.AddQdrantCollection<ulong, ProductVector>("product-vectors");
 
 
 var app = builder.Build();

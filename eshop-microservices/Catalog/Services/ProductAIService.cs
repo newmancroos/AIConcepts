@@ -1,8 +1,13 @@
 ﻿using Microsoft.Extensions.AI;
+using Microsoft.Extensions.VectorData;
 
 namespace Catalog.Services;
 
-public class ProductAIService(IChatClient chatClient, CatalogDbContext dbContext)
+public class ProductAIService(IChatClient chatClient, 
+    IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator,
+    VectorStoreCollection<ulong, ProductVector> productVectorCollection,
+    CatalogDbContext dbContext
+    )
 {
     public async Task<string> SupportAsync(string userQuery, CancellationToken cancellationToken = default)
     {
@@ -44,4 +49,59 @@ public class ProductAIService(IChatClient chatClient, CatalogDbContext dbContext
         return response.Text ?? "No description available.";
     }
 
+    private async Task InitEmbeddingsAsync()
+    { 
+        await productVectorCollection.EnsureCollectionExistsAsync();
+        var products = await dbContext.Products
+            .AsNoTracking()
+            .ToListAsync();
+
+        foreach (var product in products)
+        { 
+            var productInfo = $"[{product.Name}] is a product that costs [{product.Price}] and is described as [{product.Description}]";
+            var productVector = new ProductVector
+            {
+                Id = (ulong)product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price =(float)product.Price,
+                ImageUrl = product.ImageUrl,
+                Vector = await embeddingGenerator.GenerateVectorAsync(productInfo)
+            };
+            await productVectorCollection.UpsertAsync(productVector);
+        }
+    }
+    public async Task<IEnumerable<Product>> SearchProductsAsync(string query)
+    {
+        //step1 : Use the IEmbeddingGenerator to turn the user's query into a vector.
+        //step2 : Use the IVectorStore to search Qdrant for the most similar product vectors.
+        //step3 : Get the IDs of matching products from the search results.
+        //step4 : Retrive the full product details from our main Postgres database for those IDs
+        //step5 : Return the matching products to the user.
+
+        if(!await productVectorCollection.CollectionExistsAsync())
+        {
+            await InitEmbeddingsAsync();
+        }
+
+        var queryEmbedding = await embeddingGenerator.GenerateVectorAsync(query);
+
+        var result = productVectorCollection.SearchAsync(queryEmbedding, 1);
+
+        List<Product> products = new List<Product>();
+
+        await foreach(var searchResult in result)
+        {
+            products.Add(new Product
+            {
+                Id = (int)searchResult.Record.Id,
+                Name = searchResult.Record.Name,
+                Description = searchResult.Record.Description,
+                Price =(decimal)searchResult.Record.Price,
+                ImageUrl = searchResult.Record.ImageUrl
+            });
+        }
+
+        return  products;
+    }
 }

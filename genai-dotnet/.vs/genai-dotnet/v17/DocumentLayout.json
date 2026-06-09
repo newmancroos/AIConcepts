@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5BF2B5AC-4EE1-4395-A7E2-9FC3C8FB1564}|Embeddings\\Embeddings.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\embeddings\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BF2B5AC-4EE1-4395-A7E2-9FC3C8FB1564}|Embeddings\\Embeddings.csproj|solutionrelative:embeddings\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{890DD82F-38F6-4EBB-A0B0-0CAAF4B7D5B9}|ImageAnalysis\\ImageAnalysis.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\imageanalysis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{890DD82F-38F6-4EBB-A0B0-0CAAF4B7D5B9}|ImageAnalysis\\ImageAnalysis.csproj|solutionrelative:imageanalysis\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|c:\\developments\\git\\aiconcepts\\genai-dotnet\\vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC276B59-E713-4DE9-87FA-AB22EA13A20F}|VectorSearch\\VectorSearch.csproj|solutionrelative:vectorsearch\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -24,11 +32,37 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\Embeddings\\Program.cs",
+              "RelativeDocumentMoniker": "Embeddings\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\Embeddings\\Program.cs",
+              "RelativeToolTip": "Embeddings\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T23:56:43.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ImageAnalysis\\Program.cs",
+              "RelativeDocumentMoniker": "ImageAnalysis\\Program.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\ImageAnalysis\\Program.cs",
+              "RelativeToolTip": "ImageAnalysis\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAC0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T23:36:20.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
               "RelativeDocumentMoniker": "VectorSearch\\Program.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\genai-dotnet\\VectorSearch\\Program.cs",
               "RelativeToolTip": "VectorSearch\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-04T18:07:23.283Z",
               "EditorCaption": ""

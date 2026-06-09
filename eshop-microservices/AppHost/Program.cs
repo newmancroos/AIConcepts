@@ -23,10 +23,18 @@ var sqlServer = builder
 
 var orderdb = sqlServer.AddDatabase("orderdb");
 
+
+var qdrant = builder.AddQdrant("vectordb")
+    .WithDataVolume()
+        .WithLifetime(ContainerLifetime.Persistent);    
+
+
 // Projects
 var catalog = builder
         .AddProject<Projects.Catalog>("catalog")
         .WithReference(catalogdb)
+        .WithReference(qdrant)
+        .WaitFor(qdrant)
         .WaitFor(catalogdb);
 
 var basket = builder
