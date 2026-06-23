@@ -509,4 +509,25 @@ These templates streamline the entire development process by offering the follow
 - **Aspre hosting Integration :** Aspire.Qdrant.Client
 - **Microsoft.SemanticKernel.Connectors.Qdrant :** Actual Qdrant driver from Semantic Kernal team that works with the VectorData abstractions
 - ***Note:***  If we notice we don't install Microsoft.Extensions.VectorData.Abstractions explicitly because Microsoft.SemanticKernel.Connectors.Qdrant brings it automatically
-  
+
+
+
+  ## Generative AI Vs Agentic AI
+
+Generative AI creates content, whereas Agentic AI drives action. Generative AI is reactive—waiting for prompts to draft emails, write code, or generate images. Agentic AI is proactive—it independently sets goals, plans multi-step tasks, and uses external tools to execute workflows with minimal human oversight
+
+<img width="609" height="434" alt="image" src="https://github.com/user-attachments/assets/453e69d0-b164-4d89-aeac-dd42e289a4ea" />
+
+How They Work Together
+
+Generative AI is essentially the brain or the "cognitive engine" inside an Agentic system. When an Agentic AI needs to perform a complex task, it often utilizes a GenAI model to generate the actual text, read documents, or draft emails.
+
+For example, a **Generative AI** tool like ChatGPT can write a great, empathetic follow-up email when prompted. However, an **Agentic AI** system connects to your CRM, checks which clients are overdue for a meeting, autonomously plans the schedule, drafts the emails using a GenAI model, sends the messages, and updates the database—all without requiring a human to trigger every step.
+
+**When to Use Which**
+
+-   Use **Generative AI** when the final deliverable is content that requires human review and editing (e.g., blog posts, translation, structured summaries, or creative brainstorming).
+-   Use **Agentic AI** when the desired outcome is a completed action or process across multiple platforms (e.g., updating customer tickets, reordering stock, booking travel, or resolving IT requests)
+
+
+
