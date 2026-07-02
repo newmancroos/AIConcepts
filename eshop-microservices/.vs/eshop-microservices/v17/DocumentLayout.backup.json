@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B549F40A-81EF-404A-A85B-20F3254B0A37}|AppHost\\AppHost.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\apphost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B549F40A-81EF-404A-A85B-20F3254B0A37}|AppHost\\AppHost.csproj|solutionrelative:apphost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\apiclients\\catalogapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\apiclients\\catalogapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\endpoints\\productendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|solutionrelative:catalog\\endpoints\\productendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\components\\pages\\products.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\components\\pages\\products.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\webapp\\apiclients\\catalogapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3215F6CF-A442-1C21-6AD3-94ED23F4EBA5}|WebApp\\WebApp.csproj|solutionrelative:webapp\\apiclients\\catalogapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|solutionrelative:catalog\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\services\\productaiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,14 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\models\\productvector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|solutionrelative:catalog\\models\\productvector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\endpoints\\productendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|solutionrelative:catalog\\endpoints\\productendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|solutionrelative:catalog\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C4F761E8-674E-7804-3E8F-374E41B75BE9}|Catalog\\Catalog.csproj|c:\\developments\\git\\aiconcepts\\eshop-microservices\\catalog\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,72 +50,56 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\AppHost\\Program.cs",
-              "RelativeDocumentMoniker": "AppHost\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\AppHost\\Program.cs",
-              "RelativeToolTip": "AppHost\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T21:02:17.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Products.razor",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\Pages\\Products.razor",
               "RelativeDocumentMoniker": "WebApp\\Components\\Pages\\Products.razor",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\Components\\Pages\\Products.razor",
               "RelativeToolTip": "WebApp\\Components\\Pages\\Products.razor",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-09T20:44:59.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T20:44:59.032Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CatalogApiClient.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\ApiClients\\CatalogApiClient.cs",
               "RelativeDocumentMoniker": "WebApp\\ApiClients\\CatalogApiClient.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\WebApp\\ApiClients\\CatalogApiClient.cs",
               "RelativeToolTip": "WebApp\\ApiClients\\CatalogApiClient.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAiwBgAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwBAAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T20:40:28.421Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ProductEndpoints.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Endpoints\\ProductEndpoints.cs",
               "RelativeDocumentMoniker": "Catalog\\Endpoints\\ProductEndpoints.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Endpoints\\ProductEndpoints.cs",
               "RelativeToolTip": "Catalog\\Endpoints\\ProductEndpoints.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAAAEIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAEUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T01:56:52.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T01:56:52.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "ProductService.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Services\\ProductService.cs",
               "RelativeDocumentMoniker": "Catalog\\Services\\ProductService.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Services\\ProductService.cs",
               "RelativeToolTip": "Catalog\\Services\\ProductService.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAADUAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T00:35:03.587Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T00:35:03.587Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ProductAIService.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Services\\ProductAIService.cs",
               "RelativeDocumentMoniker": "Catalog\\Services\\ProductAIService.cs",
@@ -127,12 +107,11 @@
               "RelativeToolTip": "Catalog\\Services\\ProductAIService.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAsAAABrAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T00:34:55.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T00:34:55.784Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Catalog\\Models\\Product.cs",
@@ -140,12 +119,11 @@
               "RelativeToolTip": "Catalog\\Models\\Product.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T00:28:11.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T00:28:11.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ProductVector.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Models\\ProductVector.cs",
               "RelativeDocumentMoniker": "Catalog\\Models\\ProductVector.cs",
@@ -153,12 +131,11 @@
               "RelativeToolTip": "Catalog\\Models\\ProductVector.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T23:54:48.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T23:54:48.575Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\eshop-microservices\\Catalog\\Program.cs",
               "RelativeDocumentMoniker": "Catalog\\Program.cs",
@@ -166,8 +143,7 @@
               "RelativeToolTip": "Catalog\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T23:50:42.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T23:50:42.97Z"
             }
           ]
         }

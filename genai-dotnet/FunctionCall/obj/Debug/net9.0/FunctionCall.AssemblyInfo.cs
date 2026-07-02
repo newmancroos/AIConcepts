@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FunctionCall")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e6df6048761c733bbc7aee3be69a0402d6792a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91991b36bfd0392e8363eb40d83ec92f3567f098")]
 [assembly: System.Reflection.AssemblyProductAttribute("FunctionCall")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FunctionCall")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
