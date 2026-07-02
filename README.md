@@ -531,3 +531,6 @@ For example, a **Generative AI** tool like ChatGPT can write a great, empathetic
 
 
 
+## RAG (Retrieval Agumented Generation)
+### Udemy Cource : Url : https://www.udemy.com/course-dashboard-redirect/?course_id=7019363
+### Github Url : https://github.com/vash-labs/practical-rag-dotnet
