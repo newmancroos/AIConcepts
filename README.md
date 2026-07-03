@@ -531,6 +531,19 @@ For example, a **Generative AI** tool like ChatGPT can write a great, empathetic
 
 
 
+## Update Aspire version:
+
+- We need to have install Aspire CLI to upgrade Aspire version <br/>
+			<i>npm install -g @microsoft/aspire-cli</i> <br/>
+- Now we can Upgrade Aspire version globally <br/>
+			<i>aspire update --self </i><br/>
+- If you want to upgrade existing Aspire project to latest version. Open terminal and goto project directory and then<br/>
+  			<i> aspire update </i> <br/>
+Then We need to upgrade all Aspire templates <br/>
+			<i>dotnet new install Aspire.ProjectTemplates </i> <br/>
+
 ## RAG (Retrieval Agumented Generation)
 ### Udemy Cource : Url : https://www.udemy.com/course-dashboard-redirect/?course_id=7019363
 ### Github Url : https://github.com/vash-labs/practical-rag-dotnet
+
+
