@@ -530,8 +530,8 @@ For example, a **Generative AI** tool like ChatGPT can write a great, empathetic
 -   Use **Agentic AI** when the desired outcome is a completed action or process across multiple platforms (e.g., updating customer tickets, reordering stock, booking travel, or resolving IT requests)
 
 
-
-## Update Aspire version:
+<u>## Notes :</u> 
+## 1. Update Aspire version:
 
 - We need to have install Aspire CLI to upgrade Aspire version <br/>
 			<i>npm install -g @microsoft/aspire-cli</i> <br/>
@@ -542,8 +542,36 @@ For example, a **Generative AI** tool like ChatGPT can write a great, empathetic
 Then We need to upgrade all Aspire templates <br/>
 			<i>dotnet new install Aspire.ProjectTemplates </i> <br/>
 
+## 2. Update HTTPClient Resilience timeout in Api Call.
+<pre>
+public static class OllamaResilienceHandlerExtensions
+{
+    public static IServiceCollection AddOllamaResilienceHandler(this IServiceCollection services)
+    {
+        services.ConfigureHttpClientDefaults(httpClientBuilder =>
+        {
+			#pragma warning disable EXTEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+            httpClientBuilder.RemoveAllResilienceHandlers();
+			#pragma warning restore EXTEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+            httpClientBuilder.AddStandardResilienceHandler(config =>
+            {
+                config.AttemptTimeout.Timeout = TimeSpan.FromMinutes(5);  //Timeout for each attempt
+                config.CircuitBreaker.SamplingDuration = TimeSpan.FromMinutes(10); // 
+                config.TotalRequestTimeout.Timeout = TimeSpan.FromMinutes(10);
+            });
+
+        });
+        return services;
+    }
+}
+	
+</pre>
+
+
+
 ## RAG (Retrieval Agumented Generation)
 ### Udemy Cource : Url : https://www.udemy.com/course-dashboard-redirect/?course_id=7019363
 ### Github Url : https://github.com/vash-labs/practical-rag-dotnet
+
 
 
