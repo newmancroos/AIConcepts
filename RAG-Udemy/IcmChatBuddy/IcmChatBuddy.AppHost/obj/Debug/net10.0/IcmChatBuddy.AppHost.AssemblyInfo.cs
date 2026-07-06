@@ -24,7 +24,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IcmChatBuddy.AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8064d107076420cd4a7b889487b2d211c9c8139f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+799c2fec13890c062bedeee1ab6875d6758e56ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("IcmChatBuddy.AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IcmChatBuddy.AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

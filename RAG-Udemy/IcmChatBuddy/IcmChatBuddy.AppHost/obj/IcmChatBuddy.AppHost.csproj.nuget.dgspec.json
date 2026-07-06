@@ -71,6 +71,10 @@
               "target": "Package",
               "version": "[13.4.0, )"
             },
+            "CommunityToolkit.Aspire.Hosting.Sqlite": {
+              "target": "Package",
+              "version": "[13.4.0, )"
+            },
             "MessagePack": {
               "target": "Package",
               "version": "[3.1.7, )"

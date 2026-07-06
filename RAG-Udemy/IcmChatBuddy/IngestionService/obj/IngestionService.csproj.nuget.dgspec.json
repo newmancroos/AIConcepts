@@ -570,9 +570,29 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "CommunityToolkit.Aspire.OllamaSharp": {
+              "target": "Package",
+              "version": "[13.4.0, )"
+            },
+            "Microsoft.Extensions.DataIngestion": {
+              "target": "Package",
+              "version": "[10.7.0-preview.1.26309.5, )"
+            },
+            "Microsoft.Extensions.DataIngestion.Markdig": {
+              "target": "Package",
+              "version": "[10.7.0-preview.1.26309.5, )"
+            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[11.0.0-preview.5.26302.115, )"
+            },
+            "Microsoft.ML.Tokenizers.Data.O200kBase": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Microsoft.SemanticKernel.Connectors.SqliteVec": {
+              "target": "Package",
+              "version": "[1.74.0-preview, )"
             }
           },
           "imports": [

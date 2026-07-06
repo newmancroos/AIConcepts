@@ -8,11 +8,111 @@
     ".NETCoreApp,Version=v10.0": {
       "IngestionService/1.0.0": {
         "dependencies": {
+          "CommunityToolkit.Aspire.OllamaSharp": "13.4.0",
           "IcmChatBuddy.ServiceDefaults": "1.0.0",
-          "Microsoft.Extensions.Hosting": "11.0.0-preview.5.26302.115"
+          "Microsoft.Extensions.DataIngestion": "10.7.0-preview.1.26309.5",
+          "Microsoft.Extensions.DataIngestion.Markdig": "10.7.0-preview.1.26309.5",
+          "Microsoft.Extensions.Hosting": "11.0.0-preview.5.26302.115",
+          "Microsoft.ML.Tokenizers.Data.O200kBase": "2.0.0",
+          "Microsoft.SemanticKernel.Connectors.SqliteVec": "1.74.0-preview"
         },
         "runtime": {
           "IngestionService.dll": {}
+        }
+      },
+      "CommunityToolkit.Aspire.OllamaSharp/13.4.0": {
+        "dependencies": {
+          "Microsoft.Extensions.AI": "10.7.0",
+          "Microsoft.Extensions.Configuration.Binder": "11.0.0-preview.5.26302.115",
+          "Microsoft.Extensions.Hosting.Abstractions": "11.0.0-preview.5.26302.115",
+          "OllamaSharp": "5.4.12",
+          "OpenTelemetry.Extensions.Hosting": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/CommunityToolkit.Aspire.OllamaSharp.dll": {
+            "assemblyVersion": "13.4.0.0",
+            "fileVersion": "13.4.0.0"
+          }
+        }
+      },
+      "Google.Protobuf/3.30.2": {
+        "runtime": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.30.2.0",
+            "fileVersion": "3.30.2.0"
+          }
+        }
+      },
+      "Markdig.Signed/0.43.0": {
+        "runtime": {
+          "lib/net9.0/Markdig.Signed.dll": {
+            "assemblyVersion": "0.43.0.0",
+            "fileVersion": "0.43.0.0"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/9.0.4": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "9.0.0.4",
+            "fileVersion": "9.0.425.16305"
+          }
+        }
+      },
+      "Microsoft.Bcl.HashCode/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Bcl.HashCode.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.24.56208"
+          }
+        }
+      },
+      "Microsoft.Bcl.Memory/9.0.4": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Bcl.Memory.dll": {
+            "assemblyVersion": "9.0.0.4",
+            "fileVersion": "9.0.425.16305"
+          }
+        }
+      },
+      "Microsoft.Data.Sqlite/9.0.10": {
+        "dependencies": {
+          "Microsoft.Data.Sqlite.Core": "9.0.10",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.10",
+          "SQLitePCLRaw.core": "2.1.10"
+        }
+      },
+      "Microsoft.Data.Sqlite.Core/9.0.10": {
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.10"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Data.Sqlite.dll": {
+            "assemblyVersion": "9.0.10.0",
+            "fileVersion": "9.0.1025.47514"
+          }
+        }
+      },
+      "Microsoft.Extensions.AI/10.7.0": {
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "10.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "11.0.0-preview.5.26302.115",
+          "Microsoft.Extensions.Logging.Abstractions": "11.0.0-preview.5.26302.115",
+          "System.Numerics.Tensors": "10.0.9"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.AI.dll": {
+            "assemblyVersion": "10.7.0.0",
+            "fileVersion": "10.700.26.30905"
+          }
+        }
+      },
+      "Microsoft.Extensions.AI.Abstractions/10.7.0": {
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.AI.Abstractions.dll": {
+            "assemblyVersion": "10.7.0.0",
+            "fileVersion": "10.700.26.30905"
+          }
         }
       },
       "Microsoft.Extensions.AmbientMetadata.Application/10.7.0": {
@@ -139,6 +239,42 @@
           "lib/net10.0/Microsoft.Extensions.Configuration.UserSecrets.dll": {
             "assemblyVersion": "11.0.0.0",
             "fileVersion": "11.0.26.30315"
+          }
+        }
+      },
+      "Microsoft.Extensions.DataIngestion/10.7.0-preview.1.26309.5": {
+        "dependencies": {
+          "Microsoft.Extensions.AI": "10.7.0",
+          "Microsoft.Extensions.DataIngestion.Abstractions": "10.7.0-preview.1.26309.5",
+          "Microsoft.Extensions.Logging.Abstractions": "11.0.0-preview.5.26302.115",
+          "Microsoft.Extensions.VectorData.Abstractions": "10.1.0",
+          "Microsoft.ML.Tokenizers": "2.0.0",
+          "System.Numerics.Tensors": "10.0.9"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.DataIngestion.dll": {
+            "assemblyVersion": "10.7.0.0",
+            "fileVersion": "10.700.26.30905"
+          }
+        }
+      },
+      "Microsoft.Extensions.DataIngestion.Abstractions/10.7.0-preview.1.26309.5": {
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.DataIngestion.Abstractions.dll": {
+            "assemblyVersion": "10.7.0.0",
+            "fileVersion": "10.700.26.30905"
+          }
+        }
+      },
+      "Microsoft.Extensions.DataIngestion.Markdig/10.7.0-preview.1.26309.5": {
+        "dependencies": {
+          "Markdig.Signed": "0.43.0",
+          "Microsoft.Extensions.DataIngestion.Abstractions": "10.7.0-preview.1.26309.5"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.DataIngestion.Markdig.dll": {
+            "assemblyVersion": "10.7.0.0",
+            "fileVersion": "10.700.26.30905"
           }
         }
       },
@@ -520,6 +656,70 @@
           }
         }
       },
+      "Microsoft.Extensions.VectorData.Abstractions/10.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "10.7.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.VectorData.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.0.0"
+          }
+        }
+      },
+      "Microsoft.ML.Tokenizers/2.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.30.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.ML.Tokenizers.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.0.25.55704"
+          }
+        }
+      },
+      "Microsoft.ML.Tokenizers.Data.O200kBase/2.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.30.2",
+          "Microsoft.Bcl.AsyncInterfaces": "9.0.4",
+          "Microsoft.Bcl.HashCode": "6.0.0",
+          "Microsoft.Bcl.Memory": "9.0.4",
+          "Microsoft.ML.Tokenizers": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.ML.Tokenizers.Data.O200kBase.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.0.25.55704"
+          }
+        }
+      },
+      "Microsoft.SemanticKernel.Connectors.SqliteVec/1.74.0-preview": {
+        "dependencies": {
+          "Microsoft.Data.Sqlite": "9.0.10",
+          "Microsoft.Extensions.AI.Abstractions": "10.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "11.0.0-preview.5.26302.115",
+          "Microsoft.Extensions.VectorData.Abstractions": "10.1.0",
+          "System.Numerics.Tensors": "10.0.9",
+          "sqlite-vec": "0.1.7-alpha.2.1"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.SemanticKernel.Connectors.SqliteVec.dll": {
+            "assemblyVersion": "1.74.0.0",
+            "fileVersion": "1.74.0.0"
+          }
+        }
+      },
+      "OllamaSharp/5.4.12": {
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "10.7.0"
+        },
+        "runtime": {
+          "lib/net10.0/OllamaSharp.dll": {
+            "assemblyVersion": "5.4.12.0",
+            "fileVersion": "5.4.12.0"
+          }
+        }
+      },
       "OpenTelemetry/1.16.0": {
         "dependencies": {
           "Microsoft.Extensions.Diagnostics.Abstractions": "11.0.0-preview.5.26302.115",
@@ -643,6 +843,175 @@
           }
         }
       },
+      "sqlite-vec/0.1.7-alpha.2.1": {
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/vec0.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/vec0.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/vec0.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/vec0.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/vec0.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
+        "dependencies": {
+          "SQLitePCLRaw.lib.e_sqlite3": "2.1.10",
+          "SQLitePCLRaw.provider.e_sqlite3": "2.1.10"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {
+            "assemblyVersion": "2.1.10.2445",
+            "fileVersion": "2.1.10.2445"
+          }
+        }
+      },
+      "SQLitePCLRaw.core/2.1.10": {
+        "runtime": {
+          "lib/netstandard2.0/SQLitePCLRaw.core.dll": {
+            "assemblyVersion": "2.1.10.2445",
+            "fileVersion": "2.1.10.2445"
+          }
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3/2.1.10": {
+        "runtimeTargets": {
+          "runtimes/browser-wasm/nativeassets/net9.0/e_sqlite3.a": {
+            "rid": "browser-wasm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-arm/native/libe_sqlite3.so": {
+            "rid": "linux-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-arm64/native/libe_sqlite3.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-armel/native/libe_sqlite3.so": {
+            "rid": "linux-armel",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-mips64/native/libe_sqlite3.so": {
+            "rid": "linux-mips64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-arm/native/libe_sqlite3.so": {
+            "rid": "linux-musl-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-arm64/native/libe_sqlite3.so": {
+            "rid": "linux-musl-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-s390x/native/libe_sqlite3.so": {
+            "rid": "linux-musl-s390x",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-musl-x64/native/libe_sqlite3.so": {
+            "rid": "linux-musl-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-ppc64le/native/libe_sqlite3.so": {
+            "rid": "linux-ppc64le",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-s390x/native/libe_sqlite3.so": {
+            "rid": "linux-s390x",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libe_sqlite3.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x86/native/libe_sqlite3.so": {
+            "rid": "linux-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/maccatalyst-arm64/native/libe_sqlite3.dylib": {
+            "rid": "maccatalyst-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/maccatalyst-x64/native/libe_sqlite3.dylib": {
+            "rid": "maccatalyst-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/libe_sqlite3.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libe_sqlite3.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm/native/e_sqlite3.dll": {
+            "rid": "win-arm",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/e_sqlite3.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/e_sqlite3.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/e_sqlite3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3/2.1.10": {
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.10"
+        },
+        "runtime": {
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {
+            "assemblyVersion": "2.1.10.2445",
+            "fileVersion": "2.1.10.2445"
+          }
+        }
+      },
       "System.Diagnostics.DiagnosticSource/11.0.0-preview.5.26302.115": {
         "runtime": {
           "lib/net10.0/System.Diagnostics.DiagnosticSource.dll": {
@@ -678,6 +1047,14 @@
           "lib/net10.0/System.IO.Pipelines.dll": {
             "assemblyVersion": "11.0.0.0",
             "fileVersion": "11.0.26.30315"
+          }
+        }
+      },
+      "System.Numerics.Tensors/10.0.9": {
+        "runtime": {
+          "lib/net10.0/System.Numerics.Tensors.dll": {
+            "assemblyVersion": "10.0.0.9",
+            "fileVersion": "10.0.926.27113"
           }
         }
       },
@@ -733,6 +1110,76 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CommunityToolkit.Aspire.OllamaSharp/13.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Xy64OnQNNxCMLFyH1S3HrUEdwwwIraQHjAhKl5PHIq5vWp6jkSMO1gnHHVrfbo6BgSFndFOBWb91eVc2vynbaQ==",
+      "path": "communitytoolkit.aspire.ollamasharp/13.4.0",
+      "hashPath": "communitytoolkit.aspire.ollamasharp.13.4.0.nupkg.sha512"
+    },
+    "Google.Protobuf/3.30.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y2aOVLIt75yeeEWigg9V9YnjsEm53sADtLGq0gLhwaXpk3iu8tYSoauolyhenagA2sWno2TQ2WujI0HQd6s1Vw==",
+      "path": "google.protobuf/3.30.2",
+      "hashPath": "google.protobuf.3.30.2.nupkg.sha512"
+    },
+    "Markdig.Signed/0.43.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ly5oB+iS5rA2GqLuv7KZNJWQnHXLb5oi7cmIpGrrCrsvU9oplSKO/Xo65tLUiC+bcMjhQ7ZHn97h6vcvF24FbQ==",
+      "path": "markdig.signed/0.43.0",
+      "hashPath": "markdig.signed.0.43.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/9.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9VGI5kxIvrNG2mqLQZnUR6y/3fcnygD8eNpHR+CqfbnIXvea6nehnYknDKQTxZVPMpzpNca+7DxLBmpdB3q0Bw==",
+      "path": "microsoft.bcl.asyncinterfaces/9.0.4",
+      "hashPath": "microsoft.bcl.asyncinterfaces.9.0.4.nupkg.sha512"
+    },
+    "Microsoft.Bcl.HashCode/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GI4jcoi6eC9ZhNOQylIBaWOQjyGaR8T6N3tC1u8p3EXfndLCVNNWa+Zp+ocjvvS3kNBN09Zma2HXL0ezO0dRfw==",
+      "path": "microsoft.bcl.hashcode/6.0.0",
+      "hashPath": "microsoft.bcl.hashcode.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl.Memory/9.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uVvex/6jngf2R5KT77AOSqNv81hpiLr0Mt54xUNUTU8IwNrLIJjHCBxfznEJYA1MlZ5Dt/2TIW6rHhv7DVmDyQ==",
+      "path": "microsoft.bcl.memory/9.0.4",
+      "hashPath": "microsoft.bcl.memory.9.0.4.nupkg.sha512"
+    },
+    "Microsoft.Data.Sqlite/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1waeeEEM/Dp5l2laUByEEWfd6qyI00HExDduhLKGT2kPnHArjIDcMf2z9HIjeLPoR56iBHhvXTfAv1hiH/wAAQ==",
+      "path": "microsoft.data.sqlite/9.0.10",
+      "hashPath": "microsoft.data.sqlite.9.0.10.nupkg.sha512"
+    },
+    "Microsoft.Data.Sqlite.Core/9.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tWbN2uzG4uBxxMjcHA3Oa9ecAYjyRTfDwRbgQ7ueyx7eEgyYbBiKADY2rllF8wO3dHUvN+/8fgylwSGMfiCtVg==",
+      "path": "microsoft.data.sqlite.core/9.0.10",
+      "hashPath": "microsoft.data.sqlite.core.9.0.10.nupkg.sha512"
+    },
+    "Microsoft.Extensions.AI/10.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r8z4uyPq0kTk4+jH92/hPshf3HNUXKOQ9axJwp57QFz43G45BG4DNYpVE0vuSan1dI69LtWx9ttF0Z2ibnghNg==",
+      "path": "microsoft.extensions.ai/10.7.0",
+      "hashPath": "microsoft.extensions.ai.10.7.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.AI.Abstractions/10.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Lf822igMm8NkTYHZhTp7kjoNYkLLEvJnX3SkG/LVBvsZHC0Y9choogHz8YtITBoy0TOylM3kVUZ6iaHf0my0ug==",
+      "path": "microsoft.extensions.ai.abstractions/10.7.0",
+      "hashPath": "microsoft.extensions.ai.abstractions.10.7.0.nupkg.sha512"
     },
     "Microsoft.Extensions.AmbientMetadata.Application/10.7.0": {
       "type": "package",
@@ -803,6 +1250,27 @@
       "sha512": "sha512-PILYK8gAWT7TjbP29z6/aMThsUUFGp0rTozTT8c7affE5BwfilNkn1D7ZfM82ZpAxjkieCq8/M2s0VYGBZagOQ==",
       "path": "microsoft.extensions.configuration.usersecrets/11.0.0-preview.5.26302.115",
       "hashPath": "microsoft.extensions.configuration.usersecrets.11.0.0-preview.5.26302.115.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DataIngestion/10.7.0-preview.1.26309.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1cIXPyj7Ce69XxZRK6ja4D0uJa3tpaLyFBpRkQ3dBOnQbKoGttoosunF1KXFAsLKrZ+MugykabjhTJWTUmJmsA==",
+      "path": "microsoft.extensions.dataingestion/10.7.0-preview.1.26309.5",
+      "hashPath": "microsoft.extensions.dataingestion.10.7.0-preview.1.26309.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DataIngestion.Abstractions/10.7.0-preview.1.26309.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WWd3Y1T/SWTg1yjjnD+8vBGLm8hJkwEmgt7pOiwsMQea7KfpGRBFx5VVQV7mo8G2Hr7nVIjdWBmr4FbtIc4QfQ==",
+      "path": "microsoft.extensions.dataingestion.abstractions/10.7.0-preview.1.26309.5",
+      "hashPath": "microsoft.extensions.dataingestion.abstractions.10.7.0-preview.1.26309.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DataIngestion.Markdig/10.7.0-preview.1.26309.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-13aS+5GgL8gOqxGrsQZBVJxsl29BhRf+PDgwO8RNSgTTBJYnWmeehSNfykBarwwnXcYUe1GByD5ellWSd7LW7g==",
+      "path": "microsoft.extensions.dataingestion.markdig/10.7.0-preview.1.26309.5",
+      "hashPath": "microsoft.extensions.dataingestion.markdig.10.7.0-preview.1.26309.5.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/11.0.0-preview.5.26302.115": {
       "type": "package",
@@ -1000,6 +1468,41 @@
       "path": "microsoft.extensions.telemetry.abstractions/10.7.0",
       "hashPath": "microsoft.extensions.telemetry.abstractions.10.7.0.nupkg.sha512"
     },
+    "Microsoft.Extensions.VectorData.Abstractions/10.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I2XfmqEOWOq0Esbo0eWQ6WE5MAJkGyIs057F8ncmPCLJFw9b1IB7Jj5WiFlH6C5YXCAG9Z91QMBD/SkcMLhE7w==",
+      "path": "microsoft.extensions.vectordata.abstractions/10.1.0",
+      "hashPath": "microsoft.extensions.vectordata.abstractions.10.1.0.nupkg.sha512"
+    },
+    "Microsoft.ML.Tokenizers/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+b8lT4cLLO/sBR2hjvE/qG6qrZG15h7/PBvnIrzTh4xDaAxdHUY6449rC+1pHzQUsBiCHZVbj+VMn+xS0sL7TA==",
+      "path": "microsoft.ml.tokenizers/2.0.0",
+      "hashPath": "microsoft.ml.tokenizers.2.0.0.nupkg.sha512"
+    },
+    "Microsoft.ML.Tokenizers.Data.O200kBase/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-19G0KWrRnUZmc8vGdPNuBJqTruhAjzPLRY2nn6a/HiBXbEnE/Lx9L223jGlDzg1oAcCggo/8GlWw3ZLVuS76Ow==",
+      "path": "microsoft.ml.tokenizers.data.o200kbase/2.0.0",
+      "hashPath": "microsoft.ml.tokenizers.data.o200kbase.2.0.0.nupkg.sha512"
+    },
+    "Microsoft.SemanticKernel.Connectors.SqliteVec/1.74.0-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-273VVZhR0y/bzLrePIccJT3AskKt2I7sfsGnJyn0orRiIW/3JEdJ0mev8fbdbzl0r4umvzr+0le29nvtcGwyOQ==",
+      "path": "microsoft.semantickernel.connectors.sqlitevec/1.74.0-preview",
+      "hashPath": "microsoft.semantickernel.connectors.sqlitevec.1.74.0-preview.nupkg.sha512"
+    },
+    "OllamaSharp/5.4.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uUKOgoTV9Fxo9J5syrY4OMZ/2/xlPO83tGG+FjGmY8HqJVJ1iUT5f8EsC9yNEqBBIoth9D8zzN4I5p1oQEMBhQ==",
+      "path": "ollamasharp/5.4.12",
+      "hashPath": "ollamasharp.5.4.12.nupkg.sha512"
+    },
     "OpenTelemetry/1.16.0": {
       "type": "package",
       "serviceable": true,
@@ -1077,6 +1580,41 @@
       "path": "polly.ratelimiting/8.4.2",
       "hashPath": "polly.ratelimiting.8.4.2.nupkg.sha512"
     },
+    "sqlite-vec/0.1.7-alpha.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JCN6wMW9cX7e6tO6BZRBEdLT1qq8cRlQ5AdPvl6ZRjTKOJ2JjQXYI+wIAMb4EOXiDbbpt0IIv5rkkbPOMlrkRQ==",
+      "path": "sqlite-vec/0.1.7-alpha.2.1",
+      "hashPath": "sqlite-vec.0.1.7-alpha.2.1.nupkg.sha512"
+    },
+    "SQLitePCLRaw.bundle_e_sqlite3/2.1.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UxWuisvZ3uVcVOLJQv7urM/JiQH+v3TmaJc1BLKl5Dxfm/nTzTUrqswCqg/INiYLi61AXnHo1M1JPmPqqLnAdg==",
+      "path": "sqlitepclraw.bundle_e_sqlite3/2.1.10",
+      "hashPath": "sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512"
+    },
+    "SQLitePCLRaw.core/2.1.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ii8JCbC7oiVclaE/mbDEK000EFIJ+ShRPwAvvV89GOZhQ+ZLtlnSWl6ksCNMKu/VGXA4Nfi2B7LhN/QFN9oBcw==",
+      "path": "sqlitepclraw.core/2.1.10",
+      "hashPath": "sqlitepclraw.core.2.1.10.nupkg.sha512"
+    },
+    "SQLitePCLRaw.lib.e_sqlite3/2.1.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mAr69tDbnf3QJpRy2nJz8Qdpebdil00fvycyByR58Cn9eARvR+UiG2Vzsp+4q1tV3ikwiYIjlXCQFc12GfebbA==",
+      "path": "sqlitepclraw.lib.e_sqlite3/2.1.10",
+      "hashPath": "sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512"
+    },
+    "SQLitePCLRaw.provider.e_sqlite3/2.1.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uZVTi02C1SxqzgT0HqTWatIbWGb40iIkfc3FpFCpE/r7g6K0PqzDUeefL6P6HPhDtc6BacN3yQysfzP7ks+wSQ==",
+      "path": "sqlitepclraw.provider.e_sqlite3/2.1.10",
+      "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512"
+    },
     "System.Diagnostics.DiagnosticSource/11.0.0-preview.5.26302.115": {
       "type": "package",
       "serviceable": true,
@@ -1097,6 +1635,13 @@
       "sha512": "sha512-bxoC999TCGTabpEhefolrTTYmzokbMKYG/oJ0Y+66YLIV3ijjN9bOPK8t8j8Zg38H9Hm0oIML+BDcyVCDzr+xw==",
       "path": "system.io.pipelines/11.0.0-preview.5.26302.115",
       "hashPath": "system.io.pipelines.11.0.0-preview.5.26302.115.nupkg.sha512"
+    },
+    "System.Numerics.Tensors/10.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rb71S3gggYVwEce9ugNw91vbr4vC4gThtx/imSJtLBW3AupEKujJPPQL6xF9q0DcNm6+z7hnYk7XqXaUpA4wDg==",
+      "path": "system.numerics.tensors/10.0.9",
+      "hashPath": "system.numerics.tensors.10.0.9.nupkg.sha512"
     },
     "System.Text.Encodings.Web/11.0.0-preview.5.26302.115": {
       "type": "package",

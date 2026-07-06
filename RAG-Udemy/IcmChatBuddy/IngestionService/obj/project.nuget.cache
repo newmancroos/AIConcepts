@@ -1,10 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "Q0hKmey9JaE=",
+  "dgSpecHash": "xM0oarWze/U=",
   "success": true,
   "projectFilePath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\IngestionService.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\newma\\.nuget\\packages\\communitytoolkit.aspire.ollamasharp\\13.4.0\\communitytoolkit.aspire.ollamasharp.13.4.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\google.protobuf\\3.30.2\\google.protobuf.3.30.2.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\markdig.signed\\0.43.0\\markdig.signed.0.43.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\9.0.4\\microsoft.bcl.asyncinterfaces.9.0.4.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.bcl.hashcode\\6.0.0\\microsoft.bcl.hashcode.6.0.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.bcl.memory\\9.0.4\\microsoft.bcl.memory.9.0.4.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.data.sqlite\\9.0.10\\microsoft.data.sqlite.9.0.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.10\\microsoft.data.sqlite.core.9.0.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.ai\\10.7.0\\microsoft.extensions.ai.10.7.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\10.7.0\\microsoft.extensions.ai.abstractions.10.7.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.ambientmetadata.application\\10.7.0\\microsoft.extensions.ambientmetadata.application.10.7.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.9\\microsoft.extensions.caching.abstractions.10.0.9.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.compliance.abstractions\\10.7.0\\microsoft.extensions.compliance.abstractions.10.7.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.configuration\\11.0.0-preview.5.26302.115\\microsoft.extensions.configuration.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\11.0.0-preview.5.26302.115\\microsoft.extensions.configuration.abstractions.11.0.0-preview.5.26302.115.nupkg.sha512",
@@ -14,12 +25,17 @@
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\11.0.0-preview.5.26302.115\\microsoft.extensions.configuration.fileextensions.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.configuration.json\\11.0.0-preview.5.26302.115\\microsoft.extensions.configuration.json.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.configuration.usersecrets\\11.0.0-preview.5.26302.115\\microsoft.extensions.configuration.usersecrets.11.0.0-preview.5.26302.115.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dataingestion\\10.7.0-preview.1.26309.5\\microsoft.extensions.dataingestion.10.7.0-preview.1.26309.5.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dataingestion.abstractions\\10.7.0-preview.1.26309.5\\microsoft.extensions.dataingestion.abstractions.10.7.0-preview.1.26309.5.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dataingestion.markdig\\10.7.0-preview.1.26309.5\\microsoft.extensions.dataingestion.markdig.10.7.0-preview.1.26309.5.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\11.0.0-preview.5.26302.115\\microsoft.extensions.dependencyinjection.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\11.0.0-preview.5.26302.115\\microsoft.extensions.dependencyinjection.abstractions.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.dependencyinjection.autoactivation\\10.7.0\\microsoft.extensions.dependencyinjection.autoactivation.10.7.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.diagnostics\\11.0.0-preview.5.26302.115\\microsoft.extensions.diagnostics.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\11.0.0-preview.5.26302.115\\microsoft.extensions.diagnostics.abstractions.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.diagnostics.exceptionsummarization\\10.7.0\\microsoft.extensions.diagnostics.exceptionsummarization.10.7.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.diagnostics.healthchecks\\10.0.8\\microsoft.extensions.diagnostics.healthchecks.10.0.8.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.diagnostics.healthchecks.abstractions\\10.0.8\\microsoft.extensions.diagnostics.healthchecks.abstractions.10.0.8.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.features\\10.0.9\\microsoft.extensions.features.10.0.9.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\11.0.0-preview.5.26302.115\\microsoft.extensions.fileproviders.abstractions.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\11.0.0-preview.5.26302.115\\microsoft.extensions.fileproviders.physical.11.0.0-preview.5.26302.115.nupkg.sha512",
@@ -45,6 +61,11 @@
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.servicediscovery.abstractions\\10.7.0\\microsoft.extensions.servicediscovery.abstractions.10.7.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.telemetry\\10.7.0\\microsoft.extensions.telemetry.10.7.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.telemetry.abstractions\\10.7.0\\microsoft.extensions.telemetry.abstractions.10.7.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.extensions.vectordata.abstractions\\10.1.0\\microsoft.extensions.vectordata.abstractions.10.1.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.ml.tokenizers\\2.0.0\\microsoft.ml.tokenizers.2.0.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.ml.tokenizers.data.o200kbase\\2.0.0\\microsoft.ml.tokenizers.data.o200kbase.2.0.0.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\microsoft.semantickernel.connectors.sqlitevec\\1.74.0-preview\\microsoft.semantickernel.connectors.sqlitevec.1.74.0-preview.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\ollamasharp\\5.4.12\\ollamasharp.5.4.12.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\opentelemetry\\1.16.0\\opentelemetry.1.16.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\opentelemetry.api\\1.16.0\\opentelemetry.api.1.16.0.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\opentelemetry.api.providerbuilderextensions\\1.16.0\\opentelemetry.api.providerbuilderextensions.1.16.0.nupkg.sha512",
@@ -56,12 +77,43 @@
     "C:\\Users\\newma\\.nuget\\packages\\polly.core\\8.4.2\\polly.core.8.4.2.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\polly.extensions\\8.4.2\\polly.extensions.8.4.2.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\polly.ratelimiting\\8.4.2\\polly.ratelimiting.8.4.2.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\sqlite-vec\\0.1.7-alpha.2.1\\sqlite-vec.0.1.7-alpha.2.1.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\system.diagnostics.diagnosticsource\\11.0.0-preview.5.26302.115\\system.diagnostics.diagnosticsource.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\system.diagnostics.eventlog\\11.0.0-preview.5.26302.115\\system.diagnostics.eventlog.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\system.io.pipelines\\11.0.0-preview.5.26302.115\\system.io.pipelines.11.0.0-preview.5.26302.115.nupkg.sha512",
+    "C:\\Users\\newma\\.nuget\\packages\\system.numerics.tensors\\10.0.9\\system.numerics.tensors.10.0.9.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\system.text.encodings.web\\11.0.0-preview.5.26302.115\\system.text.encodings.web.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\system.text.json\\11.0.0-preview.5.26302.115\\system.text.json.11.0.0-preview.5.26302.115.nupkg.sha512",
     "C:\\Users\\newma\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Microsoft.Bcl.Memory' 9.0.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-73j8-2gch-69rq",
+      "projectPath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\IngestionService.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\IngestionService.csproj",
+      "libraryId": "Microsoft.Bcl.Memory",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SQLitePCLRaw.lib.e_sqlite3' 2.1.10 has a known high severity vulnerability, https://github.com/advisories/GHSA-2m69-gcr7-jv3q",
+      "projectPath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\IngestionService.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\IngestionService.csproj",
+      "libraryId": "SQLitePCLRaw.lib.e_sqlite3",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
