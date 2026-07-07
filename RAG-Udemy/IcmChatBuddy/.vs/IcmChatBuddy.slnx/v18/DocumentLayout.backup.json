@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{441A4450-A8B5-6D0E-F6CC-7EB1A116C2F1}|IngestionService\\IngestionService.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\ingestionservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{441A4450-A8B5-6D0E-F6CC-7EB1A116C2F1}|IngestionService\\IngestionService.csproj|solutionrelative:ingestionservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|solutionrelative:icmchatapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|solutionrelative:icmchatapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{441A4450-A8B5-6D0E-F6CC-7EB1A116C2F1}|IngestionService\\IngestionService.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\ingestionservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{441A4450-A8B5-6D0E-F6CC-7EB1A116C2F1}|IngestionService\\IngestionService.csproj|solutionrelative:ingestionservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatapi\\models\\icmchunk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|solutionrelative:icmchatapi\\models\\icmchunk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6831DCFC-9EE4-E13D-4D7B-11F32DC8DB42}|IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatbuddy.apphost\\apphost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6831DCFC-9EE4-E13D-4D7B-11F32DC8DB42}|IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj|solutionrelative:icmchatbuddy.apphost\\apphost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A655638-D1FB-8DF9-F7B7-ED7DCA2D9C83}|IcmChatApi\\IcmChatApi.csproj|solutionrelative:icmchatapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,50 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\Program.cs",
-              "RelativeDocumentMoniker": "IngestionService\\Program.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\Program.cs",
-              "RelativeToolTip": "IngestionService\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-07T02:37:00.735Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Worker.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\Worker.cs",
-              "RelativeDocumentMoniker": "IngestionService\\Worker.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IngestionService\\Worker.cs",
-              "RelativeToolTip": "IngestionService\\Worker.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAADAAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T22:57:41.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IcmChunk.cs",
-              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatApi\\Models\\IcmChunk.cs",
-              "RelativeDocumentMoniker": "IcmChatApi\\Models\\IcmChunk.cs",
-              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatApi\\Models\\IcmChunk.cs",
-              "RelativeToolTip": "IcmChatApi\\Models\\IcmChunk.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-06T22:13:25.958Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatApi\\Program.cs",
               "RelativeDocumentMoniker": "IcmChatApi\\Program.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatApi\\Program.cs",
               "RelativeToolTip": "IcmChatApi\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T21:59:34.781Z",
               "EditorCaption": ""
@@ -96,20 +45,20 @@
               "RelativeDocumentMoniker": "IcmChatApi\\Controllers\\ChatController.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatApi\\Controllers\\ChatController.cs",
               "RelativeToolTip": "IcmChatApi\\Controllers\\ChatController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAIBJwBcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T21:55:03.825Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "AppHost.cs",
               "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatBuddy.AppHost\\AppHost.cs",
               "RelativeDocumentMoniker": "IcmChatBuddy.AppHost\\AppHost.cs",
               "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatBuddy.AppHost\\AppHost.cs",
               "RelativeToolTip": "IcmChatBuddy.AppHost\\AppHost.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-06T18:02:14.653Z",
               "EditorCaption": ""

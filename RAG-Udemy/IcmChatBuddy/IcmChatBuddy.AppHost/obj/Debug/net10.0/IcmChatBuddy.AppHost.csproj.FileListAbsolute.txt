@@ -111,3 +111,9 @@ C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\D
 C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\PolyType.dll
 C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\obj\Debug\net10.0\Aspire\references\IngestionService.ProjectMetadata.g.cs
 C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\CommunityToolkit.Aspire.Hosting.Sqlite.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\Aspire.Hosting.Redis.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\HealthChecks.Redis.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\CommunityToolkit.Aspire.Hosting.DbGate.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\CommunityToolkit.Aspire.Hosting.Redis.Extensions.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\Pipelines.Sockets.Unofficial.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.AppHost\bin\Debug\net10.0\StackExchange.Redis.dll

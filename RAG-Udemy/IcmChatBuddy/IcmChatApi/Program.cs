@@ -8,10 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 var sqliteConnectionString = builder.Configuration.GetConnectionString("vector-store") ?? throw new InvalidOperationException("Failed : Vector database connection");
 builder.Services.AddSqliteCollection<string, IcmChunk>("data-icm-chunks", sqliteConnectionString); // Make a model for our collection
+
+builder.AddRedisDistributedCache("cache");
+
 builder.AddOllamaApiClient("chat")
     .AddChatClient()
     .UseFunctionInvocation()
-    .UseOpenTelemetry(configure: c => c.EnableSensitiveData = builder.Environment.IsDevelopment());
+    .UseDistributedCache()   //Adding caching for chat client, need to register IDistributed cache in the service collection, we can use Redis or Memory cache
+    .UseOpenTelemetry(configure: c => c.EnableSensitiveData = builder.Environment.IsDevelopment());   //Adding Open Telemetriy for development environment, we can disable it in production environment
 
 
 builder.AddOllamaApiClient("embeddings")

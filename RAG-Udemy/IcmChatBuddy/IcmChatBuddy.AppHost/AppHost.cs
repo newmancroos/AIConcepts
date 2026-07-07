@@ -8,6 +8,8 @@ var embeddings =  ollama.AddModel("embeddings", "all-minilm");
 
 var vectorStore = builder.AddSqlite("vector-store").WithSqliteWeb();
 
+var cache = builder.AddRedis("cache").WithDbGate();      //View redis
+
 //Testing Ollama-lamma3.2 model, we can use GithubWebUi
 
 //builder.AddContainer("open-webui", "ghcr.io/open-webui/open-webui", "main")
@@ -20,9 +22,11 @@ builder.AddProject<Projects.IcmChatApi>("icmchatapi")
     .WithReference(chatModel)
     .WithReference(vectorStore)
     .WithReference(embeddings)
+    .WithReference(cache)   
     .WaitFor(chatModel)
     .WaitFor(vectorStore)
-    .WaitFor(embeddings);
+    .WaitFor(embeddings)
+    .WaitFor(cache);
 
 builder.AddProject<Projects.IngestionService>("ingestionservice")
     .WithReference(embeddings)
