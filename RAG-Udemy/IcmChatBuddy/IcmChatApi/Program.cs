@@ -1,11 +1,22 @@
 
 using IcmChatApi;
+using IcmChatApi.Models;
+using Microsoft.Extensions.AI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+var sqliteConnectionString = builder.Configuration.GetConnectionString("vector-store") ?? throw new InvalidOperationException("Failed : Vector database connection");
+builder.Services.AddSqliteCollection<string, IcmChunk>("data-icm-chunks", sqliteConnectionString); // Make a model for our collection
+builder.AddOllamaApiClient("chat")
+    .AddChatClient()
+    .UseFunctionInvocation()
+    .UseOpenTelemetry(configure: c => c.EnableSensitiveData = builder.Environment.IsDevelopment());
 
-builder.AddOllamaApiClient("chat").AddChatClient();
+
+builder.AddOllamaApiClient("embeddings")
+    .AddEmbeddingGenerator()
+    .UseOpenTelemetry(configure: c => c.EnableSensitiveData = builder.Environment.IsDevelopment());
 
 // Add services to the container.
 

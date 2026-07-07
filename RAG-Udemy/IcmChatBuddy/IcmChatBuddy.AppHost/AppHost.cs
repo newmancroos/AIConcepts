@@ -18,7 +18,11 @@ var vectorStore = builder.AddSqlite("vector-store").WithSqliteWeb();
 
 builder.AddProject<Projects.IcmChatApi>("icmchatapi")
     .WithReference(chatModel)
-    .WaitFor(chatModel);
+    .WithReference(vectorStore)
+    .WithReference(embeddings)
+    .WaitFor(chatModel)
+    .WaitFor(vectorStore)
+    .WaitFor(embeddings);
 
 builder.AddProject<Projects.IngestionService>("ingestionservice")
     .WithReference(embeddings)
