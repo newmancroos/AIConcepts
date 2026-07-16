@@ -27,3 +27,18 @@ Instead of writing extensive, manual code for your application, LangChain provid
 
 -   **Model Agnosticism:** LangChain standardizes how developers interact with models. This makes it easy to switch from one AI provider to another without having to rewrite the entire application. 
 </p>
+
+<p>
+<b>Context Size :</b>  Each model has its own context size, it is nothing but max token size. <br/>
+For Example, gpt 4o mini;s context size is 126,000.
+
+If you have a document that has more than 126000 token, you cannot upload it to gtp mini 4o, So we need to go for <br/>
+	- Big LLM
+	-  Using RAG
+</p>
+<p>
+<b>Knowledge Cuttoff</b>
+	Each LLM has it own training cutoff date so details after that date is not available in the model.<br/>
+	For example gpt mini 4o's cutoff date is October 2023.	
+</p>
+
