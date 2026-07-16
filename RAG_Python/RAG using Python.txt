@@ -1,0 +1,4 @@
+RAG using Python : https://www.youtube.com/watch?v=HHSjuhVuQEk&list=PLhhO7g8ucBH7MzCKGDp8fLOuFgdpW4l5Z
+
+Packages : 	LangChain
+		Llmaindex

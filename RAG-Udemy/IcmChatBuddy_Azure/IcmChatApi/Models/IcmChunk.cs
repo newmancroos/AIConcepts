@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.VectorData;
+using System.Text.Json.Serialization;
 
 namespace IcmChatApi.Models;
 
@@ -7,15 +8,20 @@ public class IcmChunk
     public const int VectorDimension = 384;
     public const string VectorDistanceFunction = DistanceFunction.CosineDistance;
 
-    [VectorStoreKey]
+    [VectorStoreKey(StorageName = "key")]
+    [JsonPropertyName("key")]
     public required string Key { get; set; }
-    [VectorStoreData]
+    [VectorStoreData(StorageName ="content")]
+    [JsonPropertyName("content")]
     public required string Content { get; set; }
-    [VectorStoreData]
+    [VectorStoreData(StorageName = "context")]
+    [JsonPropertyName("context")]
     public string? Context { get; set; }
-    [VectorStoreData]
+    [VectorStoreData(StorageName = "documentid")]
+    [JsonPropertyName("documentid")]
     public required string  DocumentId { get; set; }
 
-    [VectorStoreVector(VectorDimension, DistanceFunction = VectorDistanceFunction)]
-    public string? Embedding { get; }  // This should be float but we configured Embedding Provider handle it in the host
+    [VectorStoreVector(VectorDimension, StorageName ="embedding")]   //, DistanceFunction = VectorDistanceFunction)   -- Removed for Azure
+    [JsonPropertyName("embedding")]
+    public float[]? Embedding { get; }  // Changed from string to float[] for azure
 }

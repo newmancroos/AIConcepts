@@ -8,7 +8,8 @@ using System.Diagnostics;
 
 namespace IngestionService;
 
-public class Worker(ILoggerFactory loggerFactory, ILogger<Worker> logger, IEmbeddingGenerator<string,Embedding<float>> embeddingGenerator, VectorStore vectorStore) : BackgroundService
+public class Worker(ILoggerFactory loggerFactory, ILogger<Worker> logger, IEmbeddingGenerator<string,Embedding<float>> embeddingGenerator, 
+    VectorStore vectorStore, IConfiguration configuration) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -37,8 +38,8 @@ public class Worker(ILoggerFactory loggerFactory, ILogger<Worker> logger, IEmbed
 
             using var vectorStoreWriter = new VectorStoreWriter<string>(vectorStore,384, new VectorStoreWriterOptions { 
                 CollectionName = "data-icm-chunks",
-                DistanceFunction = DistanceFunction.CosineDistance,
-                IncrementalIngestion = true
+                DistanceFunction = configuration.GetValue<string>("vectorFunction"),   //Sqlite support  DistanceFunction.CosineDistance but Azure supports DistanceFunction.CosineSimilarity
+                IncrementalIngestion = true  // This keeps on inserting data but in realaity we need to set it to false and use offset to update the data in the vector store. But for now we are using incremental ingestion to avoid the complexity of updating the data in the vector store.
 
             });  //Microsoft.SematicKernel.Connectors.sqliteVec. Vector count for all-minilm is 384 (search in google)
 

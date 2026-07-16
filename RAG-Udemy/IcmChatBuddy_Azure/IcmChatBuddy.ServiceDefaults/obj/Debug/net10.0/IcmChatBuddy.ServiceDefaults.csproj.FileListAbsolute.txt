@@ -11,3 +11,16 @@ C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.ServiceDefaul
 C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\refint\IcmChatBuddy.ServiceDefaults.dll
 C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.pdb
 C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\ref\IcmChatBuddy.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\bin\Debug\net10.0\IcmChatBuddy.ServiceDefaults.deps.json
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\bin\Debug\net10.0\IcmChatBuddy.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\bin\Debug\net10.0\IcmChatBuddy.ServiceDefaults.pdb
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.csproj.AssemblyReference.cache
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.AssemblyInfoInputs.cache
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.AssemblyInfo.cs
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.sourcelink.json
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\refint\IcmChatBuddy.ServiceDefaults.dll
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\IcmChatBuddy.ServiceDefaults.pdb
+C:\Developments\Git\AIConcepts\RAG-Udemy\IcmChatBuddy_Azure\IcmChatBuddy.ServiceDefaults\obj\Debug\net10.0\ref\IcmChatBuddy.ServiceDefaults.dll

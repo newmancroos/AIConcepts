@@ -1,37 +1,71 @@
+using Microsoft.Extensions.VectorData;
+
 var builder = DistributedApplication.CreateBuilder(args);
+
+
+//Add Parameters
+bool useAzuer = true;
+
+string vectorFuntion = useAzuer ? DistanceFunction.CosineSimilarity : DistanceFunction.CosineDistance;   //Sqlite support  DistanceFunction.CosineDistance but Azure supports DistanceFunction.CosineSimilarity
+var cache = builder.AddRedis("cache").WithDbGate();      //View redis
+
+
 
 var ollama = builder.AddOllama("ollama")
     .WithDataVolume();
 
 var chatModel = ollama.AddModel("chat", "llama3.2");
-var embeddings =  ollama.AddModel("embeddings", "all-minilm");
+var embeddings = ollama.AddModel("embeddings", "all-minilm");
 
-var vectorStore = builder.AddSqlite("vector-store").WithSqliteWeb();
+if (useAzuer)
+{
+    var existingAzureSearch = builder.AddParameter("existingAzSearch");
+    var existingRg = builder.AddParameter("existingIcmBuddyRg");
+    var azureSearch = builder.AddAzureSearch("azure-search").AsExisting(existingAzureSearch, existingRg);   //AsExisting is used to connect to an existing Azure Search service
 
-var cache = builder.AddRedis("cache").WithDbGate();      //View redis
+    builder.AddProject<Projects.IcmChatApi>("icmchatapi")
+    .WithReference(chatModel)
+    .WithReference(embeddings)
+    .WithReference(cache)
+    .WithReference(azureSearch)   // Added for Azure
+    .WithEnvironment("useAzure", useAzuer.ToString())
+    .WaitFor(chatModel)
+    .WaitFor(embeddings)
+    .WaitFor(cache)
+    .WaitFor(azureSearch);   // Added for Azure
 
-//Testing Ollama-lamma3.2 model, we can use GithubWebUi
+    builder.AddProject<Projects.IngestionService>("ingestionservice")
+        .WithReference(embeddings)
+        .WithReference(azureSearch)   // Added for Azure
+        .WithEnvironment("vectorFunction", vectorFuntion)  // Creating Environment variable so we can access it from IngestionService
+        .WithEnvironment("useAzure", useAzuer.ToString())
+        .WaitFor(embeddings)
+        .WaitFor(azureSearch);   // Added for Azure
+    builder.Build().Run();
 
-//builder.AddContainer("open-webui", "ghcr.io/open-webui/open-webui", "main")
-//    .WithHttpEndpoint(port: 3000, targetPort: 8080, name: "http")
-//    .WithEnvironment("OLLAMA_BASE_URL", ollama.GetEndpoint("http"))
-//    .WithLifetime(ContainerLifetime.Persistent)
-//    .WaitFor(ollama);
+}
+else
+{
+    var vectorStore = builder.AddSqlite("vector-store").WithSqliteWeb();
 
-builder.AddProject<Projects.IcmChatApi>("icmchatapi")
+    builder.AddProject<Projects.IcmChatApi>("icmchatapi")
     .WithReference(chatModel)
     .WithReference(vectorStore)
     .WithReference(embeddings)
-    .WithReference(cache)   
+    .WithReference(cache)
     .WaitFor(chatModel)
     .WaitFor(vectorStore)
     .WaitFor(embeddings)
     .WaitFor(cache);
 
-builder.AddProject<Projects.IngestionService>("ingestionservice")
-    .WithReference(embeddings)
-    .WithReference(vectorStore)
-    .WaitFor(embeddings)
-    .WaitFor(vectorStore);
+    builder.AddProject<Projects.IngestionService>("ingestionservice")
+        .WithReference(embeddings)
+        .WithReference(vectorStore)
+        .WithEnvironment("vectorFunction", vectorFuntion)  // Creating Environment variable so we can access it from IngestionService
+        .WaitFor(embeddings)
+        .WaitFor(vectorStore);
+    builder.Build().Run();
 
-builder.Build().Run();
+}
+
+

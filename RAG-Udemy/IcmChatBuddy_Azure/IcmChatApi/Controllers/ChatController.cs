@@ -24,21 +24,33 @@ public class ChatController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<Models.ChatResponse> SendQuery([FromBody] ChatRequest query)
+    public async Task<ActionResult<Models.ChatResponse>> SendQuery([FromBody] ChatRequest query)  //ActionResult added for Azure
     {
-        List<ChatMessage> messages = new List<ChatMessage>()
+        try
         {
-            new ChatMessage(ChatRole.System, SystemPrompt),
-            new ChatMessage(ChatRole.User, query.Query)
-        };
+            List<ChatMessage> messages = new List<ChatMessage>()
+            {
+                new ChatMessage(ChatRole.System, SystemPrompt),
+                new ChatMessage(ChatRole.User, query.Query)
+            };
 
-        var response =await  _chatClient.GetResponseAsync(messages, _chatOptions);
+            var response = await _chatClient.GetResponseAsync(messages, _chatOptions);
 
-        return new Models.ChatResponse
+            return Ok(new Models.ChatResponse
+            {
+                Message = response.Text,
+                Status = "Success"
+            });
+        }
+        catch (OperationCanceledException)
         {
-            Message = response.Text,
-            Status = "Success"
-        };
+
+            return StatusCode(StatusCodes.Status499ClientClosedRequest);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message);
+        }
     }
 
 
