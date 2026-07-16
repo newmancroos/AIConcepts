@@ -42,3 +42,7 @@ If you have a document that has more than 126000 token, you cannot upload it to 
 	For example gpt mini 4o's cutoff date is October 2023.	
 </p>
 
+<img width="883" height="364" alt="image" src="https://github.com/user-attachments/assets/16c43074-a050-473d-a631-4d5b381dae8d" />
+
+
+
