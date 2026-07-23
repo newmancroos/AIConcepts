@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6831DCFC-9EE4-E13D-4D7B-11F32DC8DB42}|IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatbuddy.apphost\\icmchatbuddy.apphost.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6831DCFC-9EE4-E13D-4D7B-11F32DC8DB42}|IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj|solutionrelative:icmchatbuddy.apphost\\icmchatbuddy.apphost.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6831DCFC-9EE4-E13D-4D7B-11F32DC8DB42}|IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj|c:\\developments\\git\\aiconcepts\\rag-udemy\\icmchatbuddy\\icmchatbuddy.apphost\\apphost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6831DCFC-9EE4-E13D-4D7B-11F32DC8DB42}|IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj|solutionrelative:icmchatbuddy.apphost\\apphost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IcmChatBuddy.AppHost",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj",
+              "RelativeDocumentMoniker": "IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj",
+              "RelativeToolTip": "IcmChatBuddy.AppHost\\IcmChatBuddy.AppHost.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-03T00:13:42.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppHost.cs",
+              "DocumentMoniker": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatBuddy.AppHost\\AppHost.cs",
+              "RelativeDocumentMoniker": "IcmChatBuddy.AppHost\\AppHost.cs",
+              "ToolTip": "C:\\Developments\\Git\\AIConcepts\\RAG-Udemy\\IcmChatBuddy\\IcmChatBuddy.AppHost\\AppHost.cs",
+              "RelativeToolTip": "IcmChatBuddy.AppHost\\AppHost.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T00:07:38.959Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
