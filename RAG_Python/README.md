@@ -44,6 +44,12 @@ If you have a document that has more than 126000 token, you cannot upload it to 
 
 <img width="883" height="364" alt="image" src="https://github.com/user-attachments/assets/16c43074-a050-473d-a631-4d5b381dae8d" />
 
+## Content Extract from Video
+
+<img width="817" height="270" alt="image" src="https://github.com/user-attachments/assets/d1ff3ae4-33ec-49cd-b6b4-5f591773a101" />
+
+What we are doing here is, Extract audio from the video and using Transciption Generation generating Text and store it to a text file <br/>
+
 
 ## Prompt Engineer
 
@@ -61,11 +67,3 @@ If you have a document that has more than 126000 token, you cannot upload it to 
 
 <img width="658" height="393" alt="image" src="https://github.com/user-attachments/assets/e84a3c4d-6944-408d-b95b-2299ab216598" />
 
-
-
-
-## Content Extract from Video
-
-<img width="817" height="270" alt="image" src="https://github.com/user-attachments/assets/d1ff3ae4-33ec-49cd-b6b4-5f591773a101" />
-
-What we are doing here is, Extract audio from the video and using Transciption Generation generating Text and store it to a text file <br/>
