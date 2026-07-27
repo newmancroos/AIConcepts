@@ -67,3 +67,5 @@ What we are doing here is, Extract audio from the video and using Transciption G
 
 <img width="658" height="393" alt="image" src="https://github.com/user-attachments/assets/e84a3c4d-6944-408d-b95b-2299ab216598" />
 
+- ### We can get some useful prompt here : https://smith.langchain.com/hub/
+- 
