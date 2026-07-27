@@ -12,6 +12,8 @@
 ## Claude Cowork
 
 - Describe any task. Cowork manages your files, write reports, does research and automates workflows right on your computer
+
+### Task 1 : Folder Arrangement
 - Lets assume we have a folder and have expense data date wise but file name is not contains date. So we can ask Claude to rename all the files with Date in the format MMDDYYY at the beginning for the file name
 		- Claude will rename all the file by reading its content
 - Ask Claude to create sub folders Month wise and move relevant files to that folder and give me a report about the file and folder details
