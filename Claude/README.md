@@ -18,3 +18,11 @@
 		- Claude will rename all the file by reading its content
 - Ask Claude to create sub folders Month wise and move relevant files to that folder and give me a report about the file and folder details
 	- Claude will Create sub folder and arrange files and give me the report.
+
+
+### Task 2: Make short video from a large video
+
+- Drop the source video and type the following prompt
+	- Please create 10 second time lapse video from this material, showing the most important parts
+
+ 
