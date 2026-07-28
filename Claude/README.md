@@ -32,5 +32,16 @@
 <img width="1056" height="661" alt="image" src="https://github.com/user-attachments/assets/bb834d61-4ee9-4dc3-9ef1-70e68ce83e8f" />
 
 
+### Task 4 : Performing Tasks in Browser
+- Download Claude extension in Browser
+- Login to Claude account
+- Now two ways we can interact with Calude from Browser
+	- In side claude extension in the browser
+	-  Once Claude extension enable, we can instruct Open Browser and search for something
+			- Open for me "X" in the browser and search for news about Claude Cowork
+	- We can ask Clade to open my Github, create a repository and write a file on it.
+	- We can ask Claude Cowork to create a react app and uploaded to Github repo and deploy it in Github
+	- Please goto youtube and type inside "Ai agent tutorial"
+
 
 
