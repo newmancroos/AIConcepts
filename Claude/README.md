@@ -25,4 +25,12 @@
 - Drop the source video and type the following prompt
 	- Please create 10 second time lapse video from this material, showing the most important parts
 
- 
+ ### Task 3 : Create expense report 
+- I have many receipts in the folder I gave you access to. Please create a expense spreadsheet in the .CSV format with appropriate columns and fulfill the data from the screenshots. (Receipts may be in Jpg or png or any formats
+
+### Task 3 "  Create a presentation
+<img width="1056" height="661" alt="image" src="https://github.com/user-attachments/assets/bb834d61-4ee9-4dc3-9ef1-70e68ce83e8f" />
+
+
+
+
