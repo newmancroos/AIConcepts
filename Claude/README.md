@@ -65,3 +65,22 @@
 ### While instructing the Claude, do the same operations step by step so Claude will learn it from our action
 
 
+### Connectors
+- It is a Claude way of connecting applications
+	- Ex. Gmail, Slack, Teams etc.
+- Under Customize Menu we have Connectors
+- Connection has two Add Connter options
+		- Browse Connectors (Applications)
+		- Add Custom Connectors (MCP Server)
+
+- Connecting MCP Server
+	- Github Bright Data
+	- https://github.com/brightdata     /   https://github.com/brightdata/brightdata-mcp
+	- Goto **Setup in Claude Desktop:**
+	- Connect Claude as per the document
+		- Name : Bright Data Web
+		- URL : https://mcp.brightdata.com/mcp?token=YOUR_API_TOKEN
+		- Take Token from https://brightdata.com/cp/mcp   (Need registration)
+		- Click on Connect
+		- 
+	  
