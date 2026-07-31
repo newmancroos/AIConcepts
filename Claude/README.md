@@ -100,7 +100,7 @@
 	- Locate Computer use <br/>
 	- Enable it, also if you want to Denied some app, we can select those app in the Denied App section <br/>
 	- Now We can give prompt to use it <br/>
-			- ex. Please use the computer use. Open for me screen studio folder, and then open the last video recorded. Export it for me in 720p quality. <br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	- ex. Please use the computer use. Open for me screen studio folder, and then open the last video recorded. Export it for me in 720p quality. <br/>
 	- We can ask any application to open and do some operation. ex. Facebook, word, PPT. Claude will take control of the computer so we need to be ideal until Claude finishes its work <br/>
 
 
