@@ -82,5 +82,17 @@
 		- URL : https://mcp.brightdata.com/mcp?token=YOUR_API_TOKEN
 		- Take Token from https://brightdata.com/cp/mcp   (Need registration)
 		- Click on Connect
-		- 
+
+### Claude Dispatch
+- Claude Computer Use
+- Connect our computer from remote 
+- Three Mode
+	- Full Control
+	- View Only
+	- Blocked
+
+<img width="1532" height="710" alt="image" src="https://github.com/user-attachments/assets/c9a0af8d-615c-4d35-8507-bec6077e38f3" />
+
+
+
 	  
