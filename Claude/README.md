@@ -83,7 +83,7 @@
 		- Take Token from https://brightdata.com/cp/mcp   (Need registration)
 		- Click on Connect
 
-### Claude Dispatch
+### Claude Computer Use
 - Claude Computer Use
 - Connect our computer from remote 
 - Three Mode
