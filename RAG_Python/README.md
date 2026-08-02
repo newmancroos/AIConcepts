@@ -69,3 +69,8 @@ What we are doing here is, Extract audio from the video and using Transciption G
 
 - ### We can get some useful prompt here : https://smith.langchain.com/hub/
 - 
+
+### Project git repor : https://github.com/akash-balakrishnan-22/RAG
+
+- Pip is a package manager, helps to install packages.
+- UV is another package manager that is faster and more convenient than UV
