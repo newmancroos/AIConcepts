@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("d9edf8ea-722b-4eb0-89db-85ab86e64dfa")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("IcmChatApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4dfcfef8d1e7a2be40dcd0737d60bf2f42f41b70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e52f268d7dec6e2ae1b48fe999902f4d7eb766c")]
 [assembly: System.Reflection.AssemblyProductAttribute("IcmChatApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IcmChatApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
