@@ -106,4 +106,48 @@
 	- Example Prompt : Use the compuuter use. Move on to this website https://adaptifyai.co.ik/ Find the contact form, fulfill that to me, and send. Use "pale moon" broswer. <br/>
 
 
-	  
+## Skills
+
+- Claude is already brilliant, but it doesn't know you specific process, your standard or your ways of doing things
+- So Skills is : 
+				- A plain-language file that teaches Claude exactly how to handle a task - your ways, your standard, every time
+				- Step-by-step task instructions
+				- your quality criteria & format
+				- your tone, voice and style
+				- Domain expertise and Context
+		- 20 Useful Skills 
+			- https://app.notion.com/p/Claude-Masterclass-20-Skills-Templates-312ccdb23d9980e59d95eb1f9ab9695b
+
+
+### Anatomy Of a Skill
+
+Skill normally contains 4 different components
+
+		- SKILL.md (Required) [Execution Brain] : Defines Role, Logic, Decision and workflow structure
+		- Scripts/  (Optional) [Action Layer] : Execute tasks, process data, trigger operations
+		- References/ (Optional) [Knowledge Layer] : APIs, guides, structured example, domain material
+		- Assets/ (Optional) [Output Layer] : Templates, formats, UI elements, reusable components
+
+<br/>
+Apart from the above four components we need yaml meta data file for each skill that contains <br/>
+		- Skill Name<br/>  
+		- Description<br/>
+		- License (Optional)<br/>
+		- Metadata :<br/>
+			&nbsp;&nbsp;&nbsp; - Author (Optional)<br/>
+			&nbsp;&nbsp;&nbsp; - Version (Optional)<br/>
+			&nbsp;&nbsp;&nbsp; - mcp-server  (Optional)<br/>
+<br/>
+
+<img width="1174" height="749" alt="image" src="https://github.com/user-attachments/assets/9b00c5ad-c1ea-4209-aac4-73946318c33f" />
+
+		
+### Three Categories of Skills
+
+- Document & Asset Creation : Produced high-quality, consistent output
+- Workflow Automation   : Orchestrate repeatable process
+- MCP Enhancement : Turn tools access into optimized workflow
+
+<img width="1051" height="709" alt="image" src="https://github.com/user-attachments/assets/c0d19635-c7a6-4f4e-ba3f-9280559108fc" />
+
+
