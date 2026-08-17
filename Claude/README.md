@@ -128,16 +128,16 @@ Skill normally contains 4 different components
 		- References/ (Optional) [Knowledge Layer] : APIs, guides, structured example, domain material
 		- Assets/ (Optional) [Output Layer] : Templates, formats, UI elements, reusable components
 
-
-Apart from the above four components we need yaml meta data file for each skill that contains 
-		- Skill Name  
-		- Description
-		- License (Optional)
-		- Metadata :
-			&nbsp;&nbsp;&nbsp; - Author (Optional)
-			&nbsp;&nbsp;&nbsp; - Version (Optional)
-			&nbsp;&nbsp;&nbsp; - mcp-server  (Optional)
-
+<br/>
+Apart from the above four components we need yaml meta data file for each skill that contains <br/>
+		- Skill Name<br/>  
+		- Description<br/>
+		- License (Optional)<br/>
+		- Metadata :<br/>
+			&nbsp;&nbsp;&nbsp; - Author (Optional)<br/>
+			&nbsp;&nbsp;&nbsp; - Version (Optional)<br/>
+			&nbsp;&nbsp;&nbsp; - mcp-server  (Optional)<br/>
+<br/>
 
 <img width="1174" height="749" alt="image" src="https://github.com/user-attachments/assets/9b00c5ad-c1ea-4209-aac4-73946318c33f" />
 
