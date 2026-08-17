@@ -131,3 +131,12 @@ Skill normally contains 4 different components
 <img width="1174" height="749" alt="image" src="https://github.com/user-attachments/assets/9b00c5ad-c1ea-4209-aac4-73946318c33f" />
 
 		
+### Three Categories of Skills
+
+- Document & Asset Creation : Produced high-quality, consistent output
+- Workflow Automation   : Orchestrate repeatable process
+- MCP Enhancement : Turn tools access into optimized workflow
+
+<img width="1051" height="709" alt="image" src="https://github.com/user-attachments/assets/c0d19635-c7a6-4f4e-ba3f-9280559108fc" />
+
+
