@@ -150,3 +150,12 @@ public sealed class FoundryOptions
 here we can inject MySetting but we can't have validations
         
 </pre>
+
+### To check running Local Foundry model status<br/>
+
+Invoke-RestMethod -Uri "http://localhost:57223/v1/models" -Method Get   <br/>
+OR<br/>
+irm http://localhost:57223/v1/models <br/>
+
+and Copy the Id string as model name.
+
