@@ -17,7 +17,15 @@ The application presents a complete authenticated product shell so demonstration
 		* Doewnload and run a model   : foundry run phi-4-mini
 5. List down installed models : foundry cache list
 6. Uninstall installed model : foundry cache remove <model-name>
-		
+
+7. Run foundry server status   to get Foundry URL <br/>
+### To check running Local Foundry model status<br/>
+
+Invoke-RestMethod -Uri "http://localhost:57223/v1/models" -Method Get   <br/>
+OR<br/>
+irm http://localhost:57223/v1/models <br/>
+
+and Copy the Id string as model name.
 
 ## Included
 
@@ -151,11 +159,5 @@ here we can inject MySetting but we can't have validations
         
 </pre>
 
-### To check running Local Foundry model status<br/>
 
-Invoke-RestMethod -Uri "http://localhost:57223/v1/models" -Method Get   <br/>
-OR<br/>
-irm http://localhost:57223/v1/models <br/>
-
-and Copy the Id string as model name.
 
