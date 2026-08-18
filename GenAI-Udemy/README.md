@@ -137,7 +137,7 @@ public sealed class FoundryOptions
 }
 
 //program.cs
-        services.AddOptions<FoundryOptions>()
+        services.AddOptions&lt;FoundryOptions$gt;()
             .Bind(configuration.GetSection(FoundryOptions.SectionName))
             .ValidateDataAnnotations()
             .ValidateOnStart();
