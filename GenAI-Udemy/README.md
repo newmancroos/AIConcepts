@@ -102,3 +102,51 @@ docker compose up --build
 ## Branch progression
 
 See [`docs/branch-strategy.md`](docs/branch-strategy.md). The corresponding completion checkpoint should be created as `section-04-ai-client-complete` after the AI client pipeline is implemented.
+
+
+
+
+
+
+### Difference between builder.Servics.Configure Vs builder.Services.AddOptions<T>().Bind()
+
+builder.Services.AddOptions<T>().Bind() maps a configuration section to a strongly-typed C# class and register it in the dependency injection
+<pre>
+//appsetting.json:
+{
+  "Foundry": {
+    "ApiKey": "",
+    "ProjectEndpoint": "",
+    "ChatModelDeployment": ""
+  }
+}
+
+//Classs:
+public sealed class FoundryOptions
+{
+    public const string SectionName = "Foundry";
+
+    [Required]
+    [Url]
+    public string ProjectEndpoint { get; init; } = string.Empty;
+
+    [Required]
+    public string ChatModelDeployment { get; init; } = string.Empty;
+
+    public string? ApiKey { get; init; } = string.Empty;
+}
+
+//program.cs
+        services.AddOptions<FoundryOptions>()
+            .Bind(configuration.GetSection(FoundryOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+//here we can     advance OptionBuilder Fluent Api feature.  .ValidateOnStart() stop the application immediatly at //lauch if configuration properties arfe missing or malfunction
+
+//builder.Services.Configuration
+`builder.Services.Configure<MySettings>(builder.Configuration.GetSection("MySettings"))`
+
+here we can inject MySetting but we can't have validations
+        
+</pre>
