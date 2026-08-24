@@ -27,6 +27,19 @@ irm http://localhost:57223/v1/models <br/>
 
 and Copy the Id string as model name.
 
+
+## Azure AI Foundry
+
+- Login to ai.azure.com
+- Create a Project - This contains API Key and project end-point
+- Under Discover,  Select Compare models button to compare all the model's Safety, Throughput, Cost
+- Select All Model and select which model you want to use
+- Click Deploy button to start using this model (Custom/Default - select default)
+- We can give prompt and get response in the playground
+- Playground CallModel tab has the coding to call that model
+
+
+
 ## Included
 
 - .NET 10 and C# 14
