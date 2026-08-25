@@ -164,3 +164,8 @@ Above all we need to set the model to a specific assistant  role. ex. You are a 
 3. Claude Code (Repo & MCP app) : Create Skill folder; Version control in repo; Develop modulear skill; integrate with MCP/claude tools
 
 
+### Where I can download skills?
+- skillhub.club
+- skillsmp.com
+- smithery.ai/skills
+- https://github.com/anthropics/skills/tree/main
