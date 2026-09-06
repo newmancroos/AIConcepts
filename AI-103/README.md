@@ -21,3 +21,16 @@
      * Tool Definition : A tool is any external capability that agent can use - Search API, Database queries, Email Sender.
      * How Tool calling works : The LLM output a special JSON structure saying "I need to call tool X with param Y. Agent code then execute the call.
      * Tool calling advantages : Real, and Live data not trained data.
+
+- Memory
+     * Storing information from past interactions to use future decisions.
+     * Short-Term Memory (Session Context) - It is for on conversation session.
+     * Long-Term Memory (User History) - Persists across sessions. Remember User preference like Shipping address
+
+### Microsoft Foundry
+
+- It is a cloud platform where we **build, deploy and manage** AI agents
+- About
+     * Foundry as One Stop shop : Foundry provides everything you nee; **model deployment, Identity management, tracing and safety tools**
+     * Foundry VS Azure AI Studio : Foundry is a successor to Azure AI Studio with added facilities like** Entra Agent ID and Agent Service**
+     * Three core Foundry components:** Hub (Resource container), Projects (agent workspaces),  Agent Service (Running environment for deployed agents)**
