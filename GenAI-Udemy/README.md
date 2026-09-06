@@ -17,7 +17,28 @@ The application presents a complete authenticated product shell so demonstration
 		* Doewnload and run a model   : foundry run phi-4-mini
 5. List down installed models : foundry cache list
 6. Uninstall installed model : foundry cache remove <model-name>
-		
+
+7. Run foundry server status   to get Foundry URL <br/>
+### To check running Local Foundry model status<br/>
+
+Invoke-RestMethod -Uri "http://localhost:57223/v1/models" -Method Get   <br/>
+OR<br/>
+irm http://localhost:57223/v1/models <br/>
+
+and Copy the Id string as model name.
+
+
+## Azure AI Foundry
+
+- Login to ai.azure.com
+- Create a Project - This contains API Key and project end-point
+- Under Discover,  Select Compare models button to compare all the model's Safety, Throughput, Cost
+- Select All Model and select which model you want to use
+- Click Deploy button to start using this model (Custom/Default - select default)
+- We can give prompt and get response in the playground
+- Playground CallModel tab has the coding to call that model
+
+
 
 ## Included
 
@@ -102,3 +123,54 @@ docker compose up --build
 ## Branch progression
 
 See [`docs/branch-strategy.md`](docs/branch-strategy.md). The corresponding completion checkpoint should be created as `section-04-ai-client-complete` after the AI client pipeline is implemented.
+
+
+
+
+
+
+### Difference between builder.Servics.Configure Vs builder.Services.AddOptions<T>().Bind()
+
+builder.Services.AddOptions<T>().Bind() maps a configuration section to a strongly-typed C# class and register it in the dependency injection
+<pre>
+//appsetting.json:
+{
+  "Foundry": {
+    "ApiKey": "",
+    "ProjectEndpoint": "",
+    "ChatModelDeployment": ""
+  }
+}
+
+//Classs:
+public sealed class FoundryOptions
+{
+    public const string SectionName = "Foundry";
+
+    [Required]
+    [Url]
+    public string ProjectEndpoint { get; init; } = string.Empty;
+
+    [Required]
+    public string ChatModelDeployment { get; init; } = string.Empty;
+
+    public string? ApiKey { get; init; } = string.Empty;
+}
+
+//program.cs
+        services.AddOptions&lt;FoundryOptions&gt;()
+            .Bind(configuration.GetSection(FoundryOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+//here we can     advance OptionBuilder Fluent Api feature.  .ValidateOnStart() stop the application immediatly at //lauch if configuration properties arfe missing or malfunction
+
+//builder.Services.Configuration
+`builder.Services.Configure<MySettings>(builder.Configuration.GetSection("MySettings"))`
+
+here we can inject MySetting but we can't have validations
+        
+</pre>
+
+
+

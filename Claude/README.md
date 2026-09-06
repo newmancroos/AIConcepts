@@ -151,3 +151,21 @@ Apart from the above four components we need yaml meta data file for each skill 
 <img width="1051" height="709" alt="image" src="https://github.com/user-attachments/assets/c0d19635-c7a6-4f4e-ba3f-9280559108fc" />
 
 
+### Three parts of the good prompt
+1. Context (Background details)
+2. Instruction (Specific task or action)
+3. Output (The desire format or constraints)
+Above all we need to set the model to a specific assistant  role. ex. You are a editorial concept assistant.
+
+### Three ways of Create Skills
+1. We can ask Claude chat to create a skill for us using correct prompt. that uses Skill Creator
+1. Skill Creator (GUI Tool) : Fill in fields, upload files; publish directly to claude; No code, easy to use; somple skills
+2. Manual Creation (MD + Yaml) :Write SKILL.md; edit skill.yaml for confic; Customized behavior & metadata;Complex skills
+3. Claude Code (Repo & MCP app) : Create Skill folder; Version control in repo; Develop modulear skill; integrate with MCP/claude tools
+
+
+### Where I can download skills?
+- skillhub.club
+- skillsmp.com
+- smithery.ai/skills
+- https://github.com/anthropics/skills/tree/main
