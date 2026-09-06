@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.8.12021.73
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
@@ -20,6 +20,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeCast.Domain.Tests", "tests\VibeCast.Domain.Tests\VibeCast.Domain.Tests.csproj", "{DD9E765C-B0F2-4816-B3BD-9EC408514EB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeCast.IntegrationTests", "tests\VibeCast.IntegrationTests\VibeCast.IntegrationTests.csproj", "{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E143D564-87B8-4FBB-9F77-64E108998D77}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,7 +116,6 @@ Global
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.Debug|x64.Build.0 = Debug|Any CPU
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.DebuY|x86.Build.0 = Debug|Any CPU
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148}.Release|x64.ActiveCfg = Release|Any CPU
@@ -127,5 +134,8 @@ Global
 		{9073BF3A-2D0D-4EA3-98C0-A1F00EC5B7A1} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{DD9E765C-B0F2-4816-B3BD-9EC408514EB3} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{C2F8234B-28AC-4FE2-A796-CE6B56E8A148} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B94FBD0-7932-4E31-948E-500EEC6A1341}
 	EndGlobalSection
 EndGlobal

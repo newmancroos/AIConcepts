@@ -1,6 +1,8 @@
 @page "/episodes"
 @attribute [Authorize]
-
+@inject IEpisodeService EpisodeService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Claims
 <PageTitle>Episodes</PageTitle>
 
 <div class="page-heading">
@@ -45,12 +47,55 @@
 </div>
 
 @code {
+
+    private bool isSaving;
+    private string? saveError;
+    private string? saveNotice;
+
   private readonly EpisodeRow[] episodes =
   [
-    new("104", "Responsible AI in Production", "Threat models, evaluation gates, and responsible operations.", "Draft", "badge-neutral", "T. Williams", "Brief ready", "12 minutes ago"),
-    new("103", "Designing Reliable RAG", "Evidence quality, hybrid retrieval, and citation contracts.", "In review", "badge-warning", "T. Williams", "Evidence staged", "Yesterday"),
-    new("102", "Multimodal Content Workflows", "Text, image, speech, and document processing in one pipeline.", "Planned", "badge-info", "T. Williams", "Media pending", "Jul 14")
+      new("637BF2E2-9F54-4ED0-8218-BA083F26026A", "Responsible AI in Production", "Threat models, evaluation gates, and responsible operations.", "Draft", "badge-neutral", "T. Williams", "Brief ready", "12 minutes ago"),
+    //new("103", "Designing Reliable RAG", "Evidence quality, hybrid retrieval, and citation contracts.", "In review", "badge-warning", "T. Williams", "Evidence staged", "Yesterday"),
+    new("AB169E0E-C634-4C68-A5C2-10222C247589", "Multimodal Content Workflows", "Text, image, speech, and document processing in one pipeline.", "Planned", "badge-info", "T. Williams", "Media pending", "Jul 14")
   ];
 
   private sealed record EpisodeRow(string Id, string Title, string Description, string Status, string BadgeClass, string Owner, string ContentState, string Updated);
+
+    // private async Task<Guid?> GetEpisodes()
+    // {
+    //     try
+    //     {
+
+    //         AuthenticationState authenticationState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+    //         string? ownerId = authenticationState.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+    //         if (string.IsNullOrWhiteSpace(ownerId))
+    //         {
+    //             saveError = "The authenticated user could not be resolved. Sign in again and retry.";
+    //             return null;
+    //         }
+
+
+    //         Guid? episodeId = await EpisodeService.GetAsync(ownerId);
+
+    //         if (episodeId is null)
+    //         {
+    //             saveError = "VibeCast could not save the editorial beief. The episode service returned no identifier.";
+    //             return null;
+    //         }
+    //         return episodeId;
+
+    //     }
+    //     catch (Exception exception)
+    //     {
+    //         Logger.LogError(exception, "Failed to persist an episode draft for the current user.");
+    //         saveError = "VibeCast could not save the editorial brief. Review the application logs and retry.";
+    //         return null;
+    //     }
+    //     finally
+    //     {
+    //         isSaving = false;
+    //     }
+    // }
 }

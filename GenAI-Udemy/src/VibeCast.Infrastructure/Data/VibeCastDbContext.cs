@@ -26,6 +26,41 @@ public sealed class VibeCastDbContext(DbContextOptions<VibeCastDbContext> option
             entity.Property(x => x.Title).HasMaxLength(160).IsRequired();
             entity.Property(x => x.Description).HasMaxLength(2_000);
             entity.Property(x => x.OwnerId).HasMaxLength(450).IsRequired();
+
+            entity.Property(episode => episode.TargetAudience)
+            .HasMaxLength(160)
+            .IsRequired();
+
+            entity.Property(episode => episode.Objective)
+                .HasMaxLength(600)
+                .IsRequired();
+
+            entity.Property(episode => episode.Tone)
+                .HasMaxLength(80)
+                .IsRequired();
+
+            entity.Property(episode => episode.Language)
+                .HasMaxLength(80)
+                .IsRequired();
+
+            entity.Property(episode => episode.PlannedPublishDate);
+
+            //entity.Property(episode => episode.AcceptedPlanJson);
+
+            //entity.Property(episode => episode.PlanPromptVersion)
+            //    .HasMaxLength(120);
+
+            //entity.Property(episode => episode.PlanGeneratedAtUtc);
+
+            //entity.Property(episode => episode.PlanRepairAttempted);
+
+            //entity.Property(episode => episode.PlanRepairPromptVersion)
+            //    .HasMaxLength(120);
+
+            //entity.Property(episode => episode.PlanFormatPolicyVersion)
+            //    .HasMaxLength(120);
+
+            entity.HasIndex(x => new { x.OwnerId, x.CreatedAtUtc });
             entity.HasIndex(x => new { x.OwnerId, x.CreatedAtUtc });
         });
 
