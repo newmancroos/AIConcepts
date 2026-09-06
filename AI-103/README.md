@@ -33,4 +33,4 @@
 - About
      * Foundry as One Stop shop : Foundry provides everything you nee; **model deployment, Identity management, tracing and safety tools**
      * Foundry VS Azure AI Studio : Foundry is a successor to Azure AI Studio with added facilities like** Entra Agent ID and Agent Service**
-     * Three core Foundry components:** Hub (Resource container), Projects (agent workspaces),  Agent Service (Running environment for deployed agents)**
+     * Three core Foundry components: ** Hub (Resource container), Projects (agent workspaces),  Agent Service (Running environment for deployed agents)**
