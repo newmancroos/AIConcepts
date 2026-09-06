@@ -10,4 +10,8 @@
      * When we send text to an LLM, the model breaks the text into Tokens. It may be a word, part of word or punctuation marks
      * LLMs charge by tokens. They have also have token limits
      * As an Agent, it track token usage across multi-step conversation. Long histories cost more tokens and may exceed model limits.
-     * 
+
+- Messages
+     * System Message  - It is hidden from the user and tells the agent how to behave, what are the boundaries. Persistent, Include with all the request. 
+                         ex. You are a customer support agent for Contoso.
+     * User Message    - It is what the user askes. ex. Give me the approximate price for a item
