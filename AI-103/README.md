@@ -15,3 +15,9 @@
      * System Message  - It is hidden from the user and tells the agent how to behave, what are the boundaries. Persistent, Include with all the request. 
                          ex. You are a customer support agent for Contoso.
      * User Message    - It is what the user askes. ex. Give me the approximate price for a item
+
+- Tool Calling
+     * Ability of an agent to request and execute external functions like Search Database or Sending an Email
+             - Tool Definition : A tool is any external capability that agent can use - Search API, Database queries, Email Sender.
+             - How Tool calling works : The LLM output a special JSON structure saying "I need to call tool X with param Y. Agent code then execute the call.
+             - Tool calling advantages : Real, and Live data not trained data.
