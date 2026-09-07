@@ -34,3 +34,11 @@
      * Foundry as One Stop shop : Foundry provides everything you nee; **model deployment, Identity management, tracing and safety tools**
      * Foundry VS Azure AI Studio : Foundry is a successor to Azure AI Studio with added facilities like** Entra Agent ID and Agent Service**
      * Three core Foundry components: **Hub (Resource container), Projects (agent workspaces),  Agent Service (Running environment for deployed agents)**
+
+   ## **Trace**
+      - It is a debugging tool that shows you every decisions and action your agent took during a conversation.
+         * Trace is a record of every step an agent took. each LLM call, each tool call, each memory lookup with timestamps and result.
+         * REASONING LOOPS : AGENT REPEATS THE SAME ACTION OVER AND OVER WITHOUT MAKING PROGRESS,LIKE ASKING FOR A TOOL RESULT IT ALREADY HAS
+         * Trace shows you exactly where the loop started, which tool returned unexpected data, and which step failed to advance the conversation.
+  
+  
