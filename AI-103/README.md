@@ -47,7 +47,7 @@
         * Why Agent need it own Entra Id?, It is uniquely identify one agent activity and actions, auditing, we can also restricting Agent's access
         * The Sponsor concept : A sponsor is a human who is accountable for the agent's action. Even thought Agent has Entra Id, a human sponser is responsible for its behavior.
       
-  **Content Safety**
+  ## **Content Safety**
       - Content safety is a azure service that scans agent input and output for harmful content like hate speech or violence.
         * Filtering Inputs and Output (in both direction)
         * Configuring Threshold : You set severity threshold. for example block any violence above severity 2.
