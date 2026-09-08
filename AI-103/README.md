@@ -85,7 +85,7 @@
 
    ## API Key
         - It is a secret key like a password for your code.
-        - Its stored in Foundry Project settings. can also stored in Environment variable or in Key-Vault  NOT in source code
+        - Generate API keys in Foundry Project settings and store it in Environment variable or in Key-Vault  NOT in source code
         - Changing the api key periodically is best practice, Foundry lets you generate new keys and disable old key without redeploying
   
      
