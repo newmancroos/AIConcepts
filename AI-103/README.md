@@ -101,4 +101,23 @@
   - Blueprint VS Agent Id : The agent Id is the unique identity, the Blueprint is the permission template applied to that identity
  
      
-  
+  ### Conditional Access for Agents
+
+  - It is a security feature for AI Agent
+  - Before an agent executes an action, Conditional Access verifies requirements: "Is the request coming from the corporate network? Is it within business hours?
+  - Agent-Specific Condition : We can configure that an agent only runs between 9Am to 5PM or access sensitive data when the sponser (human owner) is logged in.
+ 
+  ### Access Package for Agent
+
+  - Collection of permissions that can be assign to an agent, Instead of assigning permissions one by one, you can group them into a package. ex. Database Reader package includes read access to 3 databases
+  - Time limited access : Access package can expire.
+  - A human sponsor requests an access package for an agent. An approver grants it. The agent receives those permission until expiration.
+ 
+  ## The Sponsor Lifecycle
+
+  - A sponsor is a human who is accountable for an agent's action and must approve certain agent behavior
+  - Every agent with Entra Agent Id must have a named human sponsor. This person is responsible if the agent misbehaves or violates policies
+  - The Sponsor reviews agent logs, approves access package request and contacted if the agent triggers a security alert.
+  - When a sponsor leave the company, agent assigned to that sponsor are suspended until a new sponsor is assigned.
+
+
