@@ -94,6 +94,11 @@
 
   
 
-  
+  ### Agent Identity Blueprints
+
+  - Blueprint is a reusable configuration file that specifies which databases, APIs and storage an agent can access
+  - Why Blueprint : Instead of configuring permissions for each agent individually, we can create a blueprint once and apply it to many agents of the same type
+  - Blueprint VS Agent Id : The agent Id is the unique identity, the Blueprint is the permission template applied to that identity
+ 
      
   
