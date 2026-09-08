@@ -74,3 +74,6 @@
               ** A Hub may have many project, each project inherits security setting from its hub but can have its own specific configuration.
               ** Project structure : One project might contain a customer support agent, another project in the same hub migh contain a separate inventory management
         - Agent Service (Running environment for deployed agent)
+              ** It is runtime environment where we can deploy the agent actually runs and responds to the user.
+              ** Agent service is fully managed **hosting platform, we can upload our agent and agent services runs it, scale it and monitors it's health**.
+              
