@@ -87,6 +87,13 @@
         - It is a secret key like a password for your code.
         - Generate API keys in Foundry Project settings and store it in Environment variable or in Key-Vault  NOT in source code
         - Changing the api key periodically is best practice, Foundry lets you generate new keys and disable old key without redeploying
+        - Alternate way to API Key is Manage Identity
+
+
+  <img width="1553" height="781" alt="image" src="https://github.com/user-attachments/assets/732e538a-8e25-4a08-a00f-45ae96f7daf7" />
+
+  
+
   
      
   
