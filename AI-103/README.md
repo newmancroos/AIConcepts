@@ -77,3 +77,8 @@
               ** It is runtime environment where we can deploy the agent actually runs and responds to the user.
               ** Agent service is fully managed **hosting platform, we can upload our agent and agent services runs it, scale it and monitors it's health**.
               
+   ## Foundry Model Catalog
+        - List of pre-trained AI models we can deploy and use as the brain for our agent.
+        - Model catalog shows all available model from Microsoft(Phi Series), Open AI (GPT - 5) and other providers in one place.
+        - Deploying a Model : Deploying a model means reserving a copy of a model exclusively for our agent. We choose the model version and pay for the computing time
+        -  Model Vs Agent relationship : An agent uses a deployed model as its reasoning engine. One agent can use one model.
