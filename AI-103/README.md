@@ -64,4 +64,13 @@
         - SDKs are faster to write and read. REST gives you more control and works in any programming languages.
 
    
-  
+  ## Foundry has three main components
+        - Foundry Hub (Resource Container)
+              ** High level container, it is like a folder that hold all your agent projects, models and security setting
+              ** Hub VS Azure subscription : Azure subscription can have multiple hub. each hub has it won access rule, cost tracking and regional plaxcement
+              ** When to create Hub : Create hub per team or per business unit. Hubs isolate agent, models and cost from other groups in the same company.
+        - Projects ( Agent workspace)
+              ** Workspace where you can build, test and deploy a specific agent. its contains code, system message, tool definition, memory configuration and trace logs..
+              ** A Hub may have many project, each project inherits security setting from its hub but can have its own specific configuration.
+              ** Project structure : One project might contain a customer support agent, another project in the same hub migh contain a separate inventory management
+        - Agent Service (Running environment for deployed agent)
