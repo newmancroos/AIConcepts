@@ -82,3 +82,11 @@
         - Model catalog shows all available model from Microsoft(Phi Series), Open AI (GPT - 5) and other providers in one place.
         - Deploying a Model : Deploying a model means reserving a copy of a model exclusively for our agent. We choose the model version and pay for the computing time
         -  Model Vs Agent relationship : An agent uses a deployed model as its reasoning engine. One agent can use one model.
+
+   ## API Key
+        - It is a secret key like a password for your code.
+        - Its stored in Foundry Project settings. can also stored in Environment variable or in Key-Vault  NOT in source code
+        - Changing the api key periodically is best practice, Foundry lets you generate new keys and disable old key without redeploying
+  
+     
+  
