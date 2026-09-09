@@ -133,3 +133,43 @@ How Quotas Work
 • Shared Test Quota: Foundry provides temporary shared quota pools for short-term testing of models from the catalog without needing a formal quota increase request. [5]  
 
 </pre>
+
+
+**NOte:**
+There are 2 types of orachestrations:
+1. Client side orchestrations   :  We directly talk to LLMs we created in foundry
+2. Server side orchestrations   :  We use
+
+<pre>
+
+   **Client-side and server-side orchestrations**
+** Client-side and server-side orchestrations** in AI agent development define where the control loops, tool executions, and multi-agent workflow logic take place relative to the user interface and the core backend. [1, 2]  
+Client-side orchestration runs the agent's logic and execution loops directly on the user's device or application layer (such as a browser or native mobile app), while server-side orchestration executes these coordination and tool-handling loops on a secure remote backend or cloud infrastructure. [1, 2, 3]  
+Client-Side Orchestration 
+Client-side orchestration means the application code running on the user's end manages the AI agent's decision loops, conversation history, and tool triggers. 
+
+• How it works: The local app intercepts the model's requests, executes local functions or API calls, feeds data back to the large language model (LLM), and loops the process until the task finishes. Standards like the  Model Context Protocol  (MCP) can help client applications cleanly discover local or remote tools. 
+• Advantages: 
+
+	• Gives developers deep control over real-time UI state and local context. 
+	• Reduces heavy backend compute requirements for simple or user-bound interactions. [2, 6]  
+
+• Disadvantages: 
+
+	• Creates latency and heavy network overhead because the client must constantly re-invoke the model and pass data back and forth. 
+	• Exposes security risks or "walled garden" limitations when agents need direct access to private corporate databases, file systems, or secret environment variables. [1, 7]  
+
+**Server-Side Orchestration **
+Server-side orchestration moves the agent coordination engine, task queues, memory, and tool execution loops into a secure cloud or on-premise backend environment. 
+
+• How it works: The client simply sends a high-level prompt or goal to a server gateway (like Amazon Bedrock Server-Side Tool Execution). The backend orchestrator handles multi-agent sequencing, persistent state management, secure database queries, and error handling entirely away from the user interface. 
+• Advantages: 
+
+	• Securely connects agents to internal enterprise file systems, private APIs, and heavy vector databases without exposing credentials to the client. 
+	• Scales efficiently for high-concurrency enterprise workloads, minimizing flaky network loops on the user's device. [1, 7]  
+
+• Disadvantages: 
+
+	• Increases server infrastructure complexity and operational overhead to manage state queues, event buses, and agent lifecycles. [8]  
+
+</pre>
