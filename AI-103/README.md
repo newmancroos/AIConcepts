@@ -113,7 +113,7 @@
   - Time limited access : Access package can expire.
   - A human sponsor requests an access package for an agent. An approver grants it. The agent receives those permission until expiration.
  
-  ## The Sponsor Lifecycle
+  ### The Sponsor Lifecycle
 
   - A sponsor is a human who is accountable for an agent's action and must approve certain agent behavior
   - Every agent with Entra Agent Id must have a named human sponsor. This person is responsible if the agent misbehaves or violates policies
@@ -121,3 +121,15 @@
   - When a sponsor leave the company, agent assigned to that sponsor are suspended until a new sponsor is assigned.
 
 
+### Azure Ai Foundry project Quatas 
+
+<pre>
+  Quotas in an  Azure AI Foundry  project represent the maximum allocation of computing power and model throughput—measured in Tokens Per Minute (TPM), Requests Per Minute (RPM), or Provisioned Throughput Units (PTUs)—that your deployments can consume. [1, 2]  
+How Quotas Work 
+
+• Shared Pool: Azure assigns quotas at the subscription level, region level, or global/data-zone level depending on the model. All projects and deployments under that scope draw from this shared limit. 
+• Throttling Protection: If your application exceeds your allocated TPM or RPM, Azure triggers rate limits and returns errors (such as HTTP 429). 
+• Automatic Tiers: Azure AI Foundry assigns quota tiers (Free Tier and Tiers 1 through 6). It can automatically upgrade your tier based on your usage trends and enterprise agreement status. 
+• Shared Test Quota: Foundry provides temporary shared quota pools for short-term testing of models from the catalog without needing a formal quota increase request. [5]  
+
+</pre>
