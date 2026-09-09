@@ -142,8 +142,8 @@ There are 2 types of orachestrations:
 
 <pre>
 
-   **Client-side and server-side orchestrations**
-** Client-side and server-side orchestrations** in AI agent development define where the control loops, tool executions, and multi-agent workflow logic take place relative to the user interface and the core backend. [1, 2]  
+<b>Client-side and server-side orchestrations</b>
+Client-side and server-side orchestrations** in AI agent development define where the control loops, tool executions, and multi-agent workflow logic take place relative to the user interface and the core backend. [1, 2]  
 Client-side orchestration runs the agent's logic and execution loops directly on the user's device or application layer (such as a browser or native mobile app), while server-side orchestration executes these coordination and tool-handling loops on a secure remote backend or cloud infrastructure. [1, 2, 3]  
 Client-Side Orchestration 
 Client-side orchestration means the application code running on the user's end manages the AI agent's decision loops, conversation history, and tool triggers. 
@@ -159,7 +159,7 @@ Client-side orchestration means the application code running on the user's end m
 	• Creates latency and heavy network overhead because the client must constantly re-invoke the model and pass data back and forth. 
 	• Exposes security risks or "walled garden" limitations when agents need direct access to private corporate databases, file systems, or secret environment variables. [1, 7]  
 
-**Server-Side Orchestration **
+<b>Server-Side Orchestration</b>
 Server-side orchestration moves the agent coordination engine, task queues, memory, and tool execution loops into a secure cloud or on-premise backend environment. 
 
 • How it works: The client simply sends a high-level prompt or goal to a server gateway (like Amazon Bedrock Server-Side Tool Execution). The backend orchestrator handles multi-agent sequencing, persistent state management, secure database queries, and error handling entirely away from the user interface. 
