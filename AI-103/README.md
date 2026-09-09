@@ -123,8 +123,8 @@
 
 ### Azure Ai Foundry project Quatas 
 
-<pre style="white-space: pre-wrap; word-wrap: break-word; word-break: break-word;">
-  Quotas in an  Azure AI Foundry  project represent the maximum allocation of computing power and model throughput—measured in Tokens Per Minute (TPM), Requests Per Minute (RPM), or Provisioned Throughput Units (PTUs)—that your deployments can consume. [1, 2]  
+<pre>
+  Quotas in an  Azure AI Foundry  project represent the maximum allocation of computing power and model throughput—measured in Tokens Per Minute (TPM), Requests Per Minute (RPM), or Provisioned Throughput Units (PTUs)—that your deployments can consume. 
 How Quotas Work 
 
 • Shared Pool: Azure assigns quotas at the subscription level, region level, or global/data-zone level depending on the model. All projects and deployments under that scope draw from this shared limit. 
