@@ -173,3 +173,9 @@ Server-side orchestration moves the agent coordination engine, task queues, memo
 	• Increases server infrastructure complexity and operational overhead to manage state queues, event buses, and agent lifecycles. [8]  
 
 </pre>
+
+
+## Bicep
+<p>
+	
+</p>
