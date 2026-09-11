@@ -250,4 +250,19 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 - Here model version we can take it from Foundry model selection and Microsoft.CognitiveServices/accounts/projects@2025-06-01 we can take from // https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
 - Foundry, Project and deployment versions also can be found at https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/change-log/accounts
 - According to the version we can form Microsoft.CognitiveServices/accounts@2025-06-01, Microsoft.CognitiveServices/accounts/projects@2025-06-01 and Microsoft.CognitiveServices/accounts/deployments@2025-06-01
-- 
+
+
+## Entra Agent Id
+
+### What is Service Principal
+	- Service principal is the formal Azure term for an Identity that represents and Application or Agent NOT a human user
+	- It is like a digital driver's license for software. It proves the agent exists and has permissions to act.
+	- Human Vs Service Principal  : Human logs in with Username and Password. A Service principal logs in with Client Id (unique identifier) and secret certificate.
+	- We can register an agent with Entra Agent Id, so we are creating a service principal for that agent so the agent is traceable and secure.
+
+### How to Register Agent with Entra Id
+	- In foundry project settings, select "Enable Entra Agent Id" Foundry create a service principal automatically in your entra Tenent.
+	- After register, you receive a **Client Id** and must generate a secret or upload a certificate for authentication.
+	- Each agent gets its own service principal. Two agents cannot share an Identity. This enable per-agent auditing and permission control.
+
+	
