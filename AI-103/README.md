@@ -176,8 +176,8 @@ Server-side orchestration moves the agent coordination engine, task queues, memo
 
 
 ## Bicep
-<p>
-	// https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
+<pre>
+// https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
 // Make sure you have the Azure CLI installed and are logged in to your Azure account before running this script
 param coursePrefix string = 'mycourse'
 param aiFoundryName string = coursePrefix
@@ -245,7 +245,7 @@ resource modelDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-
 output OPENAI_ENDPOINT string = 'https://${aiFoundry.properties.customSubDomainName}.services.ai.azure.com/openai/v1'
 output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
-</p>
+</pre>
 
 - Here model version we can take it from Foundry model selection and Microsoft.CognitiveServices/accounts/projects@2025-06-01 we can take from // https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
 - Foundry, Project and deployment versions also can be found at https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/change-log/accounts
