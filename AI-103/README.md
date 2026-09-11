@@ -249,4 +249,5 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 - Here model version we can take it from Foundry model selection and Microsoft.CognitiveServices/accounts/projects@2025-06-01 we can take from // https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
 - Foundry, Project and deployment versions also can be found at https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/change-log/accounts
+- According to the version we can form Microsoft.CognitiveServices/accounts@2025-06-01, Microsoft.CognitiveServices/accounts/projects@2025-06-01 and Microsoft.CognitiveServices/accounts/deployments@2025-06-01
 - 
