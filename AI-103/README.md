@@ -266,3 +266,15 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	- Each agent gets its own service principal. Two agents cannot share an Identity. This enable per-agent auditing and permission control.
 
 	
+### Client Id VS Secret VS Certificate
+	- **Client Id** is a long string that identifies which agent is making a request. It is not a secret and can appear in logs.
+	- **Secret** is password-like string that agent sends with every request to prove its identity. Secret can expire
+	- **Certificate** is a file containing cryptographic keys. Certificates are more secure that secret and cannot be accidentally copied as plain text.
+
+### Authentication flow
+	* Authentication flow is the sequence of steps an agent follows to prove its Identity and receive an access token.
+		- **Client Credential Flow** : The agent send its ClientId and secret or certificate to EntraID. Entra Id verifies and return an Access token. this is the primary flow for agent.
+		- **Token Definition** : A Token is the time limited digital pass that proves the agent has authenticated. Token typically expire after 1 hour for security.
+		- **Using the Token** : The Agent includes the token in the authorization header of every API request. Authorization : Bearer  ....token....
+
+		
