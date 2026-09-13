@@ -273,8 +273,11 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 ### Authentication flow
 	* Authentication flow is the sequence of steps an agent follows to prove its Identity and receive an access token.
-		- **Client Credential Flow** : The agent send its ClientId and secret or certificate to EntraID. Entra Id verifies and return an Access token. this is the primary flow for agent.
-		- **Token Definition** : A Token is the time limited digital pass that proves the agent has authenticated. Token typically expire after 1 hour for security.
-		- **Using the Token** : The Agent includes the token in the authorization header of every API request. Authorization : Bearer  ....token....
+		- **Client Credential Flow** : The agent send its ClientId and secret or certificate to EntraID. 
+			Entra Id verifies and return an Access token. this is the primary flow for agent.
+		- **Token Definition** : A Token is the time limited digital pass that proves the agent has authenticated. 
+			Token typically expire after 1 hour for security.
+		- **Using the Token** : The Agent includes the token in the authorization header of every API request. 
+			Authorization : Bearer  ....token....
 
 		
