@@ -284,7 +284,9 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	* **DefaultAzureCredential** is a code class that automatically tries multiple authentication methods in order until one suceeds.
 		- **Why DefaultAzureCredential exists **: Our agent code may runs in different environments.
 			ex. Local computer, Test server, Production. Each envs needs different credential
-		- **DefaultAzureCredential Order** : The class tries (1) Environment Variable, (2) Manage Identity (If on azure) (3) Visual Studio login (4) Azure CLI login 
-		- **Agent Use case** : On your laptop, DefaultAzureCredential uses your Visual studio login. In azure, it uses Manage Identity. No Code change between Envs.
+		- **DefaultAzureCredential Order** : The class tries (1) Environment Variable, (2) Manage Identity (If on azure) 
+			(3) Visual Studio login (4) Azure CLI login 
+		- **Agent Use case** : On your laptop, DefaultAzureCredential uses your Visual studio login. In azure, 
+			it uses Manage Identity. No Code change between Envs.
 
 		
