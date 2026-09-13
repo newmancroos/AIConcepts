@@ -290,3 +290,13 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			it uses Manage Identity. No Code change between Envs.
 
 		
+### Manage Identity:
+	* Manage Identity is an Azure feature that automatically create and rotates credential for your agent without storing any secret.
+		- **Manage Identity Definition **: When enable manage Identity on an Azure resources (like Agent service), Azure creates a service 
+			principal and manage its credentials automatically.
+		- **No Secrets to store** : With Manage Identity, your agent code never sees a secret or certificate. 
+			Azure inject credential directly into running environment.
+		- **Enable Manage Identity** : In Foundry service setting, you toggle, "Enable system-assigned manage identity".
+			The agent can then authenticate without hardcoded keys.
+
+		
