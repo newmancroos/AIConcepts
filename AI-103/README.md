@@ -356,4 +356,20 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	- In Foundry portal, (Default project will be created)
 	- Now go to Build tab we can find Agent and Deployments (Models)
 	- When we directly create a Agent, will will automatically pick a model so here we are going to pick a model ourself before creating agent
-	- Goto Deployment and select gpt5-mini
+	- Goto Deployment and select gpt-5-mini and deploy it with default setting
+	- Now goto Agent tab and select **New Agent -- Build an Agent**
+	- Give a name and click Create, Now we get interface to work with the agent (It is similar to Model playground)
+	- Give system instruction in the Instructions box, ex : You are a customer service Agent. Do not answer anything outside of product related questions.
+	- Now Click on Optimize button so Foundry will try to optimize our system instruction and give us a clear instruction
+	- Now if we click on CallAgent tab in the right side window, we can see how to call this agant in code.
+	- If create an agent for simpler work like chatbot it may not suitable. Agent is multi-steps task without human intraction
+### Tracing
+	- We can find the Traces menu in the created agent's page.
+	- Tracing is a monitoring system, It needs Application insight enabled for tracing
+	- Good thing is We can setup monitoring with Application insight within Agent's page by clicking **Connect** to Create or connect an App Insight button
+	- Now we are ready to trace our agent
+	- Now trace will be available in the agent's playground right beneath the chat box so we can use it to trace the details
+
+### Web Searching
+
+	
