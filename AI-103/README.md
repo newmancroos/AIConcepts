@@ -299,4 +299,19 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Enable Manage Identity** : In Foundry service setting, you toggle, "Enable system-assigned manage identity".
 			The agent can then authenticate without hardcoded keys.
 
+### Agent Identity Blueprints (Permission Template)
+    * It is a reusable template that defines which Azure resources (Storage, database, APIs) an agent can access
+	   - **Blueprint Structure** : Blueprint contains a list of role assignments. 
+	   		ex. This agent gets storage blob **Data Reader** role on container A and Costmos DB Reader role on Database B
+	   - **Applying a BluePrint** :  After creating a Blueprint, we can assign it to an Agent's service principal.
+	   - **Blueprint Versioning** : When we update a Blueprint all the agents using that Blueprint automatically receive the updated permission.
+
+
+### Assigning Permissions
+	* Permissions are assigned to a agent by granting Azure roles to the agent's service principal, just like human user.
+
+		- **Role-based Access Control (RBAC)** : It is Azure's permission system.We can assign role like Contributor or Reader to identities.
+		- **Granting Role to Agent** : In Azure portal, We can go to storage account, select Access control and then add role assignment, and choose the agent's service principal as assignee.
+		- Least Privilege Principal : Give the agent only the permission it needs. No more.
+
 		
