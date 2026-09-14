@@ -314,4 +314,15 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Granting Role to Agent** : In Azure portal, We can go to storage account, select Access control and then add role assignment, and choose the agent's service principal as assignee.
 		- Least Privilege Principal : Give the agent only the permission it needs. No more.
 
-		
+### Conditional Access for Agent Actions 
+	* Conditional access policies add conditions like network location or time of the day that must be true before an agent can act.
+		- **Policy Example - Network Location** : "This agent can only access customer data when running from the corporate office IP address. Clude deployments are blocked.
+		- **Policy Example - Time Window** : This agent can only process refunds requests between 9AM and 5PM local time. Request outside that window are blocked.
+		- **Policy Example - Risk Level **: If Entra Id detects unusual activity from this agent (like rapid deletion requests), block all actions until a human sponsor approves.
+
+### Access packages for Time - Bound Permission
+	* Access package is a collection of permissions that can be assigned to an agent for a specific duration, after that access is automatically revooked.
+		- **Access Package definition** : An Access package groups multiple role assignments into one requestable bundle.
+			Ex. "Sensitive Data Access" includes read access to HR database and write access to logs.
+		- **Request and Approval Workflow** : A developer requests the Access package for an agent. A manager approves. The agent receives the permission for 24 hours.
+		- **Automatic expiration** : After 24 hrs, Azure automatically removes the access package from the agent. No manual cleanup needed.
