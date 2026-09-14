@@ -351,4 +351,9 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			so **DefaultAzureCredential** reads them automatically
 
 
-	
+## Creating Agent step by step
+	- Create New foundry
+	- In Foundry portal, (Default project will be created)
+	- Now go to Build tab we can find Agent and Deployments (Models)
+	- When we directly create a Agent, will will automatically pick a model so here we are going to pick a model ourself before creating agent
+	- Goto Deployment and select gpt5-mini
