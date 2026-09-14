@@ -326,3 +326,29 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			Ex. "Sensitive Data Access" includes read access to HR database and write access to logs.
 		- **Request and Approval Workflow** : A developer requests the Access package for an agent. A manager approves. The agent receives the permission for 24 hours.
 		- **Automatic expiration** : After 24 hrs, Azure automatically removes the access package from the agent. No manual cleanup needed.
+
+### The Sponsor - Human accountability
+   * Sponsor is a human who is accountable for agent's actions and must approve certain high-risk operations
+     	- **Sponsor Assignment** : When you register an agent with Entra Agent Id, you must assign a sponsor from your organaization. This is required field
+     	- **Sponsor Responsibilities** :  Review wekkly agent logs, approves access package request and is alerted if the agent triggers security violations.
+     	- **Multiple Sponsors** : An agent can have multipl sponsors. Typically assign a Primary sponsor and backup sponsor.
+    
+     	-   When a sponsor leaves the company, all the agents that sponsor are automatically suspended until a new sponsor is assigned (within 24 hrs)
+     	-   Suspended Agent reject all incoming request and throw "Agent suspended = no sponsor assigned" message
+     	-   New Sponsor must be assigned through Foundry management portal.
+     	  
+### Auditing Agent Actions
+	* There will be auditing records every action an agent takes - API calls, data access, permission changes - with agent's Identity not the user's identity
+		- **Audit log content** : Each audit entry includes : Agent Id, action performed (like deleted record id 12345), timestamp and resource IP address
+		- **Separate from User logs** : When a user invoke an agent there will be** two logs**: **User called agent and Agent called database**.
+        - **Querying agent logs** : In **Azure Monitor** , you can filter by agent client Id, Entra client Id to see everything a specific agent did. This helps investigate incident
+
+### Authentication with Entra Id
+	* Your agent code uses **DefaultAzureCredential** class to authenticate with its Service Principal and obtain an access token
+		- **Code Pattern - Local Development** : On your laptop, **DefaultAzureCredential()** uses your Visual Studio or Azure CLI login. No agent identity needed during development
+		- **Code Pattern - Prod with Manage Identity** : Deploy to Agent service with manage identity enabled. **DefaultAzureCredential()** automatically uses the managed identity without extra code.
+		- **Code Pattern - Prod with Secret** : If managed identity is not available, set environment variables AZURE_CLIENT_ID,  AZURE_CLIENT_SECRET, AZURE_TENENT_ID. 
+			so **DefaultAzureCredential** reads them automatically
+
+
+	
