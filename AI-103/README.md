@@ -411,10 +411,23 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			description, references and request for adult material.
 		- **Violence Category** : Content safety flags violent language - threats, description of harm or glorification of physical attacks.
 		- **Self-Harm Category** : The service detects content related to self-injury suicide or eating disorders.
-## Severity level
+### Severity level
 	* Content safety assigns each piece of text a severity score from 0 (safe) to 6 (extremely harmful) for each of the four categories
 		- **Configurable Thresholds** : You set a threshold for each category. 
 			Example : "Block all violence above severity 3" Context safety then block text exceed that level
 		- **Example Thresholds** : A children's game agent might block violence at severity 1. a news summerization agent might allow up to severity 4. 
+		
+### Input filtering
+	* Protecting agent from Users, blocking harmful content before it reaches the LLM or your agent logic
+		- **Why Input filtering matters** : Without input filtering, a user could send hate speech, threats or jaibreak attempts directly to you agent's LLM.
+		- **Where Filtering happens** : Input filtering occurs at the Foundry project level, before user message reaches your agent code or deployed LLM
+		- **Blocking Behavior** :  When Input filtering blocking a message, the user receives a generic error. The harful content never reaches your agent or LLM
+
+### Output filtering
+	* Filter scans what your agent send back to users, blocking harmful content before it reaches the user
+		- **Why Output filtering matters** : Even with the safety system messages, an LLM might occasionally generates harmful content. Output filtering catches this before the user sees it.
+		- **Two-Stage Protection** : Input filtering protect the agent, output filtering protect the user. Both are require for responsible AI deployment.
+		- **Replacement Behavior** : When Output filtering blocks a response, the agent returns a default message: "**I cannot generate a response to this request.**". The harmful content never shown.
+
 		
 	
