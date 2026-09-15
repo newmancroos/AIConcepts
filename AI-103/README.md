@@ -429,5 +429,10 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Two-Stage Protection** : Input filtering protect the agent, output filtering protect the user. Both are require for responsible AI deployment.
 		- **Replacement Behavior** : When Output filtering blocks a response, the agent returns a default message: "**I cannot generate a response to this request.**". The harmful content never shown.
 
-		
+### Calling Content Safety API
+	* Agent call Content Safety API directly to analyze text before sending it to an LLM or after receiving a response.
+		- **SDK Call pattern** : Use "from **azure.ai.contentsafety import ContentSafetyClient** then call "**client.analyze_text()**" with the text to scan and the category to check.
+		- **REST Call pattern** : Send a POST request to "**https://.cognitiveservices.azure.com/contentsafety/text:analyze**" with a JSON body containing the text
+		- **Response Handling** : The API return severity score for each category, Your code checks if the severity exceed your threshold. If yes, block the text.
+
 	
