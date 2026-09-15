@@ -372,4 +372,32 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 ### Web Searching
 
+ * Agent has Web Searching Option in the Agent page. We can tell agent to search web for the answer by giving right system prompt.
+   	- Alter the system prompt like " You are a helpful agent. You like to use the internet to give relevant accurate weather data."
+   	- Now if you ask the weather, agent will search the web and give you the correct weather details.
+   	- But normal model deployment will not give you the correct answer but agent does.
+
+### Agent Configuration and Identity
+	* If you goto Detail menu in the agent page we can see 
+		- Entra Agent Identity
+		- Entra agent blueprint
+		- Preview web app - We can open it in a web browser and get the end use experience
+	
+### Publish the Agent
+	- We have publish button on the right to the Agent page, We can select publishing tool that will open a dialog box. (MS Copilot 365)
+	- We can give the name, Developer name and description, also This will create a bot service for us. We can search for Bot Service in the Azure search box we will get this created bot service
+	- We can also directly create Bot service in the Bot service page and then associate ethat with our agent.
+	- In next step we can select who can use the agent, It is Just for you or People in your oganization
+	- Click Publish
+	- Now we can give Access and permissions through it Entra Agent Id
+	- Now we can give access to other services to this agent.
+			* Create a storage account
+			* go to the created resource 
+			* go to  Access Control (IAM)
+			* Add Role assignment 
+			* Select "Storage blob data contributor" role, Go to Member and Select Member and past the Entra Agent Id and click Select button
+			* Review + Assign
+			
+## Server side Orchestration
+	
 	
