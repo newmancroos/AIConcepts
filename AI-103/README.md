@@ -133,3 +133,271 @@ How Quotas Work
 • Shared Test Quota: Foundry provides temporary shared quota pools for short-term testing of models from the catalog without needing a formal quota increase request. [5]  
 
 </pre>
+
+
+**NOte:**
+There are 2 types of orachestrations:
+1. Client side orchestrations   :  We directly talk to LLMs we created in foundry
+2. Server side orchestrations   :  We use
+
+<pre>
+
+<b>Client-side and server-side orchestrations</b>
+Client-side and server-side orchestrations** in AI agent development define where the control loops, tool executions, and multi-agent workflow logic take place relative to the user interface and the core backend. [1, 2]  
+Client-side orchestration runs the agent's logic and execution loops directly on the user's device or application layer (such as a browser or native mobile app), while server-side orchestration executes these coordination and tool-handling loops on a secure remote backend or cloud infrastructure. [1, 2, 3]  
+Client-Side Orchestration 
+Client-side orchestration means the application code running on the user's end manages the AI agent's decision loops, conversation history, and tool triggers. 
+
+• How it works: The local app intercepts the model's requests, executes local functions or API calls, feeds data back to the large language model (LLM), and loops the process until the task finishes. Standards like the  Model Context Protocol  (MCP) can help client applications cleanly discover local or remote tools. 
+• Advantages: 
+
+	• Gives developers deep control over real-time UI state and local context. 
+	• Reduces heavy backend compute requirements for simple or user-bound interactions. [2, 6]  
+
+• Disadvantages: 
+
+	• Creates latency and heavy network overhead because the client must constantly re-invoke the model and pass data back and forth. 
+	• Exposes security risks or "walled garden" limitations when agents need direct access to private corporate databases, file systems, or secret environment variables. [1, 7]  
+
+<b>Server-Side Orchestration</b>
+Server-side orchestration moves the agent coordination engine, task queues, memory, and tool execution loops into a secure cloud or on-premise backend environment. 
+
+• How it works: The client simply sends a high-level prompt or goal to a server gateway (like Amazon Bedrock Server-Side Tool Execution). The backend orchestrator handles multi-agent sequencing, persistent state management, secure database queries, and error handling entirely away from the user interface. 
+• Advantages: 
+
+	• Securely connects agents to internal enterprise file systems, private APIs, and heavy vector databases without exposing credentials to the client. 
+	• Scales efficiently for high-concurrency enterprise workloads, minimizing flaky network loops on the user's device. [1, 7]  
+
+• Disadvantages: 
+
+	• Increases server infrastructure complexity and operational overhead to manage state queues, event buses, and agent lifecycles. [8]  
+
+</pre>
+
+
+## Bicep
+<pre>
+// https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
+// Make sure you have the Azure CLI installed and are logged in to your Azure account before running this script
+param coursePrefix string = 'mycourse'
+param aiFoundryName string = coursePrefix
+param aiProjectName string = '${aiFoundryName}-proj'
+param location string = resourceGroup().location
+
+/*
+  An AI Foundry resources is a variant of a CognitiveServices/account resource type
+*/
+resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+  name: aiFoundryName
+  location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
+  sku: {
+    name: 'S0'
+  }
+  kind: 'AIServices'
+  properties: {
+    // required to work in AI Foundry
+    allowProjectManagement: true
+
+    // Defines developer API endpoint subdomain
+    customSubDomainName: aiFoundryName
+
+    disableLocalAuth: false
+  }
+}
+
+/*
+  Developer APIs are exposed via a project, which groups in- and outputs that relate to one use case, including files.
+  Its advisable to create one project right away, so development teams can directly get started.
+  Projects may be granted individual RBAC permissions and identities on top of what account provides.
+*/
+resource aiProject 'Microsoft.CognitiveServices/accounts/projects@2025-06-01' = {
+  name: aiProjectName
+  parent: aiFoundry
+  location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {}
+}
+
+/*
+  Optionally deploy a model to use in playground, agents and other tools.
+*/
+resource modelDeployment 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
+  parent: aiFoundry
+  name: 'gpt-4.1-mini'
+  sku: {
+    capacity: 1
+    name: 'GlobalStandard'
+  }
+  properties: {
+    model: {
+      name: 'gpt-4.1-mini'
+      format: 'OpenAI'
+      version: '2025-04-14'
+    }
+  }
+}
+
+output OPENAI_ENDPOINT string = 'https://${aiFoundry.properties.customSubDomainName}.services.ai.azure.com/openai/v1'
+output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
+
+</pre>
+
+- Here model version we can take it from Foundry model selection and Microsoft.CognitiveServices/accounts/projects@2025-06-01 we can take from // https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/00-basic/main.bicep
+- Foundry, Project and deployment versions also can be found at https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/change-log/accounts
+- According to the version we can form Microsoft.CognitiveServices/accounts@2025-06-01, Microsoft.CognitiveServices/accounts/projects@2025-06-01 and Microsoft.CognitiveServices/accounts/deployments@2025-06-01
+
+
+## Entra Agent Id
+
+### What is Service Principal
+	- Service principal is the formal Azure term for an Identity that represents and Application or Agent NOT a human user
+	- It is like a digital driver's license for software. It proves the agent exists and has permissions to act.
+	- Human Vs Service Principal  : Human logs in with Username and Password. A Service principal logs in with Client Id (unique identifier) and secret certificate.
+	- We can register an agent with Entra Agent Id, so we are creating a service principal for that agent so the agent is traceable and secure.
+
+### How to Register Agent with Entra Id
+	- In foundry project settings, select "Enable Entra Agent Id" Foundry create a service principal automatically in your entra Tenent.
+	- After register, you receive a **Client Id** and must generate a secret or upload a certificate for authentication.
+	- Each agent gets its own service principal. Two agents cannot share an Identity. This enable per-agent auditing and permission control.
+
+	
+### Client Id VS Secret VS Certificate
+	- **Client Id** is a long string that identifies which agent is making a request. It is not a secret and can appear in logs.
+	- **Secret** is password-like string that agent sends with every request to prove its identity. Secret can expire
+	- **Certificate** is a file containing cryptographic keys. Certificates are more secure that secret and cannot be accidentally copied as plain text.
+
+### Authentication flow
+	* Authentication flow is the sequence of steps an agent follows to prove its Identity and receive an access token.
+		- **Client Credential Flow** : The agent send its ClientId and secret or certificate to EntraID. 
+			Entra Id verifies and return an Access token. this is the primary flow for agent.
+		- **Token Definition** : A Token is the time limited digital pass that proves the agent has authenticated. 
+			Token typically expire after 1 hour for security.
+		- **Using the Token** : The Agent includes the token in the authorization header of every API request. 
+			Authorization : Bearer  ....token....
+
+### DefaulAzureCredential for Agent
+	* **DefaultAzureCredential** is a code class that automatically tries multiple authentication methods in order until one suceeds.
+		- **Why DefaultAzureCredential exists **: Our agent code may runs in different environments.
+			ex. Local computer, Test server, Production. Each envs needs different credential
+		- **DefaultAzureCredential Order** : The class tries (1) Environment Variable, (2) Manage Identity (If on azure) 
+			(3) Visual Studio login (4) Azure CLI login 
+		- **Agent Use case** : On your laptop, DefaultAzureCredential uses your Visual studio login. In azure, 
+			it uses Manage Identity. No Code change between Envs.
+
+		
+### Manage Identity:
+	* Manage Identity is an Azure feature that automatically create and rotates credential for your agent without storing any secret.
+		- **Manage Identity Definition **: When enable manage Identity on an Azure resources (like Agent service), Azure creates a service 
+			principal and manage its credentials automatically.
+		- **No Secrets to store** : With Manage Identity, your agent code never sees a secret or certificate. 
+			Azure inject credential directly into running environment.
+		- **Enable Manage Identity** : In Foundry service setting, you toggle, "Enable system-assigned manage identity".
+			The agent can then authenticate without hardcoded keys.
+
+### Agent Identity Blueprints (Permission Template)
+    * It is a reusable template that defines which Azure resources (Storage, database, APIs) an agent can access
+	   - **Blueprint Structure** : Blueprint contains a list of role assignments. 
+	   		ex. This agent gets storage blob **Data Reader** role on container A and Costmos DB Reader role on Database B
+	   - **Applying a BluePrint** :  After creating a Blueprint, we can assign it to an Agent's service principal.
+	   - **Blueprint Versioning** : When we update a Blueprint all the agents using that Blueprint automatically receive the updated permission.
+
+
+### Assigning Permissions
+	* Permissions are assigned to a agent by granting Azure roles to the agent's service principal, just like human user.
+
+		- **Role-based Access Control (RBAC)** : It is Azure's permission system.We can assign role like Contributor or Reader to identities.
+		- **Granting Role to Agent** : In Azure portal, We can go to storage account, select Access control and then add role assignment, and choose the agent's service principal as assignee.
+		- Least Privilege Principal : Give the agent only the permission it needs. No more.
+
+### Conditional Access for Agent Actions 
+	* Conditional access policies add conditions like network location or time of the day that must be true before an agent can act.
+		- **Policy Example - Network Location** : "This agent can only access customer data when running from the corporate office IP address. Clude deployments are blocked.
+		- **Policy Example - Time Window** : This agent can only process refunds requests between 9AM and 5PM local time. Request outside that window are blocked.
+		- **Policy Example - Risk Level **: If Entra Id detects unusual activity from this agent (like rapid deletion requests), block all actions until a human sponsor approves.
+
+### Access packages for Time - Bound Permission
+	* Access package is a collection of permissions that can be assigned to an agent for a specific duration, after that access is automatically revooked.
+		- **Access Package definition** : An Access package groups multiple role assignments into one requestable bundle.
+			Ex. "Sensitive Data Access" includes read access to HR database and write access to logs.
+		- **Request and Approval Workflow** : A developer requests the Access package for an agent. A manager approves. The agent receives the permission for 24 hours.
+		- **Automatic expiration** : After 24 hrs, Azure automatically removes the access package from the agent. No manual cleanup needed.
+
+### The Sponsor - Human accountability
+   * Sponsor is a human who is accountable for agent's actions and must approve certain high-risk operations
+     	- **Sponsor Assignment** : When you register an agent with Entra Agent Id, you must assign a sponsor from your organaization. This is required field
+     	- **Sponsor Responsibilities** :  Review wekkly agent logs, approves access package request and is alerted if the agent triggers security violations.
+     	- **Multiple Sponsors** : An agent can have multipl sponsors. Typically assign a Primary sponsor and backup sponsor.
+    
+     	-   When a sponsor leaves the company, all the agents that sponsor are automatically suspended until a new sponsor is assigned (within 24 hrs)
+     	-   Suspended Agent reject all incoming request and throw "Agent suspended = no sponsor assigned" message
+     	-   New Sponsor must be assigned through Foundry management portal.
+     	  
+### Auditing Agent Actions
+	* There will be auditing records every action an agent takes - API calls, data access, permission changes - with agent's Identity not the user's identity
+		- **Audit log content** : Each audit entry includes : Agent Id, action performed (like deleted record id 12345), timestamp and resource IP address
+		- **Separate from User logs** : When a user invoke an agent there will be** two logs**: **User called agent and Agent called database**.
+        - **Querying agent logs** : In **Azure Monitor** , you can filter by agent client Id, Entra client Id to see everything a specific agent did. This helps investigate incident
+
+### Authentication with Entra Id
+	* Your agent code uses **DefaultAzureCredential** class to authenticate with its Service Principal and obtain an access token
+		- **Code Pattern - Local Development** : On your laptop, **DefaultAzureCredential()** uses your Visual Studio or Azure CLI login. No agent identity needed during development
+		- **Code Pattern - Prod with Manage Identity** : Deploy to Agent service with manage identity enabled. **DefaultAzureCredential()** automatically uses the managed identity without extra code.
+		- **Code Pattern - Prod with Secret** : If managed identity is not available, set environment variables AZURE_CLIENT_ID,  AZURE_CLIENT_SECRET, AZURE_TENENT_ID. 
+			so **DefaultAzureCredential** reads them automatically
+
+
+## Creating Agent step by step
+	- Create New foundry
+	- In Foundry portal, (Default project will be created)
+	- Now go to Build tab we can find Agent and Deployments (Models)
+	- When we directly create a Agent, will will automatically pick a model so here we are going to pick a model ourself before creating agent
+	- Goto Deployment and select gpt-5-mini and deploy it with default setting
+	- Now goto Agent tab and select **New Agent -- Build an Agent**
+	- Give a name and click Create, Now we get interface to work with the agent (It is similar to Model playground)
+	- Give system instruction in the Instructions box, ex : You are a customer service Agent. Do not answer anything outside of product related questions.
+	- Now Click on Optimize button so Foundry will try to optimize our system instruction and give us a clear instruction
+	- Now if we click on CallAgent tab in the right side window, we can see how to call this agant in code.
+	- If create an agent for simpler work like chatbot it may not suitable. Agent is multi-steps task without human intraction
+### Tracing
+	- We can find the Traces menu in the created agent's page.
+	- Tracing is a monitoring system, It needs Application insight enabled for tracing
+	- Good thing is We can setup monitoring with Application insight within Agent's page by clicking **Connect** to Create or connect an App Insight button
+	- Now we are ready to trace our agent
+	- Now trace will be available in the agent's playground right beneath the chat box so we can use it to trace the details
+
+### Web Searching
+
+ * Agent has Web Searching Option in the Agent page. We can tell agent to search web for the answer by giving right system prompt.
+   	- Alter the system prompt like " You are a helpful agent. You like to use the internet to give relevant accurate weather data."
+   	- Now if you ask the weather, agent will search the web and give you the correct weather details.
+   	- But normal model deployment will not give you the correct answer but agent does.
+
+### Agent Configuration and Identity
+	* If you goto Detail menu in the agent page we can see 
+		- Entra Agent Identity
+		- Entra agent blueprint
+		- Preview web app - We can open it in a web browser and get the end use experience
+	
+### Publish the Agent
+	- We have publish button on the right to the Agent page, We can select publishing tool that will open a dialog box. (MS Copilot 365)
+	- We can give the name, Developer name and description, also This will create a bot service for us. We can search for Bot Service in the Azure search box we will get this created bot service
+	- We can also directly create Bot service in the Bot service page and then associate ethat with our agent.
+	- In next step we can select who can use the agent, It is Just for you or People in your oganization
+	- Click Publish
+	- Now we can give Access and permissions through it Entra Agent Id
+	- Now we can give access to other services to this agent.
+			* Create a storage account
+			* go to the created resource 
+			* go to  Access Control (IAM)
+			* Add Role assignment 
+			* Select "Storage blob data contributor" role, Go to Member and Select Member and past the Entra Agent Id and click Select button
+			* Review + Assign
+			
+## Server side Orchestration
+	
+	
