@@ -398,6 +398,23 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			* Select "Storage blob data contributor" role, Go to Member and Select Member and past the Entra Agent Id and click Select button
 			* Review + Assign
 			
-## Server side Orchestration
-	
+### Server side Orchestration
+	- Creating Foundry, Project, LLM with Agent using code.
+	- Source code : Foundry_Agent_03
+
+
+## Content Safety
+	*  Content safety is a Azure AI service that scans text for four categories of harmful content : **Hate, Sexual, Violence and Self-harm**
+		- **Hate Category** : Content safety detects hate speech  
+		 	language that attack or insult people based on characteristics like race, religion or gender identity
+		- **Sexual Category** : The service detect explicit sexual content, including
+			description, references and request for adult material.
+		- **Violence Category** : Content safety flags violent language - threats, description of harm or glorification of physical attacks.
+		- **Self-Harm Category** : The service detects content related to self-injury suicide or eating disorders.
+## Severity level
+	* Content safety assigns each piece of text a severity score from 0 (safe) to 6 (extremely harmful) for each of the four categories
+		- **Configurable Thresholds** : You set a threshold for each category. 
+			Example : "Block all violence above severity 3" Context safety then block text exceed that level
+		- **Example Thresholds** : A children's game agent might block violence at severity 1. a news summerization agent might allow up to severity 4. 
+		
 	
