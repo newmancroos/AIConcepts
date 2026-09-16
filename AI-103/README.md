@@ -435,4 +435,11 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **REST Call pattern** : Send a POST request to "**https://.cognitiveservices.azure.com/contentsafety/text:analyze**" with a JSON body containing the text
 		- **Response Handling** : The API return severity score for each category, Your code checks if the severity exceed your threshold. If yes, block the text.
 
+### Manage Content safety API keys
+
+	*  Content safety is a separate Azure service with its own end-point URL and API Key, managed like any other Azure AI service
+		- **Provisioning Content safety** : In Azure portal, create a Content Safety resource. After creation, we receive an end-point URL and two APIL keys (Primary, Secondary)
+		- **Storing Keys Securely** : We can store Content Safety API key in Environment variable or Azure Key-Vault
+		- We can generate API key periodically for safety pupose.
+
 	
