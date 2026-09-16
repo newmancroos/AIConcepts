@@ -469,5 +469,10 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 				We need to configure it and it run against our deployed agent.
 
 
+		- How Red Team works in Foundry : Configure a red teaming agent with attack strategies, then run it against your deployed agent to generate a security report.
 		
-		
+				` **Configuration Step** : In foundry project setting, select "Red Teaming". Choose attack strategies : Jailbreak attempts, Prompt injection, harmful content or All 
+				` **Execution Process** : The Red Team agent sends thousands of prompts to your agent's end-point, just like real user would, your agent responds, The red team records each response.
+				` **Report Generation** : After Red team run completes, Foundry generates a report showing which attacks succeeded, which were blocked and severity ranking. 
+
+			
