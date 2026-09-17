@@ -493,3 +493,7 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- Handling API errors : If Content safety API is unavailable, decide whether to block or allow.
 
 	
+**** All the safety tools are blongs to Guardrail under Agent
+	<img width="1519" height="672" alt="image" src="https://github.com/user-attachments/assets/ede7e4de-84f2-4a60-bc2e-68e332efaaf9" />
+
+	
