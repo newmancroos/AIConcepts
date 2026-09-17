@@ -496,4 +496,33 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 **** All the safety tools are blongs to Guardrail under Agent
 	<img width="1519" height="672" alt="image" src="https://github.com/user-attachments/assets/ede7e4de-84f2-4a60-bc2e-68e332efaaf9" />
 
-	
+
+## Guardrail
+	* Guardrail has the following components
+		- Jailbreak : 
+		- Indirect Prompt Injection : It has also have **Spotlighting** that will scan through the prompt for more details
+		- Content harms
+			: Hate
+			: Sexual
+			: Self-harm
+			: Violence
+			: In addition it has **Blocklists** here we can select some built in items or build our own block list
+		- Protected metirials
+			: Protected material for code  : should not output any protected code like from Github repository 
+			: Protected material for text : Should not output any text from any books (It has license)
+		
+		- Sensitive data leakage
+			: exposing sensitive data like name, address or health information, PII
+			: Have lot of options to block
+		- Task Drift
+			: Agent deviates from its assigned task, instructions or trusted sources
+
+		- ** By click **Next**  we can see options to assign the **guardrial to Agent or directly to LLM**
+				It is help full when we have multiple agents connected to the same model, we can directly assign Guardrail to LLM. but we can assign it to Model(LLM), Agent or Both <br />
+				But assigning to LLM is efficient
+		- ** Click next to verify all the selection for Guardrail and click Create
+		- ** Now Agent is ready to work with all the Guardrail 
+		
+				
+			
+			
