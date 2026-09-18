@@ -524,5 +524,14 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- ** Now Agent is ready to work with all the Guardrail 
 		
 				
+## LLM VS SLM
+
+### LLM
+	- **LLM Size Definition** : An LLM has over 10 billion parameters. GPT-5 has over 1 trillion parameters
+	- **LLM Capabilities** : LLMs excel at complex reasoning, following nuanced instructions, understanding context and generating creating responses.
+	- **LLM Cost and Speed** : LLMs are expensive to run (high cost per token) and slower to response (higher latency in milliseconds) than SLM models.
 			
-			
+### SLM
+	- **SLM Size definition** : SLMs typically have 1 billion to 7 billion parameters. Microsoft Phi-3 mini has 3.8 billion paramters
+	- **SLM Capabilities** :  SLMs excelat specific tasks like 
+	
