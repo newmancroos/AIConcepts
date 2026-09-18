@@ -1,0 +1,37 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Agent Deployment",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/agent_deployment.py",
+            "console": "integratedTerminal",
+            "python": "tutorials/Scripts/python.exe",
+            "env": {
+                "AZURE_SUBSCRIPTION_ID": "b4272717-b8f9-4c65-8d2e-fc113f928034",
+                "AZURE_RESOURCE_GROUP": "aiagent-course-rg",
+                "AZURE_COGNITIVE_ACCOUNT_NAME": "courseunit1906",
+                "PROJECT_ENDPOINT": "https://courseunit1906.services.ai.azure.com/api/projects/courseunit1906-proj",
+                "LLM_MODEL_DEPLOYMENT_NAME": "courseunit1906-llm-deploy",
+                "RAI_POLICY_NAME": "courseunit1906-rai-policy"
+            }
+        },
+        {
+            "name": "Python Debugger: Agent Execution",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/agent_execution.py",
+            "console": "integratedTerminal",
+            "python": "tutorials/Scripts/python.exe",
+            "env": {
+                "PROJECT_ENDPOINT": "https://courseunit1906.services.ai.azure.com/api/projects/courseunit1906-proj",
+                "AGENT_NAME": "responsibleAgent",
+                "AGENT_VERSION": "1"
+            }
+        },
+    ]
+}
