@@ -385,8 +385,9 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	
 ### Publish the Agent
 	- We have publish button on the right to the Agent page, We can select publishing tool that will open a dialog box. (MS Copilot 365)
+	- Before selecting Teams & Microsoft 365 Copilot as final step, select active version and select Latest Version
 	- We can give the name, Developer name and description, also This will create a bot service for us. We can search for Bot Service in the Azure search box we will get this created bot service
-	- We can also directly create Bot service in the Bot service page and then associate ethat with our agent.
+	- We can also directly create Bot service in the Bot service page and then associate that with our agent. **(Azure bot service agent will not be get deleted even if you delete the resource group)**
 	- In next step we can select who can use the agent, It is Just for you or People in your oganization
 	- Click Publish
 	- Now we can give Access and permissions through it Entra Agent Id
