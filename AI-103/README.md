@@ -581,3 +581,16 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	- **Testing Required** : Always test system instructions with your chosen model. And instruction that works in GPT may fail in Phi due to small size.
 
 	
+### Coding Pattern
+	* Your agent code calls a deployed model endpoint using either the Azure AI inference SDK or direct REST API with JSON request body.
+		- **SDK Pattern** : use "**from azure.ai.inference import ChatCompletionsClient**", Create client with endpoint and API key. Call '**client.complete()**' with message list
+		- **REST Pattern** : Send POST to "**https://endpoint/openai/deployments/deploymentname/chat/completions?api-version=2025-01-01**". Body includes '**messages**' array with system and user messages
+		- **Response Handling** : Both SDK and REST return a JSON response. Extract the assitant's message from "**coices[0].message.content**"
+
+### Streaming Response VS Batch Responses
+	* Streaming sends model responses token by token as they are generated. Batch responses wait for the complete response before sending
+		- **Streaming Definition** : With **stream:true** the model sends tokens one ata time. Your agent can show partial responses to the user immediately.
+		- **Batched Definition** : With **stream:false** (default, the model generates the full response before sending. Users wait longer but see complete sentances.
+		-	**When to Stream** : Use streaming for chat agents where user experience matters. Use Batched for background processing or when you need full response for parsing.
+
+		
