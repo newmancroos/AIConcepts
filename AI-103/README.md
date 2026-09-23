@@ -534,5 +534,50 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			
 ### SLM
 	- **SLM Size definition** : SLMs typically have 1 billion to 7 billion parameters. Microsoft Phi-3 mini has 3.8 billion paramters
-	- **SLM Capabilities** :  SLMs excelat specific tasks like 
+	- **SLM Capabilities** :  SLMs excel at specific tasks like classification, summarization, entity extraction and simple question answer.
+	- **SLM Cost and speed** : SLMs are cheap to run (lower cost per token) and very fast (low latency in milliseconds), making them ideal for high-volumn tasks.
+
+### Matching Model to Agent Task
+	- **Reasoning Task Example** : An agent that plan a vacation itinery with flight, hotel and activities needs a complex reasoning. Use GPT-5.6
+	- **Summarization Task Example** : An agent that aummarizes 10,000 customer reviews per hour needs speed and low cost. Use Phi-3 mini
+	- **Classification Task Example** : An agent that categorize support tickets into 20 types needs fast, cheap inference. Use Phi-3 small
+### Deploying a Model in Foundry Model catalog
+	- **Deployment steps** : In Foundry Model catalog, select a model (GPT - 5.6, Phi-3). Choose a deplyment name, capacity(token per minutes) and a region
+	- **Deployment Capacity** : Capacity determines how many tokens per minute your agent can process. Higher capacity costs more but handle higher traffic.
+	- **Deployment Lifecycle** : Deployed models can be updated(new version), scaled (increase capacity) or deleted(stop paying). Each deployment has its own endpoint.
+
+### Model End point
+	* When you deploy a model, Foundry gives you an end-point URL that your agent code calls to  send pompts and receive responses.
+		- **End-point URL Format** : The URL looks like 'https://your-project.foundry.azure.com/models/gpt-5/deployments/my-deployment/chat/completions'. 
+		- **API Key Authentication** : Each deployed model endpoint has its own API key. you aganet includes this key in the api-key header of every request.
+		- **Agent Reference** : In your agent code, you configure which model endpoint to use. An agent can switch between models by changing the endpoint url.
+### Model Capacity and Quotas 
+	* Model capacity is measure in token per minute (TPM). Quotas limit how many tokens your agent can process across all deployment models.
+		- **Token per Minute (TPM)** : TPM is the maximum number of tokens your agent can send and receive in one minute. 10,000 TPM handles moderate traffic.
+		- **Regional Quotas** : Each Azure region has global quota for each model. You may need to request a quota increase from Microsoft for high-volumn agents
+		- **Monitoring Usage** : Foundry shows yours TPM usage in metrics. If you exceed quota, the model return a 429 error (too many request) until the next minute.
+
+### COST LLM VS SLM
+	- For 1000 token LLM - $0.01. SLM $.0002
+	- If 1 million tokens per day LLM - $10 - SLM $.20
+	- We can use LLM for complex reasoning and SLM for simple classification, extraction or routing within same agent workflow.
+
+### Latency LLM VS SLM
+	- It is the time between sending a prompt and receiving the response
+	- LLM responds in 500 - 2000 milliseconds, SLM 50-200 milliseconds
+	- **User experience** : a 2 second delay feels natural. a 2-second delay for each of 10 agent steps (20 seconds) feels broken.
+	- **Reducing Latency** : Use SLMs for fast sub-agents, Use LLM only for the manager agent that coordinates others. Cache repeated responses.
+	
+### Multi-Model agents
+	
+	* A single agent can use multiple models - an SLM for fast classification, then an LLM for complex reasoning only when needed.
+		- **Routing Pattern** : User input first goes to Phi-3 for intent classification. If intent is simple (eg. Check balance), Phi-3 responds directly
+		- **Escalation Pattern** : If intent is complex (eg. Plan a dispute resolution strategy), the agent calls GTT-5.6 for deeper reasoning.
+		- **Cost Saving** : 90% of requests route to cheaper Phi-3. Only 10% escalate to expensive GPT-5.6. Total cost drops dramatically.
+
+### System Instructions 
+	- **LLM System Instructions** : GPT-5.6 handles long, complex instructions with conditional logix. "If a user asks about refund, check order date first. If Order date is under 30 days, approve"
+	- **SLM System Instructions** : Phi-3 works best with short, direct instructions. "YUou classify support tickets into categories : Billing, Technical, Accunt"
+	- **Testing Required** : Always test system instructions with your chosen model. And instruction that works in GPT may fail in Phi due to small size.
+
 	
