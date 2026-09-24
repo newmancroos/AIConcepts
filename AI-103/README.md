@@ -594,3 +594,4 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		-	**When to Stream** : Use streaming for chat agents where user experience matters. Use Batched for background processing or when you need full response for parsing.
 
 		
+### Notes : We can deploy multiple model to a agent but it will change the version every time we specify a new model. so when we access the agent we need to specify which model we need to use by specifying the agent version
