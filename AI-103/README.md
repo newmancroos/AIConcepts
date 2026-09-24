@@ -595,3 +595,16 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 		
 ### Notes : We can deploy multiple model to a agent but it will change the version every time we specify a new model. so when we access the agent we need to specify which model we need to use by specifying the agent version
+
+
+
+## Grounding (Agentic RAG)
+
+### Static RAG VS Agentic RAG
+
+	* Static RAG always injects search result into every prompts, Agentic RAG let the agent decide when and what to search for.
+		- **Static RAG Definition** : When static RAG, you search a database for every user question and inject into the prompt. The agent never decides to search or skip.
+		- **Agentic RAG Definition** : With Agentic RAG, you give the agent a search tool, the agent decides: "Do I need to search? What should I search for?"
+		- **Why Agentic is Better** : Static RAG wastes tokens when the anwser is obvious, Agentic RAG searches only when needed, saving tokens and time. 
+
+	
