@@ -605,6 +605,31 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	* Static RAG always injects search result into every prompts, Agentic RAG let the agent decide when and what to search for.
 		- **Static RAG Definition** : When static RAG, you search a database for every user question and inject into the prompt. The agent never decides to search or skip.
 		- **Agentic RAG Definition** : With Agentic RAG, you give the agent a search tool, the agent decides: "Do I need to search? What should I search for?"
-		- **Why Agentic is Better** : Static RAG wastes tokens when the anwser is obvious, Agentic RAG searches only when needed, saving tokens and time. 
+		- **Why Agentic is Better** : Static RAG wastes tokens when the answer is obvious, Agentic RAG searches only when needed, saving tokens and time. 
 
-	
+### Search Tools
+	* Search tools is a tool definition that tells the agent it has ability to query Azure AI search or Bing for information
+		- **Search tool as Capability** : We can configure search tools in your agent's tool list. This tells the agent : "You can call a search service to find information".
+		- **Tool Parameters** : The Search tools accepts parameters like **query**(Search terms) and **filter** (date range, categories). The agent choose these values
+		- **Agent Autonomy** : When a agent decides it needs information, it calls the search tool with its chosen query. Tool returns results, and the agent continues.
+
+### Azure AI Search
+	* Azure AI search is a search service that can find documents similar in meaning to a user's question, not just matching exact words.
+		- **Vector Search Definition** : Vector search convert text into numbers (Vectors). Documents with similar vectors have similar meaning, even if words differ.
+		- **Example of Vector Search** : User asks "How to get a refund?" A document titled "**Return policy and procedures**" matches in meaning even without the word "refund" 
+		- **Hybrid Search** : Azure AI search supports keyword search (Exact words) plus vector search (Meaning). combined gives best results.
+### Embeddings 
+	* An Embedding is a list of numbers (vectors) that represents the meaning of piece of text, created by a special embedding model.
+		- **Embedding Model Definition** : An embedding model (like **text-embedding-3-small**) takes text input and outputs a vector of numbers, typically 1536 number longs
+		- **How Embedding Enable Search** : Your search index stores embedding vectors for every document. The user's questions is also converted to an embedding. The search finds documents with most similar vectors.
+		- **Embedding Distance** : Two texts with similar meaning have embedding vectors that are close together mathematically. Unrelated texts have vectors for apart.
+
+### Constructing a Vector Search Query
+	* A Vector search query includes the user's question converted to an embedding, plus filters t narrow results by category or date.
+		- **JSON Request Body structure** : Your code sends a **JSON body with vector** (the embedding numbers), **Fields**(which fields to return) and **Filter**(conditions like category eq "returns")
+		- **Generating the Embedding** : Before calling search, your code calls an embedding model to convert the user's question into a vector of numbers.
+		- **Search the Query** : Use Azure AI search SDK or REST POST to https://.search.windows.net/indexes//docs/search with JSON body
+
+
+
+ 
