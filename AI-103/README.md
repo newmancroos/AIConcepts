@@ -625,11 +625,48 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Embedding Distance** : Two texts with similar meaning have embedding vectors that are close together mathematically. Unrelated texts have vectors for apart.
 
 ### Constructing a Vector Search Query
-	* A Vector search query includes the user's question converted to an embedding, plus filters t narrow results by category or date.
+	* A Vector search query includes the user's question converted to an embedding, plus filters to narrow results by category or date.
 		- **JSON Request Body structure** : Your code sends a **JSON body with vector** (the embedding numbers), **Fields**(which fields to return) and **Filter**(conditions like category eq "returns")
 		- **Generating the Embedding** : Before calling search, your code calls an embedding model to convert the user's question into a vector of numbers.
 		- **Search the Query** : Use Azure AI search SDK or REST POST to https://.search.windows.net/indexes//docs/search with JSON body
 
 
+### Coding Pattern
+		- **SDK Pattern** : Use **from azure.search.documents import SearchClient**. call **client.search(search_text=None, vector_queries = [vector_query]** with embedding array
+		- **REST Pattern** : Send a POST to **https://.search.windows.net/indexes/customersupport/docs/search?api-version=2024-07-01**. Body includes **vectorQueries** array with the embedding.
+		- **Response Handling** : The search returns **JSON** with **value array containing macthed documents**. Each documents has content and score (relevent from 0..1)
 
- 
+### Bing Search
+		- **When to Use Bing Search** : To get current news, public product information or facts about event after August 2026(Search model training cutoff date) we can use Bung search
+		- **Bing Search as a Tool** : Configure a Bing search tool with API key from Azure AI search service. The agent calls it like any other tool.
+		- **Rate Limits and Cost** : Bing Search has rate limits (calls per seconds) and cost per query. Monitor usgage for production aganet.
+
+### Agentic Retrieval
+	* In Agentic Retrieval, the agent's system message instructs it to decide whether to search based on the user's question.
+		- Example System Message Instruction : "You have a search tool/. Only use it if the user asks about products, price or policies. <br /> 
+			If the user greets you or asks about your capabilities, respond directly without searching".
+		- **Agent Reasoning** : The agent reads the user's question and determines: "This question requires my training knowledge only " or <br />
+			"This question requires up-to-date information from the search index" 
+ 		- **Benefits of Agentic** : Reduces token usage (no unnecessary search results), faster responses (skip search when not needed) and lower costs.
+		
+### Dynamic Filtering
+	* With dynamic filtering, the agent can choose filter parameters like date range, categories or product Ids when calling the search tool.
+		- **Filter Parameters Example** : The agent can call Search tool with **filer= category eq Billing AND date gt 2025-01-01**. The tool return only billing documents from 2025.
+		- **How Agent Choose Filters** : The system message describes available filter fields. The agent extracts values from the user's question. "**Show me refunds from last week**" <br />
+			filter on refund category and date.
+		- **Implementation** : The tool definition includes 'filter' as a parameter. The agent provides the filter string. Your tool code passes it directly to AI search.
+
+### Grounding with Microsoft Fabric (OneLake)
+	* Microsoft Fabric (OneLake) is a data lake that stored your entire enterprise data, allowing agent to query across all business systems
+		- **OneLake Definition** : OneLake is a single, unified data lake that brings together data from databases, files and applications across your company.
+		- **Agent Connection** : You configure a AI Search index that points to OneLake. The agent searches this index, which queries live data from fabric.
+		- **Use Case Example** : An agent can answer **"What were our sales in Europe last quarter?"** by querying OneLake sales data without moving or copying.
+
+### Steps involves in Grounding Flow
+	- **Step 1 : Embedding** : Call embedding model API to convert user question to vector, store them in user_embedding variable.
+	- **Step 2 : Search** : Call Azure AI search with 'vectorQueries' containing **user_embedding**. Parse JSON response into **grounding_text** array.
+	- **step 3 : Construct prompt** : Build **grounded_prompt = f"Context:\n{grounding_text}\n\n Question:\n{user_question}"**.
+	- **Step 4 : LLM Call** : Send **grounded_prompt** to deployed model endpoint. Return response to user.
+
+
+
