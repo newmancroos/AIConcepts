@@ -670,3 +670,4 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 
 
+**Note :**  Cosmos database act as Vector storage when we use Operational data. allowing you to store, index, and query vector embeddings directly alongside your standard operational data (like user profiles, order histories, or IoT telemetry) within a single system
