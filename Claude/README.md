@@ -169,3 +169,12 @@ Above all we need to set the model to a specific assistant  role. ex. You are a 
 - skillsmp.com
 - smithery.ai/skills
 - https://github.com/anthropics/skills/tree/main
+
+
+## Plugins
+
+### What is Plugin?
+	- A plugin is a ready-made bundle of capabilities you install into claude. Once installed, it immediately gives Claude new skills, direct connections to external services, and custom configuration. 
+		Turning Claude into a purpose-built tool for your workflow
+
+		
