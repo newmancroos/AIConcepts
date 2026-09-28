@@ -671,3 +671,23 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 
 **Note :**  Cosmos database act as Vector storage when we use Operational data. allowing you to store, index, and query vector embeddings directly alongside your standard operational data (like user profiles, order histories, or IoT telemetry) within a single system
+
+## Adding files to Agent
+	* There are two ways to add document to agent after adding Embedding model to the agent
+		- Under Tools, upload a file and give indexing name. Now when you ask a question related to uploaded document, Agent will search the document and gives the qnswer.
+		- Adding the document to knowledge. This is a proper way to add document.
+			~ Knowledge can be used by multiple agents
+			~ Under Knowledge, select **Connect to Foundry IQ**. Here we need to 
+				**1. Connect Azure AI Search** 
+				**2. Click on Create New Resource link**  (Different pricing. one free but others are fixed cost per month, Deleting the resource will delete this Knowlwedge too)
+				**3. Select require fields and Ackowledge box then click **Create****
+				**4. Now we can create Knowledge base within Knowledge Foundry IQ** (This is kind of database or collection of very similar documents)
+				**5. In the popup window, Model would be our selected model in the agent, Output Mode is Extractive data (extract text data)**. (There another option Answer synthesis - need to explor)
+				**6. In the Knowledge source (Foundry IQ) area select a file to upload.**. (Select the correct embedding model). and Click Create
+				**7. Click Save knowledge base  **
+				8. Goto Created Foundry IQ -- Access Control (IAM) -- Check Access -- Select Manage Identity to Foundry Project and select created knowledge if there is no roles assign.
+						Go back to IAM  -- Add -- Role assignment -- Search for Search Index Data Reader, Select it. In Member select Manage Identity and select members -- selected Foundry project
+		- In the Agent, Delete/Disconnect previously uploaded document from Tools
+		- In the Knowledge, Connect created Knowledge and press Save in the top
+		- Now we can ask question to the agent.
+				
