@@ -385,8 +385,9 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	
 ### Publish the Agent
 	- We have publish button on the right to the Agent page, We can select publishing tool that will open a dialog box. (MS Copilot 365)
+	- Before selecting Teams & Microsoft 365 Copilot as final step, select active version and select Latest Version
 	- We can give the name, Developer name and description, also This will create a bot service for us. We can search for Bot Service in the Azure search box we will get this created bot service
-	- We can also directly create Bot service in the Bot service page and then associate ethat with our agent.
+	- We can also directly create Bot service in the Bot service page and then associate that with our agent. **(Azure bot service agent will not be get deleted even if you delete the resource group)**
 	- In next step we can select who can use the agent, It is Just for you or People in your oganization
 	- Click Publish
 	- Now we can give Access and permissions through it Entra Agent Id
@@ -533,5 +534,160 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			
 ### SLM
 	- **SLM Size definition** : SLMs typically have 1 billion to 7 billion parameters. Microsoft Phi-3 mini has 3.8 billion paramters
-	- **SLM Capabilities** :  SLMs excelat specific tasks like 
+	- **SLM Capabilities** :  SLMs excel at specific tasks like classification, summarization, entity extraction and simple question answer.
+	- **SLM Cost and speed** : SLMs are cheap to run (lower cost per token) and very fast (low latency in milliseconds), making them ideal for high-volumn tasks.
+
+### Matching Model to Agent Task
+	- **Reasoning Task Example** : An agent that plan a vacation itinery with flight, hotel and activities needs a complex reasoning. Use GPT-5.6
+	- **Summarization Task Example** : An agent that aummarizes 10,000 customer reviews per hour needs speed and low cost. Use Phi-3 mini
+	- **Classification Task Example** : An agent that categorize support tickets into 20 types needs fast, cheap inference. Use Phi-3 small
+### Deploying a Model in Foundry Model catalog
+	- **Deployment steps** : In Foundry Model catalog, select a model (GPT - 5.6, Phi-3). Choose a deplyment name, capacity(token per minutes) and a region
+	- **Deployment Capacity** : Capacity determines how many tokens per minute your agent can process. Higher capacity costs more but handle higher traffic.
+	- **Deployment Lifecycle** : Deployed models can be updated(new version), scaled (increase capacity) or deleted(stop paying). Each deployment has its own endpoint.
+
+### Model End point
+	* When you deploy a model, Foundry gives you an end-point URL that your agent code calls to  send pompts and receive responses.
+		- **End-point URL Format** : The URL looks like 'https://your-project.foundry.azure.com/models/gpt-5/deployments/my-deployment/chat/completions'. 
+		- **API Key Authentication** : Each deployed model endpoint has its own API key. you aganet includes this key in the api-key header of every request.
+		- **Agent Reference** : In your agent code, you configure which model endpoint to use. An agent can switch between models by changing the endpoint url.
+### Model Capacity and Quotas 
+	* Model capacity is measure in token per minute (TPM). Quotas limit how many tokens your agent can process across all deployment models.
+		- **Token per Minute (TPM)** : TPM is the maximum number of tokens your agent can send and receive in one minute. 10,000 TPM handles moderate traffic.
+		- **Regional Quotas** : Each Azure region has global quota for each model. You may need to request a quota increase from Microsoft for high-volumn agents
+		- **Monitoring Usage** : Foundry shows yours TPM usage in metrics. If you exceed quota, the model return a 429 error (too many request) until the next minute.
+
+### COST LLM VS SLM
+	- For 1000 token LLM - $0.01. SLM $.0002
+	- If 1 million tokens per day LLM - $10 - SLM $.20
+	- We can use LLM for complex reasoning and SLM for simple classification, extraction or routing within same agent workflow.
+
+### Latency LLM VS SLM
+	- It is the time between sending a prompt and receiving the response
+	- LLM responds in 500 - 2000 milliseconds, SLM 50-200 milliseconds
+	- **User experience** : a 2 second delay feels natural. a 2-second delay for each of 10 agent steps (20 seconds) feels broken.
+	- **Reducing Latency** : Use SLMs for fast sub-agents, Use LLM only for the manager agent that coordinates others. Cache repeated responses.
 	
+### Multi-Model agents
+	
+	* A single agent can use multiple models - an SLM for fast classification, then an LLM for complex reasoning only when needed.
+		- **Routing Pattern** : User input first goes to Phi-3 for intent classification. If intent is simple (eg. Check balance), Phi-3 responds directly
+		- **Escalation Pattern** : If intent is complex (eg. Plan a dispute resolution strategy), the agent calls GTT-5.6 for deeper reasoning.
+		- **Cost Saving** : 90% of requests route to cheaper Phi-3. Only 10% escalate to expensive GPT-5.6. Total cost drops dramatically.
+
+### System Instructions 
+	- **LLM System Instructions** : GPT-5.6 handles long, complex instructions with conditional logix. "If a user asks about refund, check order date first. If Order date is under 30 days, approve"
+	- **SLM System Instructions** : Phi-3 works best with short, direct instructions. "YUou classify support tickets into categories : Billing, Technical, Accunt"
+	- **Testing Required** : Always test system instructions with your chosen model. And instruction that works in GPT may fail in Phi due to small size.
+
+	
+### Coding Pattern
+	* Your agent code calls a deployed model endpoint using either the Azure AI inference SDK or direct REST API with JSON request body.
+		- **SDK Pattern** : use "**from azure.ai.inference import ChatCompletionsClient**", Create client with endpoint and API key. Call '**client.complete()**' with message list
+		- **REST Pattern** : Send POST to "**https://endpoint/openai/deployments/deploymentname/chat/completions?api-version=2025-01-01**". Body includes '**messages**' array with system and user messages
+		- **Response Handling** : Both SDK and REST return a JSON response. Extract the assitant's message from "**coices[0].message.content**"
+
+### Streaming Response VS Batch Responses
+	* Streaming sends model responses token by token as they are generated. Batch responses wait for the complete response before sending
+		- **Streaming Definition** : With **stream:true** the model sends tokens one ata time. Your agent can show partial responses to the user immediately.
+		- **Batched Definition** : With **stream:false** (default, the model generates the full response before sending. Users wait longer but see complete sentances.
+		-	**When to Stream** : Use streaming for chat agents where user experience matters. Use Batched for background processing or when you need full response for parsing.
+
+		
+### Notes : We can deploy multiple model to a agent but it will change the version every time we specify a new model. so when we access the agent we need to specify which model we need to use by specifying the agent version
+
+
+
+## Grounding (Agentic RAG)
+
+### Static RAG VS Agentic RAG
+
+	* Static RAG always injects search result into every prompts, Agentic RAG let the agent decide when and what to search for.
+		- **Static RAG Definition** : When static RAG, you search a database for every user question and inject into the prompt. The agent never decides to search or skip.
+		- **Agentic RAG Definition** : With Agentic RAG, you give the agent a search tool, the agent decides: "Do I need to search? What should I search for?"
+		- **Why Agentic is Better** : Static RAG wastes tokens when the answer is obvious, Agentic RAG searches only when needed, saving tokens and time. 
+
+### Search Tools
+	* Search tools is a tool definition that tells the agent it has ability to query Azure AI search or Bing for information
+		- **Search tool as Capability** : We can configure search tools in your agent's tool list. This tells the agent : "You can call a search service to find information".
+		- **Tool Parameters** : The Search tools accepts parameters like **query**(Search terms) and **filter** (date range, categories). The agent choose these values
+		- **Agent Autonomy** : When a agent decides it needs information, it calls the search tool with its chosen query. Tool returns results, and the agent continues.
+
+### Azure AI Search
+	* Azure AI search is a search service that can find documents similar in meaning to a user's question, not just matching exact words.
+		- **Vector Search Definition** : Vector search convert text into numbers (Vectors). Documents with similar vectors have similar meaning, even if words differ.
+		- **Example of Vector Search** : User asks "How to get a refund?" A document titled "**Return policy and procedures**" matches in meaning even without the word "refund" 
+		- **Hybrid Search** : Azure AI search supports keyword search (Exact words) plus vector search (Meaning). combined gives best results.
+### Embeddings 
+	* An Embedding is a list of numbers (vectors) that represents the meaning of piece of text, created by a special embedding model.
+		- **Embedding Model Definition** : An embedding model (like **text-embedding-3-small**) takes text input and outputs a vector of numbers, typically 1536 number longs
+		- **How Embedding Enable Search** : Your search index stores embedding vectors for every document. The user's questions is also converted to an embedding. The search finds documents with most similar vectors.
+		- **Embedding Distance** : Two texts with similar meaning have embedding vectors that are close together mathematically. Unrelated texts have vectors for apart.
+
+### Constructing a Vector Search Query
+	* A Vector search query includes the user's question converted to an embedding, plus filters to narrow results by category or date.
+		- **JSON Request Body structure** : Your code sends a **JSON body with vector** (the embedding numbers), **Fields**(which fields to return) and **Filter**(conditions like category eq "returns")
+		- **Generating the Embedding** : Before calling search, your code calls an embedding model to convert the user's question into a vector of numbers.
+		- **Search the Query** : Use Azure AI search SDK or REST POST to https://.search.windows.net/indexes//docs/search with JSON body
+
+
+### Coding Pattern
+		- **SDK Pattern** : Use **from azure.search.documents import SearchClient**. call **client.search(search_text=None, vector_queries = [vector_query]** with embedding array
+		- **REST Pattern** : Send a POST to **https://.search.windows.net/indexes/customersupport/docs/search?api-version=2024-07-01**. Body includes **vectorQueries** array with the embedding.
+		- **Response Handling** : The search returns **JSON** with **value array containing macthed documents**. Each documents has content and score (relevent from 0..1)
+
+### Bing Search
+		- **When to Use Bing Search** : To get current news, public product information or facts about event after August 2026(Search model training cutoff date) we can use Bung search
+		- **Bing Search as a Tool** : Configure a Bing search tool with API key from Azure AI search service. The agent calls it like any other tool.
+		- **Rate Limits and Cost** : Bing Search has rate limits (calls per seconds) and cost per query. Monitor usgage for production aganet.
+
+### Agentic Retrieval
+	* In Agentic Retrieval, the agent's system message instructs it to decide whether to search based on the user's question.
+		- Example System Message Instruction : "You have a search tool/. Only use it if the user asks about products, price or policies. <br /> 
+			If the user greets you or asks about your capabilities, respond directly without searching".
+		- **Agent Reasoning** : The agent reads the user's question and determines: "This question requires my training knowledge only " or <br />
+			"This question requires up-to-date information from the search index" 
+ 		- **Benefits of Agentic** : Reduces token usage (no unnecessary search results), faster responses (skip search when not needed) and lower costs.
+		
+### Dynamic Filtering
+	* With dynamic filtering, the agent can choose filter parameters like date range, categories or product Ids when calling the search tool.
+		- **Filter Parameters Example** : The agent can call Search tool with **filer= category eq Billing AND date gt 2025-01-01**. The tool return only billing documents from 2025.
+		- **How Agent Choose Filters** : The system message describes available filter fields. The agent extracts values from the user's question. "**Show me refunds from last week**" <br />
+			filter on refund category and date.
+		- **Implementation** : The tool definition includes 'filter' as a parameter. The agent provides the filter string. Your tool code passes it directly to AI search.
+
+### Grounding with Microsoft Fabric (OneLake)
+	* Microsoft Fabric (OneLake) is a data lake that stored your entire enterprise data, allowing agent to query across all business systems
+		- **OneLake Definition** : OneLake is a single, unified data lake that brings together data from databases, files and applications across your company.
+		- **Agent Connection** : You configure a AI Search index that points to OneLake. The agent searches this index, which queries live data from fabric.
+		- **Use Case Example** : An agent can answer **"What were our sales in Europe last quarter?"** by querying OneLake sales data without moving or copying.
+
+### Steps involves in Grounding Flow
+	- **Step 1 : Embedding** : Call embedding model API to convert user question to vector, store them in user_embedding variable.
+	- **Step 2 : Search** : Call Azure AI search with 'vectorQueries' containing **user_embedding**. Parse JSON response into **grounding_text** array.
+	- **step 3 : Construct prompt** : Build **grounded_prompt = f"Context:\n{grounding_text}\n\n Question:\n{user_question}"**.
+	- **Step 4 : LLM Call** : Send **grounded_prompt** to deployed model endpoint. Return response to user.
+
+
+
+**Note :**  Cosmos database act as Vector storage when we use Operational data. allowing you to store, index, and query vector embeddings directly alongside your standard operational data (like user profiles, order histories, or IoT telemetry) within a single system
+
+## Adding files to Agent
+	* There are two ways to add document to agent after adding Embedding model to the agent
+		- Under Tools, upload a file and give indexing name. Now when you ask a question related to uploaded document, Agent will search the document and gives the qnswer.
+		- Adding the document to knowledge. This is a proper way to add document.
+			~ Knowledge can be used by multiple agents
+			~ Under Knowledge, select **Connect to Foundry IQ**. Here we need to 
+				**1. Connect Azure AI Search** 
+				**2. Click on Create New Resource link**  (Different pricing. one free but others are fixed cost per month, Deleting the resource will delete this Knowlwedge too)
+				**3. Select require fields and Ackowledge box then click **Create****
+				**4. Now we can create Knowledge base within Knowledge Foundry IQ** (This is kind of database or collection of very similar documents)
+				**5. In the popup window, Model would be our selected model in the agent, Output Mode is Extractive data (extract text data)**. (There another option Answer synthesis - need to explor)
+				**6. In the Knowledge source (Foundry IQ) area select a file to upload.**. (Select the correct embedding model). and Click Create
+				**7. Click Save knowledge base  **
+				8. Goto Created Foundry IQ -- Access Control (IAM) -- Check Access -- Select Manage Identity to Foundry Project and select created knowledge if there is no roles assign.
+						Go back to IAM  -- Add -- Role assignment -- Search for Search Index Data Reader, Select it. In Member select Manage Identity and select members -- selected Foundry project
+		- In the Agent, Delete/Disconnect previously uploaded document from Tools
+		- In the Knowledge, Connect created Knowledge and press Save in the top
+		- Now we can ask question to the agent.
+				
