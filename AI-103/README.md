@@ -691,3 +691,16 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- In the Knowledge, Connect created Knowledge and press Save in the top
 		- Now we can ask question to the agent.
 				
+## Microsoft Fabric
+	* It is a unified data platform that bring together **data lake, warehouses and analytics** into a single product called **OneLake**.
+		- **Fabric Definition** : Fabric replaces separate Azure services (**Data Lake, data Warehouse, Synapse**) with one integrated platform for all enterprise data.
+		- **OneLake Explained** : OneLake is the single storage layer in Fabric. Every piece of data in your company lives in OneLake
+		- **Fabric VS Traditional Storage** : Traditional storage copies data between systems. Fabric stores data once in OneLake, and all tools access the same copy.
+
+### How Agent query OneLake
+	*  Agents query OneLake by sending Sql-Like requests to an Azure AI Search Index that is connected to fabric data.
+		- **OneLake Connections** : You create an AI Search Index that points to OneLake tables. The Index does not copy data, it reads from Fabric live.
+		- **Query Flow** : Agent calls Search Tool -- Search Index translate query to Fabric SQL -- Fabric returns result -- Search Index returns results to agent
+		- **No Data Movement** :  Because Search Index reads data from OneLake live, your grounding data is always current. No sync job or data copies needed.
+
+		
