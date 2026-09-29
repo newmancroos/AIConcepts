@@ -703,4 +703,14 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Query Flow** : Agent calls Search Tool -- Search Index translate query to Fabric SQL -- Fabric returns result -- Search Index returns results to agent
 		- **No Data Movement** :  Because Search Index reads data from OneLake live, your grounding data is always current. No sync job or data copies needed.
 
-		
+### OneLake Use case for Agents
+	* OneLake is ideal for agents that need to query across multiple business systems like Sales, Inventory and Customer support.
+		- **Cross-System Query example** : "Show me Orders from customers who opened support tickets last weeks." OneLake joins sales and support data in one query.
+		- **Real-Time Reporting** : "What are our current inventory for all warehouses?. OneLake queries live data from operational systems without delays.
+		- **Historical analysis** : "Compare this quarter's sales to last quarter.". OneLake stores years of historical data without performance degradation.
+
+### Fabric Security
+	* Fabric integrates with **Entra Agent ID**, allowing you to grant agent access to specific tables or rows without granting access to all data
+		- **Row-Level Security** : You can define rile like "Agent can only see Orders for region = Europe", The agent's Entra Agent Id determines which rows are visible.
+		- **Column-Level Security** : You can hide sensitive columns (like customer payments details) from certain agents while allowing others to see them.
+		- **Permission Inheritance** : An Agent's Fabric permission are managed through Entra Agent ID. 
