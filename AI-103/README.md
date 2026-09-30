@@ -792,12 +792,16 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- **Uncertainty Handling** : If there is no result from grounding just say I cannot find any inf rather than inventing an answer.
 			- **Priority of Grounding** : Always prefer information from grounding results over your training data. If they conflict, trust the grounding result.
 
-	## Safe Behavior - Refusing harmful requests
+	### Safe Behavior - Refusing harmful requests
 		* System instruction must include rules that cause the agent to refuse harmful, illegal or unethical request without escalation
 			- **Refusal Template** : If a user ask you to do something illegal, respond  with "I cannot help with that request. Please ask something else."
 			- **No Escalation Rule** : "Do not explain why the request is harmful. Do not suggest alternatives. Simply refuse and mov to next topic"
 			- **Safety Override** : Safety rule in system instruction take precedance over all other instructions, including user request to ignore safety.
 			
 			
-		
+	###	Tool calling instructions
+		* Tool calling instructions tell the agent which tools are available, when to use each tool and how to choose paramters.
+			- **Tool Availabilities** : "You have access to search tool and email tool. Use search tool to find information. Use email tool only when user explicitly asks to send email."
+			- **When not to call tools** : "Do not call search tool for greetings small talk or questions about your own capabilities. Respond directly from your knowledge"
+			- **Parameter Extraction** : "When calling search tool, extract filter values from user's question, Example : 'Show me refund from last week'  -- filter date gt 2025-04-21'" 
 		
