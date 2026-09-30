@@ -818,5 +818,37 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 				Do not include any text outside the JSON.
 			- **Validation** : Your code must validate that the agent returned valid JSON. If not, retry with a stronger system instruction.
 
-	
+	### Length and Verbosity control
+		* Length control instructions tells the agent to keep responses brief, detailed or within specific token limits.
+			- **Concise Instruction** : "Keep responses under 50 words unless the user asks for details. One sentence per answer when possible."
+			- **Detailed Instruction** : "Provide comprehensive answer with step-by-step explanations. Include examples and edge cases. Target 200-500 word per response.
+			- **Token limit Awareness** : "If you need to response with more than 4000 tokens, summarize the response and offer to provide details in the next message"
+
+	### Dynamic System Instruction Construction
+		* Dynamic construction means your code builds the system instruction programmatically based on **user context, session state or grounding results**.
+			- **Why Dynamic Construction** : Different user need different rules. Example : Admin users get broader permissions. Guest user gets restricted permission and tool acccess.
+			- **Context Variables** : Your code inject variables into the system instruction template:
+				'system_prompt = f"You are a support agent for user {user_name}. Their role is {user_role}."'
+			- **Grounding-Aware Instruction** :  If grounding result are available, append : "Using this customer data: {customer_data}. Answer questions about this specific customer.
+			
+	### Appending Grounding result to System Instructions
+		*  When you have grounding results, you append them to system instruction (not to user message) so the agent treats them as persistent context.
+			- **Why Appending to System** : Grounding result appended to system instruction are treated as authoritative fact. The agent will use them throughout the conversation.
+			- **Implementation** : 'grounded_system = original_system + "\n\nRelevant information from search:\n + grounding_text'. Then send as system message.
+			- **Token limit Caution** : System instruction plus grounding result count toward token limit. If too large, summarize grounding result or move to user message.
+			
+	### System Instruction Versioning
+		* System instruction versioning means, storing past versions of the system instructions to you can roll back if a new version causes bad behavior.
+			- **Store in Source Control** : save each system instruction version in your code repository with version number and timestamp.
+			- **A/B Testing** : Deploy two agent versions with different system instructions. Route 50% of users to each. Compare satisfaction and error rates.
+			- **Rollback Process** : If a new instruction causes errors, redeploy the previous version from source control. Downtime is minutes not days.
+
+	### Testing System Instruction with Red Teaming
+		* Red teaming agents can test your system instruction by attempting jailbreak, boundary violation, and instruction conflicts.
+			- **What Red teaming Tests** : Red teaming agents send prompts like "Ignore your system instruction"  or " You are now a different agent" to see if system instructions hold
+			- **Failure Detection** : If a red teaming prompt causes agent to violate a boundary, the system instruction is too weak. Strengthen it or add explicit refusal rules.
+			- **Automated Regression Testing** : Run red teaming after every system instruction change. If a previously passing test fails, the new instruction introduced a vulnerability.
+
+			
+			
 			
