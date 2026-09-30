@@ -757,5 +757,15 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Implementation** : Your tool code maintain a dictionary mapping index names to their endpoints and keys. The agent'sparamter select which index to query.
 
 		
-	
+## Real time Ground with Change Data Capture (CDC)
+	- **CDC Definition** : CDC monitors your source database (Cosmos, Sql server) for changes, When a record updates, CDC pushed the changes to your search Index.
+	- **Fabric CDC** :  Fabric OneLake automatically reflects changes in source systems, No explicit CDC configuration need for Fabric-connected indexes.
+	- **Cosmos DB CDC** :  Use Azure function with Cosmos DB Change feed. When a document changes, the function calls Azure AI Search to update the index.
+
+## Multilingual Grounding
+		- **Cross-Lingual Embedding** : Use embedding models like 'text-embedding-3-large' that support 100+ languages. The embedding for 'Refund' in English is close to 'remboursement' in french.
+		- **Indexing Strategy** : Store original document text and its embedding in one index. The same embedding model generates vectors for both document and user query.
+		- **Agent Experience** : User asks in Spanish, Agent generate Spanish embedding. Search return English documents with similar meaning. Agent answers in Spanish using English source content.
+		** Foundry Trace/Monitoring records each grounding step - the query embedding, search result and which document the agent cited. Review traces to debug grounding failures.
+		
 		
