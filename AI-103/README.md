@@ -769,3 +769,35 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		** Foundry Trace/Monitoring records each grounding step - the query embedding, search result and which document the agent cited. Review traces to debug grounding failures.
 		
 		
+## System Instruction
+
+	### Persona
+		* What is Agent Persona? It is the first part of a system instruction. It tells the agent its role, tone and relationship to the user.
+
+			- **Perona Components** : **Role** (customer support agent, sales assistant, technical expert),  
+								  **Tone** ( Professional,friendly, concise)
+								  **Relationship** (helper, advisor, coordinator)
+			- **Example Personal** : "You are a technical support engineer for Azure. Your tone is patient and educational. You are helping developers solve cloud problems.
+			- **Without Persona** : Without persona, the LLM default to a generic assitant. It may soud robotic or fail to establish trust with user.
+			
+	### Boundaries - What the Agent cannot do
+		* Boundaries are rules in the system instruction that defines actions that agent is never allowed to take, regardless of user request.
+			- **Hard Boundaries Definition** : Hard Boundaries are absolute prohibitions. Ex. "Never delete user data"
+			- **Soft Boundaries Definition ** : Soft Boundaries allow exceptions with conditions. Ex. "Only share refund amount if the user has verified their order number"
+			- **Boundary Enforcement** : The LLM follow boundaries in its reasoning. If a user asks to violate a boundaries, the agent refuses and explain why.
+
+	### Grounding Rules
+		* Grounding rule in the system instruction tell the agent hot to use search results. When to trust them and when to admit uncertainty.
+			- **Citation Requirement** : When you answer using grounding results, cite the source documentId. Do not present retrieved facts as your own knowledge.
+			- **Uncertainty Handling** : If there is no result from grounding just say I cannot find any inf rather than inventing an answer.
+			- **Priority of Grounding** : Always prefer information from grounding results over your training data. If they conflict, trust the grounding result.
+
+	## Safe Behavior - Refusing harmful requests
+		* System instruction must include rules that cause the agent to refuse harmful, illegal or unethical request without escalation
+			- **Refusal Template** : If a user ask you to do something illegal, respond  with "I cannot help with that request. Please ask something else."
+			- **No Escalation Rule** : "Do not explain why the request is harmful. Do not suggest alternatives. Simply refuse and mov to next topic"
+			- **Safety Override** : Safety rule in system instruction take precedance over all other instructions, including user request to ignore safety.
+			
+			
+		
+		
