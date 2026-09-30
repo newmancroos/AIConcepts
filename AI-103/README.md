@@ -808,7 +808,7 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 	### Chain of Thought(CoT) 
 		* **CoT** instruction tells the agent to show its reasoning steps before answering, improve accuracy and debuggability.
 			- **CoT Definition** : Chain of Thought means the agent writes ints internal reasoning in the response before giving the final answer. users see the reasoning.
-			- **CoT Instruction** : "Before answering, write your reasoning in &lt;thinking$gt; tags. include, what the user asked, what information you have and what steps you will take" 
+			- **CoT Instruction** : "Before answering, write your reasoning in <thinking> tags. include, what the user asked, what information you have and what steps you will take" 
 			- **Benefits of CoT** : Showing reasoning helps users trust the answer. It is also helps you debug when the agent make mistakes - you see where reasoning broke down. 
 
 	### Structure output formats instruction
