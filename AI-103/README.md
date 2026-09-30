@@ -805,3 +805,18 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- **When not to call tools** : "Do not call search tool for greetings small talk or questions about your own capabilities. Respond directly from your knowledge"
 			- **Parameter Extraction** : "When calling search tool, extract filter values from user's question, Example : 'Show me refund from last week'  -- filter date gt 2025-04-21'" 
 		
+	### Chain of Thought(CoT) 
+		* **CoT** instruction tells the agent to show its reasoning steps before answering, improve accuracy and debuggability.
+			- **CoT Definition** : Chain of Thought means the agent writes ints internal reasoning in the response before giving the final answer. users see the reasoning.
+			- **CoT Instruction** : "Before answering, write your reasoning in &lt;thinking$gt; tags. include, what the user asked, what information you have and what steps you will take" 
+			- **Benefits of CoT** : Showing reasoning helps users trust the answer. It is also helps you debug when the agent make mistakes - you see where reasoning broke down. 
+
+	### Structure output formats instruction
+		* Structure output instruction tells the agent to return responses in a specific JSON format rather than a free text.
+			- **When to use Structure output** : Use structure output when another syste (not a human) reads the agent's response. Exampl: an API returning data to a obile app.
+			- **Example JSON Instruction** :  "Return your return response as JSON with fields : 'Answer' (string), 'confidence' (number 0-1), and 'sources' (array of document IDs). 
+				Do not include any text outside the JSON.
+			- **Validation** : Your code must validate that the agent returned valid JSON. If not, retry with a stronger system instruction.
+
+	
+			
