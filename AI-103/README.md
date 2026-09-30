@@ -714,3 +714,48 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- **Row-Level Security** : You can define rile like "Agent can only see Orders for region = Europe", The agent's Entra Agent Id determines which rows are visible.
 		- **Column-Level Security** : You can hide sensitive columns (like customer payments details) from certain agents while allowing others to see them.
 		- **Permission Inheritance** : An Agent's Fabric permission are managed through Entra Agent ID. 
+## Cosmos DB as Vector store
+	* Azure Cosmos DB can store vectors (embedding) alongside your operational data, allowing agent to search for similar items in real time
+		- **Cosmos DB Vector Search feature** : Cosmos DB includes native vector indexing. You can store an embedding vector in each documents as a filed, then search for similar vectors.
+		- **Operational Consistency** : Unlike separate search indexes, Cosmos DB keeps vectors and operational data together. When you update a product price, its vector updates automatically.
+		- **Use Case Example** : Product catalog agent, User asks "Find laptops similar to this one". The agent generates an embedding of the product description and search Cosmos database for similar embedding.
+
+## Cosmos DB VS Azure AI Search for grounding
+	* Choose Cosmos for frequently changed data and AI Search for static document collections.
+		- **Cosmos DB Strength** : Real-time updates (millisecon latency), transactional consistency and vector search plus SQL queries in one database
+		- **Azure AI Search Strength** : Advance relevent tuning (:earning to rank), hybrid search (Vector + Keyword) and larger document size (up to 16MD per document)
+		- Decision Rule : Frequently change data or Required transaction go for Cosmos. Otherwise Azure AI search.
+
+## Coding Pattern - Cosmos DB Vector search
+
+	* Use Azure Cosmos Db SDK with vector similarity search query.
+		- **SDK Pattern** : Use "**from azure.cosmos import CosmosClient**". Query with "**SELECT TOP 10 c.id, c.product_nmame, c.description FROM c ORDER BY VectorDistance(C.EMBEDDING, @EMBEDDING)**"
+			here @embedding is the parameter containing your user question's embedding vector as an array of number.
+		- **Response Handling** : Cosmos DB return JSON document with product_name, description and a VectorDistanceScore (0-1). extract and pass to LLM.
+
+## managing Connection string for Cosmos DB
+	* We can use Cosmos DB connection string (containing account end-point and secret key) for authenticate.
+		- **Connection string format** : **AccountEndpoint = https://your-account.documents.azure.com; AccountKey=your-account-key**.
+		- **Secure Storage Pattern** : Store connection string in Azure Key-Vault.  Your agent retrieves it at startup using **DefaultAzureCredential()** to authenticate to Key-Valut.
+		- Managed Identity for Cosmos DB : Enable managed identity on your agent service. Grant that managed identioty "Cosmos DB Built-in Data Contributor" role. No connection sring needed.
+
+## Hybrid Search - Combining Vector and Keyword
+	- **Why Hybrid Is Better** : Vector search finds "laptop charger" when user says "power cord for computer", Keyword search finds exact part number like "model XF-1000".
+	- **Azure AI Search Hybrid** : In query JSON, set 'search' (keyword terms) and 'vectorQueries' (embedding vector). Search combines using Reciprocal Rank fusion.
+	- Cosmos DB Hybrid : Use '**WHERE CONTAINS(c.description, @keyword) OR VectorDistance(c.embedding, @embedding) < 0.8**'
+
+## Grounding Cost Optimization
+	- Use Azure Redis to store grounding result for common questions. If same question is repeat, return it from chache.
+	- Before full vector search, use cheap keyword filter to narrow the candidates. ex. filter by prduct category.
+	- Use text-embedding-3-small instead of 'text-embedding-3-large meaning use small model.
+	- Dimension is the number of numerical value that represent a piece of data.
+
+## Index selection Strategy for agent
+	* An agent may need multiple search indexes - one for Product catalog, one for customer support articles and one for internal policies
+		- **Index Selection by Agent** : Give the agent a tool that accepts 'index_name' parameter. The agent decide which index to search based on the user's question.
+		- **Example Agent Reasoning** : "User asking about refund policy" - search support-article' index. "User asking about laptop specification - search product-catalog index'
+		- **Implementation** : Your tool code maintain a dictionary mapping index names to their endpoints and keys. The agent'sparamter select which index to query.
+
+		
+	
+		
