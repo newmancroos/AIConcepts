@@ -878,3 +878,39 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- **State Transfer** : When handing off, Agent A passes the conversation history, user information and any partial work to Agent B. The user sees no interruption.
 			- **Use Case Example** : Support agent receives billing question, Support agent hands off to Billing Agent. Billing agent has access to the full conversation history.
 	
+	### Magnetic VS Handoff
+		* Choose Magnetic when a manager can route requests without transferring conversation history. Choose Handoff when the conversation must continue seamlessly across agents.
+			- **Magnetic Use case** : User asks one question per interaction. "What is my refund status?" 
+				Manager route to RefundAgent. User asks separate question next.
+			- **Handoff Use case** : User has a conversation that naturally flows across domains, "My order is late (Support), Also refund shipping (Billing)"  Handoff maintains context.
+			- **Pattern Selection Rule** : Use magnetic for independent questions. Use Handoff for conversations that across agent boundaries within the same session.
+
+	### Group Chat Pattern 
+		* In Group chat Pattern, Multiple agents participate in a shared conversation space, taking turns specking based on conversation context.
+			- **Shared Space Definition** : All agents see every message in the conversation. No single manager controls who specks. Agents respond when relevant to their expertise.
+			- **Speaker Selection Algorithm** : The framework runs an algorithm that evaluates each agent's system instructions and conversation to decide which agent specks next. 
+			- **Use Case Example** : A coding assistant group includes ArchitectAgent(Desing), CodeAgent (Implementation) and TestAgent(quality). They take turns building a ssolution.
+			
+	###	Coding Pattern in Agent Framework
+		* In Microsoft Agent Framework, you create an agent by instantiating an **Agent class** with a name, **System Instruction** and list of **tools**.
+			- **SDK Pattern** : '**from agent_framework import Agent**'. Create agent with '**support_agent = Agent(name=:SupportAgent", system_message=support_instructions, tools = [seach_tool])**'
+			- **Agent Registration** : after creating agent, register then with the Orchestrator : '**orchestraor.register_agent(support_agent)**. The orchestrator manage routing.
+
+	### Orchestrator - The Runtime Coordinator
+		* The Orchestrator is the runtime component that receives user messages, route them to the correct agent and manages conversation state.
+			- **Orchestrator Responsibilities** : The orchestrator holds the list of registered agents, maintains conversation history, runs speaker selection(for Group Chat), and route messages.
+			- **Starting a Conversation** : Call 'orchestrator.start_conversation(user_id, initial_message)'. The orchestrator select the first agent based on the message content.
+			- **Conversation ID** : Each conversation gets a unique ID. The orchestrator uses this ID to retrieve conversation history and route subsequent message to correct agent chain. 
+
+	### Writing Orchestration Logic
+		* Orchestration code sends and receives JSON payload between agents, containing messages, tools, and state information.
+			- **Message JSON structure** : Each message has **Role(user, assistant, tool), content(text) and conversation_id(unique session identifier)**.
+			- **Tool call JSON Structure** : When an agents calls a tool, the JSON includes **tool_name, parameters (JSON object), and tool_call_id (unique per call)**
+			- **Handoff JSOn Structure** : Handoff payload includes **from_agent, to_agent, conversation_state (serialized JSON of memory and context), and messages(history)**.
+			
+ 	### Managing API Keys per agent
+		* Each agent may need different API keys and end-points for its tools. Your orchestration code must manage keys per agent, not globally.
+			- **Per-Agent Configuration** : Create a configuration dictionary mapping agent names to their endpoint URLs and API Keys : **agent_config["SupportAgent"]= {"endpoint" "...", "api_keys":"..." }**
+			- **Injecting Keys at Tool call**: When an agent calls tool, your orchestration code looks up the agent's configuration and inject the correct API key into the tool request.
+			- **Key Rotation Per Agent** : When one agent's key rotates, other agents are unaffected. Update only that agent's configuration entry.
+			
