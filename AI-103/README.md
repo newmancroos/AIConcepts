@@ -851,4 +851,30 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 			
 			
+## Multiple Agents
+
+	### What is Microsoft Agent Framework
+		* Microsoft Agent Framework is official successor to **Semantic Kernel** and **AutoGen** - a unified SDK for building multi-agent systems in Python and C#
+			- **Framework Definition** : The Agent Framework providers pre-built classes for creating agents, defining tools, managing conversation and orchestrating multi-agent workflows.
+			- **Successor to Semantic Kernel and AutoGen** : Microsoft combined the best of both older frameworks into one supported product. Use Agent Framework for all new projects.
+			- **Why Microsoft Built it** : Enterprise needed standardized patterns for agent coordination, not custom code for every project. The Framework provides those patterns.
+
 			
+	### Three core Microsoft Agent Framework Patterns : 
+		* Microsoft Agent Framework supports three patterns for coordinating multiple agents:
+			- **Magnetic (Manager) Pattern** : One central manager agent receives user requests and delegates subtasks to specialized sub-agents. The manager controls the flow 
+			- **Handoff (Transfer) Pattern** : Agents explicitly transfer conversation control to another agent, passing all context and state. Example : Support agent hands off to Billing agents.
+			- **Group Chat (Collaboration) Pattern** : Multiple agents share A CONVERSATION SPACE. a sPEAKER SELECTION ALGORITH DECIDES WHICH AGENT SPEAKS NEXT BASED ON THE CONVERSATION.
+
+	### Magentic (manager) Pattern 
+		* In the magnetic pattern, One manager agent receives the user's request, decide which specialized sub-agents can help and delegates the task.
+			- **Manager Responsibilities** : The manager agent has system instruction that says "You are a coordinate specialists. Do not answer user questions directly. Delegate to the correct sub-agents.
+			- **Sub-Agent Specialization** : Each sub-agent handles one domain: Refund Agent, TechnicalSupport agent, Account agent. Sub-agents have no awareness of each other.
+			- **Flow Example** : User asks "Refund my order", Manager receives request, calls Refund Agent with order details, receives response, returns to user.
+
+	### Handoff Patter (Transfer) Pattern
+		* On the Handoff pattern, one agent explicitly transfers the entire conversation to another agent, passing all context, state and memory.
+			- **Handoff Definition** : Handoff means Agent A says "I cannot help with billing. I'm transferring you to Billing agent." Agent A stops. BillingAgent continues with user
+			- **State Transfer** : When handing off, Agent A passes the conversation history, user information and any partial work to Agent B. The user sees no interruption.
+			- **Use Case Example** : Support agent receives billing question, Support agent hands off to Billing Agent. Billing agent has access to the full conversation history.
+	
