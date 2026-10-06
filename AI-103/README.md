@@ -914,3 +914,32 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- **Injecting Keys at Tool call**: When an agent calls tool, your orchestration code looks up the agent's configuration and inject the correct API key into the tool request.
 			- **Key Rotation Per Agent** : When one agent's key rotates, other agents are unaffected. Update only that agent's configuration entry.
 			
+    ### State Transfer in Handoff Pattern
+		* During the handoff, the handing off agent serialize its memory and context into JSON and passes it to the receiving agant.
+			- **What Gets Transferred** : Conversation history (all messages), short-term memory(session variables), long-tern memory (user preferences), and any pending tool results.
+			- **Serialization Format** :  Convert memory object to JSON using **json.dumps()**. The receiving agent parse with **json.loads()** and restores its state.
+			- **Handoff Tool Definition** : The framework provides a '**handoff_to_agent**' tool. When called the orchestrator automatically transfers state and route the next message.
+
+	### Sequential VS Concurrent Agent execution
+		* Two types
+			- **Sequential Agents execution** : Agent A completes it work, returns result, Then Agent B starts with Agent A's output as input. Use for dependent tasks.
+			- **Concurrent Agents execution** : Agent A and Agent B run at the same time. The orchestrator waits for both to complete, then combine results. Use for independant tasks.
+			- **Coding Sequential** : Call agent_a.process(), then agent_b_process(agent_a.result); simple linear flow
+			- **Coding Concurrent** : Call **asyncio.gather(agent_a.process_async(), agent_b.process_async())**. Both run simultaneously
+
+	### Error Handling in Multi-Agent Orchestration
+		- **Retry Strategy** : If a tool call fails (network error, timeout), retry up to 3 times with eponential backoff (wait 1s, 2s, 4s between retries);
+		- **Escalation Strategy** : If an agaent fails becuase it lacks capability, hand off a more capable agent. ex. "RefundAgent cannot process internation orders" ---- handoff to EscalationAgent.
+		- **Fallback Response** : If all agents fails, return a defult response " I cannot complete your request. A human has been notified.". Log the error to Foundry Trace.
+
+	### Monitoring Multi-Agent with Foundry Trace
+		* Foundry Trace records every message, tool call, and Handoff across all agents, showing you the complete multi-agent decision chain.
+			- **Trace span per Agent** : Each agent action creates a span (a logged operation) with agent name, operation type (Message, tool call, handoff), and duration.
+			- **Visualizing Handoffs** : Foundry Trace shows handoffs as connecting lines between agent spans. You can see exactly which agent transferred to which agent and why.
+			- Debugging Reasoning Loops : If agents handoff back and forth without progress, Foundry Trac shows the cycle. Identify which agent made the wrong handoff decision.
+
+			<img width="1105" height="576" alt="image" src="https://github.com/user-attachments/assets/c929b8d4-40e0-40da-8663-68065d5bc401" />
+
+			
+
+	
