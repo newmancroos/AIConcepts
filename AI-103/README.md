@@ -953,4 +953,5 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 			
 
-	
+### Notes: 
+	* Microsoft Agent Framework is built entirely on async programming.
