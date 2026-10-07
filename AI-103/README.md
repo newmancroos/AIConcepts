@@ -938,7 +938,9 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- **Visualizing Handoffs** : Foundry Trace shows handoffs as connecting lines between agent spans. You can see exactly which agent transferred to which agent and why.
 			- Debugging Reasoning Loops : If agents handoff back and forth without progress, Foundry Trac shows the cycle. Identify which agent made the wrong handoff decision.
 
-			<img width="1105" height="576" alt="image" src="https://github.com/user-attachments/assets/c929b8d4-40e0-40da-8663-68065d5bc401" />
+
+			
+<img width="1105" height="576" alt="image" src="https://github.com/user-attachments/assets/c929b8d4-40e0-40da-8663-68065d5bc401" />
 
 			
 
