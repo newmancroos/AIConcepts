@@ -6,8 +6,8 @@
 2. tutorials/Scripts/activate
 3. python -m  pip install -r requirements.txt
 4. --Install Bicep (or Update it)
-az bicep install
-az bicep upgrade
+<br /> * az bicep install
+<br /> * az bicep upgrade
 
 
 - What Is AI Agent?
