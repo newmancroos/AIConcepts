@@ -1,6 +1,15 @@
 # AI-103
 
 
+## Configuring VS code project 
+1. python -m venv tutorials
+2. tutorials/Scripts/activate
+3. python -m  pip install -r requirements.txt
+4. # Install Bicep (or Update it)
+az bicep install
+az bicep upgrade
+
+
 - What Is AI Agent?
     * It is an autonomous software system that uses **Reasoning, Memory and External tools** to perceive its environment, make decisions and multi-step  actions to achieve the  goal.
     * AI Agent is not like a request to an LLM like ChatGPT-5 and get the response but it can perform muti-step tasks without human guidance for each step.
