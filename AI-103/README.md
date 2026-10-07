@@ -5,7 +5,7 @@
 1. python -m venv tutorials
 2. tutorials/Scripts/activate
 3. python -m  pip install -r requirements.txt
-4. # Install Bicep (or Update it)
+4. --Install Bicep (or Update it)
 az bicep install
 az bicep upgrade
 
