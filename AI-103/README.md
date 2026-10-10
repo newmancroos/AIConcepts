@@ -997,5 +997,8 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
  <img width="1603" height="425" alt="image" src="https://github.com/user-attachments/assets/25ca89c8-09e1-464c-85bc-f4a44e834e44" />
 
- 		5. 
+ 		5.  Now in the first Agent select Agent2-simple, Now we need to select Input message, Here we cannot select local variable but we need the message from the user.
+			- Select System.LastMessage.Text
+		6 Same way in the second Agent select Agent2-Complex, and select the input message as System.LastMessage.Text
+		
 
