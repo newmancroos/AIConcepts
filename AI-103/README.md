@@ -983,7 +983,9 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 				* In the popup select "Deliver a Message" under "Basic"
 				* In the "Message to Send" box type "Complex was chosen" and in Next Node" dropdown  select "End"
 			
-		<img width="1558" height="318" alt="image" src="https://github.com/user-attachments/assets/7a79cac3-51eb-49c0-95b8-93952c6212f5" />
+		
+		
+<img width="1558" height="318" alt="image" src="https://github.com/user-attachments/assets/7a79cac3-51eb-49c0-95b8-93952c6212f5" />
 
 		
  
