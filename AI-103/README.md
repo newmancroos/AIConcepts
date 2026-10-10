@@ -1000,5 +1000,10 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
  		5.  Now in the first Agent select Agent2-simple, Now we need to select Input message, Here we cannot select local variable but we need the message from the user.
 			- Select System.LastMessage.Text
 		6 Same way in the second Agent select Agent2-Complex, and select the input message as System.LastMessage.Text
+		7. Now we can click preview and test our development
+
+		8. Finally we can Publish this workflow by going to "Publish" button and then select Teams And Microsoft 365 Copilot
+		9. Give a short description, and wizard will creating Bot service. (Make sure we have a bot service create if not goto Azure portal and search for Bot and create one before publishing the Agent.
+		
 		
 
