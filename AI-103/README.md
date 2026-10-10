@@ -955,3 +955,35 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 ### Notes: 
 	* Microsoft Agent Framework is built entirely on async programming.
+
+
+
+## Multi-Agent Orchestration
+
+	* When we create Multi-Agents orchestration.
+		1. Create a project 
+		2. Create Models in deployment
+			- Model 1 : (Agent1: gpt-nano) Get the user message and Identity  it is simple or complex and return "simple" or "complex"
+				* Prompt : Identify the user input in simple or complex and return "simple" or "complex" without quote. Do not output anything except these two works.
+			- Model 2 : (Agent2-Simple gpt-mini) It will get the input from Agent1 and throw simple answer
+				* Prompt : Answer the simple user question with a simple answer
+			- Model 3 : (Agent2-Complex) It will get the input from Agent1 and gives complex answer
+				* Prompt : Answer the complex user question with complex answer
+		3. Create Workflow in the Agent tab
+			- Start will be there, drag and drop Agent from left menu and select Input Message --- LastMessage.Text from right side menu.
+			- "Select an agent" dropdown, select Agent1
+			- Save the workflow and give a name "basic-workflow"
+			- Need to sabe the output into a variable, so in the workflow's first agent select "Create a Variable" in the "Save Agent output message as" dropdown (It will name automatically)
+			- Select Next node dropdown select "If/else"  (It is because we need to identify the question user asked it simple or complex from First agent (Agent1)
+			- In If statement box, change "true" and select the variable we created in the previous step. change the text in the textarea "MessageText(Local.Var8636) = "simple"
+			- Click the "+" sign in the If statement (we can add a "debug node")
+				* In the popup window "Deliver a message" box under "Basic" tab
+				* In "Message to Send" box type "Simple was chosen" and in "Next Node" dropdown select "End"
+			- Click "+" sing in the Else statement
+				* In the popup select "Deliver a Message" under "Basic"
+				* In the "Message to Send" box type "Complex was chosen" and in Next Node" dropdown  select "End"
+			
+		<img width="1558" height="318" alt="image" src="https://github.com/user-attachments/assets/7a79cac3-51eb-49c0-95b8-93952c6212f5" />
+
+		
+ 
