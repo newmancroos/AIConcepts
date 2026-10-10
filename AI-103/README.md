@@ -982,10 +982,20 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- Click "+" sing in the Else statement
 				* In the popup select "Deliver a Message" under "Basic"
 				* In the "Message to Send" box type "Complex was chosen" and in Next Node" dropdown  select "End"
-			
+			- Press Save button	
 		
 		
 <img width="1558" height="318" alt="image" src="https://github.com/user-attachments/assets/7a79cac3-51eb-49c0-95b8-93952c6212f5" />
 
-		
- 
+
+
+		4. Now we can press "Preview" button and test our developed multi-agent workflow. If it is simple question then simple flow route will be chosen else complex route will be chosen
+
+				** We added "Deliver a Message" step to debug
+			- Select "If" block and in the "Next Node", select "Agent", this will insert "Agent" node between "If" and "Send  Message" nodes. Delete the "Send Message" node. Agent "Next" node should be "End"
+			-  Do the same to Else node
+
+ <img width="1603" height="425" alt="image" src="https://github.com/user-attachments/assets/25ca89c8-09e1-464c-85bc-f4a44e834e44" />
+
+ 		5. 
+
