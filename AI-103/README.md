@@ -1004,6 +1004,10 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 		8. Finally we can Publish this workflow by going to "Publish" button and then select Teams And Microsoft 365 Copilot
 		9. Give a short description, and wizard will creating Bot service. (Make sure we have a bot service create if not goto Azure portal and search for Bot and create one before publishing the Agent.
+		10. Once publish, it is available in Microsoft 365 Copilot agent store (All Agent -- Your Agent) and in Teams (Apps--Manage your apps)
+		11. Go to Project Home there in bottom we can see all our work, we can find the workflow end-point there
+			- This end-point will not directly work
+			- In the workflow home We can get the yaml and code that we can use to call this Agent from Python or C#
 		
 		
 
