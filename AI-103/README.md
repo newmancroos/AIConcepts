@@ -1010,4 +1010,56 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- In the workflow home We can get the yaml and code that we can use to call this Agent from Python or C#
 		
 		
+## Tools
+	* A tool is any external capability and agent can use - a Search API, a database query, an email sender, a calculation function or a payment processor.
+	* Without tools, agent can only talk. With tools, agents can take real actions in the world - Send emails, update database or process payments.
 
+	### Tool calling
+		* Tool calling has three steps, Agent request a tool, your code execute it and agent receives the result to continue reasoning.
+			- **Step 1 : Agent Requests** : The LLM output a JSON structure like `{"tool" : "send_email", "parameters" : {"to": "test@test.com", "body" : "..."}}
+			- **Step 2 : Code Executes** : Your orchestration code parse the JSON, looks up tool function and execute it with the provided paramters.
+			- **Step 3 : Result Returns** : Your code sends the tool's result back to LLM as a new message. The LLM continues reasoning based on the result.
+			
+	### Tool definition (**Telling the agent what tools exist**)
+		* A Tool definition is a JSON schema that describes the tool's name purpose and required parameters so the agent knows how to call it.
+			- **Tool Definition Structure** : Each tool has a **Name** (Unique Identifier), **description**  (what it does) and **Parameters** (JSON schema or required inputs).
+			- **Example Tool Definition** : `{"name" : "get_weather", "description" : "Get current weather for a city", "parameters" : {"city" : {"type": "string"}}}`
+			- **Including Tools in request** : When you call the LLM, you pass an array of tool definition in the **tools** parameter. The LLM choose which tool to call.
+
+	### Rest API tool (Tool / Method within our code)
+		* A REST API tool calls an external HTTP endpoint (URL) with Methods like GET, POST to perform actions.
+			- **REST Tool Definition** : The tool definition  includes the HHTP Method, URL endpoint, headers (Like Api keys) and expected response format.
+			- **Example RESR Call** : Tool "Send_slack_message" makes a POST request to 'https://slack.com/api/chat.postMessage' with a JSON body containing the message.
+			- **Authentication** : Most REST tools require a API key in the **Authentication header**. your code inject the key from configuration when execute the tool.
+
+	### Rest Api Tool Coding Pattern
+		* Your orchestration code constructs an HTTP request using the parameters from the agent's tool call, then sends it using the request library
+			- **Build the Request** :  extract **url**, **method**, **headers**   and **body** from the tool call parameters. Set **header["Authentication"] = F"Bearer {api_key}"**
+			- **Send the request** : use **requests.post(url, headers = headers, json=body)** for post or **request.get(url, headers= headers, params = body)** for GET
+			- **Handle Response** : Check response.status_code =200 if 200 success, parse response.json(), if error(4xx, 5xx) return error message to agent.
+	**Note** : If we use Server side Orchestration we don;t even need to this, all the constrcution of API tool code are done for you.
+
+	### Managing API keys for Tools
+		 - Per-tool Key storage : Create a dictionary mapping tool names to their API keys - `**tool_keys = {"slack": "dasdsada", "weather" : "sadsadsdad"}**`
+		 - Key Injection at Runtime : When executing a tool, look up its key : **api_keys = tool_keys.get(tool_name)**. Add to header before sending the request
+		 - **Key Rotation** : Update keys in configuration (environment variable, key vaoult). Your code reads current values at start up or dynamically on each call.
+
+	### Returning Result to the Agent
+		- **Result Message structure** : **{"role" : "tool","tool_call_id": "call_123", "content" : "The weather in Seattle is 65F sunny"}**
+		- **Tool Call Id Matching** : The agent's original too call has a **tool_call_id**, your result message must include the same ID so the LLM knows which call this result belongs to.
+		- **Error Handling** : If the tool fails, return an error message **{"role" : "tool", "tool_call_id" : "call_123", "content" : "ERROR: API Key invalid"}**
+	### Tool calls from LLM Responses
+
+	* When an LLM wants to call tool, its response includes a **tool_calls** array. your code must parse this array to extract the tool names and paramters.
+		- **Response Structure**  : response.["choices"][0]["Message"]["tool_calls"] is an array. Each element has **function.name and  function.arguments (JSON string)**
+		- **Extracting parameters** : Parse **arguments** string with **json.loads()** to get python dictionary or parameter names and values. 
+		- **Handling Multiple Calls** : An Agent can request multipl tools in one response. Loop through **tool_calls** array and execute each sequentially or concurrently.
+		
+	### Tool Choice - Agent choice of calling a tool
+		* You can control whether the agent **must call a tool (forced), can choose to use one(auto) or cannot use any (none)**
+			- **tool_coice : "auto" (default)** : The agent decides whether to call a tool. Use when the agent should have autonomy.
+			- **tool_choice : "required"** : The agent must call one fo the provided tools, Use when the user's request always required an action
+			- **tool_choice : {"type" : "function", "function" : {"name" : "get_waether"}}** : 	Force the agent to call a specific tool. Use for deterministic workflow.
+
+		
+	
