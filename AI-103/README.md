@@ -1102,3 +1102,29 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			
 			
 Note : Code interpreter tool allows an AI agent to execute Python code safely in a sandbox environment. This is commonly used for performing calculations, analyzing data and processing files, which gives the agent powerful analytical capabilities
+
+
+### What Language tool does
+
+Adding Azure Language (formerly Azure AI Language, now integrated as Azure Language in Foundry Tools) to an AI agent in Azure connects the agent to specialized, deterministic Natural Language Processing (NLP) services via the Model Context Protocol (MCP) or direct APIs.
+Instead of relying purely on a Large Language Model (LLM) for every text-processing task, the agent can offload specific analytical or compliance jobs to Azure Language for faster speed, lower cost, and higher precision.
+
+**What It Does**
+
+• Offloads Processing: The agent calls Azure Language tools automatically when instructed, saving LLM token usage and computational overhead.
+• Integrates via MCP: It uses a cloud-hosted or local Model Context Protocol (MCP) server so agents can tap into these tools with minimal custom code. 
+• Provides Deterministic Precision: It offers specialized, rule- and model-based outputs for tasks where general LLMs might drift or hallucinate.
+
+**Key Abilities & Capabilities**
+
+_By adding Azure Language to your agent (via Azure Language in Foundry Tools), your agent gains access to:_
+• **PII Detection and Redaction**: Automatically detects, flags, and redacts Personally Identifiable Information (such as credit card numbers, Social Security numbers, or names) from text and conversation transcripts for compliance and privacy.
+• **Named Entity Recognition (NER)**: Extracts and categorizes key entities from text—such as people, places, organizations, quantities, and custom entities.
+• **Language Detection**: Automatically identifies the language of user inputs or documents.
+• ** Sentiment Analysis & Opinion Mining**: Evaluates positive, neutral, or negative tone and extracts granular opinions tied to specific aspects of a product or service.
+• **Text Summarization & Conversation Recapping**: Condenses long documents, meeting transcripts, or customer support threads into key bullet points or chapter breakdowns.
+• **Text Analytics for Health**: Parses unstructured medical and clinical text to extract medical entities, assertions, and relationships.
+• **Conversational Language Understanding (CLU)**: Powers multi-turn, context-aware dialogue and intent routing.
+• **Custom Question Answering**: Delivers grounded, consistent answers built on top of your own knowledge bases or documentation. 
+
+
