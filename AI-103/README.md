@@ -1062,4 +1062,42 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 			- **tool_choice : {"type" : "function", "function" : {"name" : "get_waether"}}** : 	Force the agent to call a specific tool. Use for deterministic workflow.
 
 		
-	
+	### Parallel Tool calls - Executing multiple tools at once
+		* Agents can request multiple tools in one request. Your orchestration code can execute them in parallel ro reduce total response time.
+			- **Parallel Execution** : Use **asyncio.gathre()** to execute multiple toll calls simultaneously. Results arrive in any order
+			- **When to use Parallel** : Execute tools in parallel when they are independent, Ex. get whether for three cities simultaneously.
+			- **Sequential Fallback** : If tools have dependencies, execute sequentially. The agents second too call can reference the first result.
+
+	### Idempotent Tools - Handling duplicate calls 
+		* An idempotent tool produced the same result if called multiple times with the same parameters. Critical for tool that change data.
+			- Non-Idempotent Example : "Send email " - calling twice sends two email. Nt idempotent. Dangerous if retries
+			- Idempotent Example : "Set temperature to 72F" - calling twice has same effect. Safe to retiy
+			- Implementing Idempotency : Include a **request_id** parameter. Tool checks if it already processed that request_id and returns cached result without repeating the action
+
+	### Tool Timneout and Retries
+		* Tool calls can hang (never return) or take too long. Your code must set timeouts and implement retry logic for transient failure.
+			- Setting Timeouts : Use **request.get(ulr, timeout=10)** - fails after 10 seconds. Choose timeout based on expected tool latency
+			- **Retry Strategy** : For Network error (timeout, connection refused), retry up to 3 timewith exponential backoff (1s, 2s, 4s)
+			- **Circuit Breaker** : If a tool fails 5 times in 1 minute, stop calling it for 30 seconds. prevents cascading failure when a downstream service is down.
+
+	### Tool call History
+		* Your agent must remember previous tool calls their results to avoid repeating the same call and to reference past result.
+			- **Storing in Conversation History** : Every tool call (request) and tool response (result) is stored in the conversation messages array as separate entries.
+			- **Preventing Repeated calls** : Before calling a tool, check if the same tool with same parameters was called in the past 10 messages. If yes, reuse cached result.
+			- **Referencing Past Result** : The agent's system instruction can say "Remember past tool results. If asked again, answer from memory without calling the tool.
+
+	### Logging Tool calls with Foundry Trace
+		* Foundry Trace records every tool call - name, parameters, result, duration - allowing yout to debug tool failure and measure perfomance
+			- **Trace Span Per tool call** : Create a span (logged opertion) for each tool call.Add **attributes : tool_name, parameter_json, status_code, duration_ms**
+			- **Recording Result** :  Add **tool_result**  attrbute to span. If error , add **error_type** and **error_message** attribute.
+			-  **Debugging Failures** : In Foundry Trace, filter spans by **error_type** to find all failed tool calls. Examine parameters to see what causes the failure.
+
+	### Security - Validate Tool Parameters
+
+		* Never trust parameters that come from an LLM. Validate all tool inputs to prevent injection attack and malformed request.
+			- **Parameter Validation** : Check that **email_address** matches the regex , Check amount is positive    number within allowed range
+			- **SQL Injection Prevention** : If tool queries a database, use parameterized queries, not string concatination. ex. **cursor.execute("Select * from user where id=?" ,user_id)**
+			- **URL Injection** :  If tool calls a URL from a parameter, validate it belonged to an allows domain list.
+
+			
+			
