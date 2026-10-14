@@ -1101,3 +1101,4 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 
 			
 			
+Note : Code interpreter tool allows an AI agent to execute Python code safely in a sandbox environment. This is commonly used for performing calculations, analyzing data and processing files, which gives the agent powerful analytical capabilities
