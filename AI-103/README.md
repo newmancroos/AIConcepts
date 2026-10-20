@@ -1172,5 +1172,17 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 			* **Response Structure - Error** : {"isErros" : true, "content" : ["type" : "text",  "text" : "Sharepoint authentication failed"}]}. Agent sees error and can retry or escalate.
 
 
-		
+	### Configuring MCP in Foundry 
+		- In Foundry, we can configure MCP server endpoints per agent or per project, providing the URLs and authentication credentials for each server.
+			* **Server Configuration In Foundry** : In Agent settings, add an MCP server entry with **URL (eg. https://mcp-server.company.com), auth_type (bearer toekn, API key) and credentials**.
+			* **Multiple Servers per Agent** : An Agent can connect to multiple MCP servers, The agent discovers tools from all servers and can call any discovered tool.
+			* **Environment-Specific URLs** : Configure different server URLs for development, staging and production. Use environment variables to switch.
+
+	### MCP Authentication
+		- MCP server authentication agents using Bearer token (JWT) or API key, which are configured in Foundry and injected automatically by MCP client.
+			* **Bearer Token Flow** : Agent sends **Authorization : Bearer --token--** header with every MCP request. Foundry obtains the token from Entra ID using the agent's managed identity.
+			* **API Key Flow** : Configure a static API key in foundry. The MCP client adds **X-API-Key : --key--** header to all the requests.
+			* **Entra Agent Id Integration** : MCP servers can validate the bearer token against Entra ID, ensuring the agent has permission to call the tool based on its Agent Id.
+
+	
 	
