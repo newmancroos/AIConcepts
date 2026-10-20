@@ -1185,4 +1185,44 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 			* **Entra Agent Id Integration** : MCP servers can validate the bearer token against Entra ID, ensuring the agent has permission to call the tool based on its Agent Id.
 
 	
+	### MCP VS Custom Tool Code
+		- Use MCP when you have many tools or tools that changed frequently. Use Custom code for simple, stable, single-purpose tools.
+			* **Use MCP When** : You have 10+ tools, tools are added or removed frequently, or tools are provided by different teams. MCP eliminates per-tool code changes.
+			* **Use Custom Code when** : You have one or two tools, tools never change or you need deep optimization (eg. streaming responses, custom retry logic).
+			* **Hybrid Approach**  : Use MCP for standard enterprise tools (Sharepoin, Salesforce, databases). Write tools for agent-specific logic (validation, aggregation).
+
+	### MCP with Sharepoint 
+		- An agent using MCP can search SharePoint document, read files, update metadata without writing any SharePoint-specific code.
+			* **SharePoint MCP Server** : Microsoft provide a pre-built MCP server for SharePoint. Deploy it in your environment. It handles SharePoint authentication and API calls.
+			* **Agent Discovery** : Agent calls **list_tools** on the SharePoint MCP server. Discovers tools : **search_sharepoint, get_document, update_metadata**. 
+			* **Agent Action** : Use asks "Find the budget presentation from last quarter." Agent calls **search_sharepoint** with query "**budget presentationQ4**"
+					Return document list.
+
+	### MCP with Local Tools (File system and scripts)
+		- MCP servers can expose local tools like file system operation, command-line scripts and internal functions that run on your infrastructure.
+			* **Local File Tool** :  MCP server offers **read_file** tool with parameter **path**. Agent can request any file the server has access to. Server reads and returns content.
+			* **Script Execution Tool** : MCP server offers **run_script** too with the parameters **script_name and arguments**. Agent can trigger internal snslytics or ETL jobs.
+			* **Security Restrictions** : MCP servers should restrict which local paths and scripts are exposed. Do not expose the entire file system, Whitelist allowed operations.
+
 	
+	### MCP tool composition
+		- An agent can compose multiple tool calls, using the output of the one tool as the input to another, without writing composition code
+			* **Composition Flow** : Agent calls **search_sharepoint** to find the document Id, Then call **get_document** with that ID. Then call **summarize_text** on the document content.
+			* **No Custom Glue code** : The agent's reasoning handles the composition. The LLM decides the sequence based on the tool description and user goal.
+			* **Error Handling in Chain** : If the first tool fails (No document found), the agent should not call subsequence tools. The agent checks each result before proceeding.
+
+	### MCP Observability with Foundry Trace
+		- Foundry Trace records all MCP operations - discovery request, tool calls, responses and errors - as spans in the agent's trace.
+			* **Discovery Span** :  When agent calls **list_tools**, Foundry trace creates a span with attributes : **mcp.server.url**, **tool_count**, **duration_ms**.
+			* **Tool Call Span** : Each **tool_call** creates a span with **tool_name**, **parameters_json** , **response_length**, **status** and **duration_ms**
+			* Debugging Failures :  If a tool call fails, the span includes **error_type** and **error_message**. Filter trace by **mcp_server_url** to find all failures from a specific server.
+
+
+	### MCP Security
+		- MCP servers should whitelist (explicitly allow) specific tools for each agent, preventing agents from discovering or calling unauthorized tools.
+			* **Per-Agent Whitelist** : Configure which tools each agent can discover. Agent A can see **search_sharepoint** but not **delete_file**. Agent B can see both.
+			* **Whitelist Implementation** : MCP server checks agent;s Entra Agent ID against a configuration map. If the tool not in whitelist, server omits it from **list_tools** response.
+			* **Call-Time Validation** : Even if an agent somehow knows a tool name, the server rejects **call_tool** for tools not on the whitelist. Defense in depth.
+
+	
+			
