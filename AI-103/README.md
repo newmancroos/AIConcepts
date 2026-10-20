@@ -1165,5 +1165,12 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 			* **Schema for Parameters** : The **input_schema** tells the agent what parameters the tool expects and their data type (string, number, boolean, array)
 	
 			
+	### MCP Tool Call
+		- To call a tool agent sends a **call_tool** JSON message with the tool name and parameters. The server executes the tool and returns a standardized response.
+			* **Request Structure** : {"method" : "call_tool", "params" : {"name" : "search_sharepoint", "arguments": {"query" : "budget report", "site_id" : "finance"}}}
+			* **Response Structure - Success ** : {"content" : [{"type" : "text", "text" : "Found 3 documents: budget_2025.docx, ...}]}. the agent receives this text.
+			* **Response Structure - Error** : {"isErros" : true, "content" : ["type" : "text",  "text" : "Sharepoint authentication failed"}]}. Agent sees error and can retry or escalate.
 
+
+		
 	
