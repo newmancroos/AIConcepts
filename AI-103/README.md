@@ -1154,7 +1154,7 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 
 	### MCP Client
 		- An MCP Client is the component inside your agent that speaks the MCP protocol, discovering tools and sending call request to MCP server.
-			* **MCP Server in Agent Framework** : Microsoft Agent Framework includes a built-in MCP client. Your agent uses it without writing protocol code.
+			* **MCP Client in Agent Framework** : Microsoft Agent Framework includes a built-in MCP client. Your agent uses it without writing protocol code.
 			* **Client Discovery Flow** : The Client sends **list_tools** to server URL you configure. The client caches the tool list for the session
 			* Client Call Flow : When the agent decides to call a tool, the client sends **call_tool** with the tool name and parameters. The client return the response to the agent.
 
