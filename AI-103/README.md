@@ -1128,3 +1128,42 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 • **Custom Question Answering**: Delivers grounded, consistent answers built on top of your own knowledge bases or documentation.  <br />
 
 
+## Model Context Protocols (MCP)
+
+	### What is MCP?
+	
+	Using different tool (Slack, SalesForce, SharePoint) require custom integration code. Large enterprices have hundreds of tools, Custom code does not scale. <br />
+		So we have MCP that industry standard for **Handshake** that let agents discover and call tools without custom code. 
+			* MCP is an open standard that defines how agents discover, connect to, and call external tools using common handshake
+				- **Definition** : MCP is a protocol (set of rules) that any agent and any tool can implement. If both support MCP, they can communicate without custom code.
+				- **The USB - C for AI Analogy** : Just as USB-C connects any device to any charger, MCP connect any agent to any MCP-compatible tool without custom drivers.
+				- **Who Created MCP** : MCP developed by Anthropic and adopted by Microsoft as the standard for Foundry agents. It is now an industry standard.
+
+	
+	### The MCP Handshake
+		- The MCP handshake is two step process : The Agent discovers what tools a server offers. Then connects and calls them using standard JSON messages.
+			* **Step 1 - Discovery** : Agent sends **list_tools** request to MCP server. Server returns JSON list of all available tools, their descriptions and parameters schemas.
+			* **Step 2 - Connection** : Agent sends **call_tool** request with tool name and parameters. Server executes the tool and returns a standard JSON response.
+			* **No Custom Code** : The agent does not need to know the tool's API details in advance. The tool describes itself during discovery.
+
+	### MCP Server
+		- An MCP server is a service that expose one or more tools to agents using MCP protocols, acting as a bridge between agents and enterprise systems.
+			* **MCP Server Definition** : The server runs in your infrastructure, connected to your tools (SharePoint, database, internal APIs). It translates MCP calls to actual API calls.
+			* **Server Responsibilities** : The server authenticates to downstream tools, handler rate limits, transforms responses to MCP format, and logs all tool calls.
+			* **Who runs the Server** : Your teams deploys and maintains MCP servers. Microsoft does not provide them. Each enterprise deploys its own servers for its internal tools.
+
+	### MCP Client
+		- An MCP Client is the component inside your agent that speaks the MCP protocol, discovering tools and sending call request to MCP server.
+			* **MCP Server in Agent Framework** : Microsoft Agent Framework includes a built-in MCP client. Your agent uses it without writing protocol code.
+			* **Client Discovery Flow** : The Client sends **list_tools** to server URL you configure. The client caches the tool list for the session
+			* Client Call Flow : When the agent decides to call a tool, the client sends **call_tool** with the tool name and parameters. The client return the response to the agent.
+
+	### MCP Tool Discovery
+		- When an agent sends a **list_tool** request, the MCP server returns a JSON array describing each available tool, its description and parameter schema.
+			* **Response Structure** : {"tools" : [{"name": "search_sharepoint", "decription" : "Search documents in sharepoint", "input_schema: {"query": "string", "site_id" : "string"}}]}
+			* **Agent Uses Description** : The agent reads the **description** field to understand what the tool does. The LLM uses thisdescription to decide when to call the tool.
+			* **Schema for Parameters** : The **input_schema** tells the agent what parameters the tool expects and their data type (string, number, boolean, array)
+	
+			
+
+	
