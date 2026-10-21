@@ -1248,10 +1248,13 @@ Note :  **glama.ai**   has MCP Servers and MCP Connector (exa.ai/mcp is the MCP 
 	
 ### What is an MCP Connector?
 
-An MCP connector is the client-side interface that sits inside your AI application or host platform (such as Claude Desktop, an IDE, or an agent platform).
-• Role: It acts as the "hand" of the AI agent, bridging the gap between the LLM and the remote MCP server.
-• Function: It manages the mechanics of communication:
-	• Initiates the connection to the MCP server.
-	• Handles authentication (such as API keys or OAuth 2.0).
-	• Translates the AI's intent into structured request formats and parses the server's responses back into text the model can read.
+An MCP connector is the client-side interface that sits inside your AI application or host platform (such as Claude Desktop, an IDE, or an agent platform). <br />
+• Role: It acts as the "hand" of the AI agent, bridging the gap between the LLM and the remote MCP server.<br />
+• Function: It manages the mechanics of communication:<br />
+	• Initiates the connection to the MCP server.<br />
+	• Handles authentication (such as API keys or OAuth 2.0).<br />
+	• Translates the AI's intent into structured request formats and parses the server's responses back into text the model can read.<br />
+
+
+
 
