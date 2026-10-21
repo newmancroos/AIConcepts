@@ -1226,23 +1226,24 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 
 	
 ## Using External MCP Server in Microsoft Foundry
-	- Create Agent with any LLM
-	- In Tool -- Add -- Add Tools
-	- Select Custom -- Model Context Protocol (MCP), select and click Create
-	- Copy the MCP connector URL as described below in the Note
-	- In Authentication select **Unauthenticated**  because our MCP connect is No auth
-	- Click Connect
-	- Now we can ask agent a question related to the connected MCP server through MCP connector
-	- If we ask the agent " What tools do you have available? It will list down 2 tools that exa MCP server has (mcp_exa2.web_search_exa, mcp_exa2.web_fetch_exa)
-	- If I ask "For fifa 2026, what was the last game played and score?" agent use web_search_exa and return the result.
+- Create Agent with any LLM
+- In Tool -- Add -- Add Tools
+- Select Custom -- Model Context Protocol (MCP), select and click Create
+- Copy the MCP connector URL as described below in the Note
+- In Authentication select **Unauthenticated**  because our MCP connect is No auth
+- Click Connect
+- Now we can ask agent a question related to the connected MCP server through MCP connector
+- If we ask the agent " What tools do you have available? It will list down 2 tools that exa MCP server has (mcp_exa2.web_search_exa, mcp_exa2.web_fetch_exa)
+- If I ask "For fifa 2026, what was the last game played and score?" agent use web_search_exa and return the result.
 		
 		
 Note :  **glama.ai**   has MCP Servers and MCP Connector (exa.ai/mcp is the MCP server web site That we we use from glama.ai) <br />
-		- Select MCP connectors and search for connector
-		- Select filter like **No Auth**, **web-scraping**
-		- Type Web search in the search bar and select **exa**
-		- Click on it and copy the url
-		- We can find what are the tools available on this MCP connector. This tools are discovered my the connector. Connector doesn't have tools
+
+- Select MCP connectors and search for connector
+- Select filter like **No Auth**, **web-scraping**
+- Type Web search in the search bar and select **exa**
+- Click on it and copy the url
+- We can find what are the tools available on this MCP connector. This tools are discovered my the connector. Connector doesn't have tools
 			
 	
 ### What is an MCP Connector?
