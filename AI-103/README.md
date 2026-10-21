@@ -1225,4 +1225,32 @@ _By adding Azure Language to your agent (via Azure Language in Foundry Tools), y
 			* **Call-Time Validation** : Even if an agent somehow knows a tool name, the server rejects **call_tool** for tools not on the whitelist. Defense in depth.
 
 	
+	## Using External MCP Server in Microsoft Foundry
+		- Create Agent with any LLM
+		- In Tool -- Add -- Add Tools
+		- Select Custom -- Model Context Protocol (MCP), select and click Create
+		- Copy the MCP connector URL as described below in the Note
+		- In Authentication select **Unauthenticated**  because our MCP connect is No auth
+		- Click Connect
+		- Now we can ask agent a question related to the connected MCP server through MCP connector
+		- If we ask the agent " What tools do you have available? It will list down 2 tools that exa MCP server has (mcp_exa2.web_search_exa, mcp_exa2.web_fetch_exa)
+		- If I ask "For fifa 2026, what was the last game played and score?" agent use web_search_exa and return the result.
+		
+		
+	Note :  **glama.ai**   has MCP Servers and MCP Connector (exa.ai/mcp is the MCP server web site That we we use from glama.ai) <br />
+			- Select MCP connectors and search for connector
+			- Select filter like **No Auth**, **web-scraping**
+			- Type Web search in the search bar and select **exa**
+			- Click on it and copy the url
+			- We can find what are the tools available on this MCP connector. This tools are discovered my the connector. Connector doesn't have tools
 			
+	
+### What is an MCP Connector?
+<p>
+	An MCP connector is the client-side interface that sits inside your AI application or host platform (such as Claude Desktop, an IDE, or an agent platform).
+	• Role: It acts as the "hand" of the AI agent, bridging the gap between the LLM and the remote MCP server.
+	• Function: It manages the mechanics of communication:
+		• Initiates the connection to the MCP server.
+		• Handles authentication (such as API keys or OAuth 2.0).
+		• Translates the AI's intent into structured request formats and parses the server's responses back into text the model can read.
+</p>
