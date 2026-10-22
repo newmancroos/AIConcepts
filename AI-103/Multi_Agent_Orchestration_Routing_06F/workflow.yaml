@@ -1,0 +1,46 @@
+kind: workflow
+trigger:
+  kind: OnConversationStart
+  id: trigger_wf
+  actions:
+    - kind: InvokeAzureAgent
+      id: primary-agent-node
+      agent:
+        name: agent1
+      conversationId: =System.ConversationId
+      input:
+        messages: =System.LastMessage.Text
+      output:
+        autoSend: true
+        messages: Local.Var3095
+    - kind: ConditionGroup
+      conditions:
+        - condition: =MessageText(Local.Var3095) = "simple"
+          actions:
+            - kind: InvokeAzureAgent
+              id: node-1784338797481
+              agent:
+                name: agent2-simple
+              conversationId: =System.ConversationId
+              input:
+                messages: =System.LastMessage.Text
+              output:
+                autoSend: true
+            - kind: EndConversation
+              id: node-1784337721725
+          id: if-node-1784335107342-s7p8o7pp
+      id: node-1784335107342
+      elseActions:
+        - kind: InvokeAzureAgent
+          id: node-1784339101173
+          agent:
+            name: agent2-complex
+          conversationId: =System.ConversationId
+          input:
+            messages: =System.LastMessage.Text
+          output:
+            autoSend: true
+        - kind: EndConversation
+          id: node-1784337739741
+name: basic-agent-workflow
+description: ""
