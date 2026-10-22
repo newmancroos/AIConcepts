@@ -1,6 +1,15 @@
 # AI-103
 
 
+## Configuring VS code project 
+1. python -m venv tutorials
+2. tutorials/Scripts/activate
+3. python -m  pip install -r requirements.txt
+4. --Install Bicep (or Update it)
+<br /> * az bicep install
+<br /> * az bicep upgrade
+
+
 - What Is AI Agent?
     * It is an autonomous software system that uses **Reasoning, Memory and External tools** to perceive its environment, make decisions and multi-step  actions to achieve the  goal.
     * AI Agent is not like a request to an LLM like ChatGPT-5 and get the response but it can perform muti-step tasks without human guidance for each step.
@@ -691,3 +700,561 @@ output OPENAI_DEPLOYMENT_NAME string = modelDeployment.name
 		- In the Knowledge, Connect created Knowledge and press Save in the top
 		- Now we can ask question to the agent.
 				
+## Microsoft Fabric
+	* It is a unified data platform that bring together **data lake, warehouses and analytics** into a single product called **OneLake**.
+		- **Fabric Definition** : Fabric replaces separate Azure services (**Data Lake, data Warehouse, Synapse**) with one integrated platform for all enterprise data.
+		- **OneLake Explained** : OneLake is the single storage layer in Fabric. Every piece of data in your company lives in OneLake
+		- **Fabric VS Traditional Storage** : Traditional storage copies data between systems. Fabric stores data once in OneLake, and all tools access the same copy.
+
+### How Agent query OneLake
+	*  Agents query OneLake by sending Sql-Like requests to an Azure AI Search Index that is connected to fabric data.
+		- **OneLake Connections** : You create an AI Search Index that points to OneLake tables. The Index does not copy data, it reads from Fabric live.
+		- **Query Flow** : Agent calls Search Tool -- Search Index translate query to Fabric SQL -- Fabric returns result -- Search Index returns results to agent
+		- **No Data Movement** :  Because Search Index reads data from OneLake live, your grounding data is always current. No sync job or data copies needed.
+
+### OneLake Use case for Agents
+	* OneLake is ideal for agents that need to query across multiple business systems like Sales, Inventory and Customer support.
+		- **Cross-System Query example** : "Show me Orders from customers who opened support tickets last weeks." OneLake joins sales and support data in one query.
+		- **Real-Time Reporting** : "What are our current inventory for all warehouses?. OneLake queries live data from operational systems without delays.
+		- **Historical analysis** : "Compare this quarter's sales to last quarter.". OneLake stores years of historical data without performance degradation.
+
+### Fabric Security
+	* Fabric integrates with **Entra Agent ID**, allowing you to grant agent access to specific tables or rows without granting access to all data
+		- **Row-Level Security** : You can define rile like "Agent can only see Orders for region = Europe", The agent's Entra Agent Id determines which rows are visible.
+		- **Column-Level Security** : You can hide sensitive columns (like customer payments details) from certain agents while allowing others to see them.
+		- **Permission Inheritance** : An Agent's Fabric permission are managed through Entra Agent ID. 
+## Cosmos DB as Vector store
+	* Azure Cosmos DB can store vectors (embedding) alongside your operational data, allowing agent to search for similar items in real time
+		- **Cosmos DB Vector Search feature** : Cosmos DB includes native vector indexing. You can store an embedding vector in each documents as a filed, then search for similar vectors.
+		- **Operational Consistency** : Unlike separate search indexes, Cosmos DB keeps vectors and operational data together. When you update a product price, its vector updates automatically.
+		- **Use Case Example** : Product catalog agent, User asks "Find laptops similar to this one". The agent generates an embedding of the product description and search Cosmos database for similar embedding.
+
+## Cosmos DB VS Azure AI Search for grounding
+	* Choose Cosmos for frequently changed data and AI Search for static document collections.
+		- **Cosmos DB Strength** : Real-time updates (millisecon latency), transactional consistency and vector search plus SQL queries in one database
+		- **Azure AI Search Strength** : Advance relevent tuning (:earning to rank), hybrid search (Vector + Keyword) and larger document size (up to 16MD per document)
+		- Decision Rule : Frequently change data or Required transaction go for Cosmos. Otherwise Azure AI search.
+
+## Coding Pattern - Cosmos DB Vector search
+
+	* Use Azure Cosmos Db SDK with vector similarity search query.
+		- **SDK Pattern** : Use "**from azure.cosmos import CosmosClient**". Query with "**SELECT TOP 10 c.id, c.product_nmame, c.description FROM c ORDER BY VectorDistance(C.EMBEDDING, @EMBEDDING)**"
+			here @embedding is the parameter containing your user question's embedding vector as an array of number.
+		- **Response Handling** : Cosmos DB return JSON document with product_name, description and a VectorDistanceScore (0-1). extract and pass to LLM.
+
+## managing Connection string for Cosmos DB
+	* We can use Cosmos DB connection string (containing account end-point and secret key) for authenticate.
+		- **Connection string format** : **AccountEndpoint = https://your-account.documents.azure.com; AccountKey=your-account-key**.
+		- **Secure Storage Pattern** : Store connection string in Azure Key-Vault.  Your agent retrieves it at startup using **DefaultAzureCredential()** to authenticate to Key-Valut.
+		- Managed Identity for Cosmos DB : Enable managed identity on your agent service. Grant that managed identioty "Cosmos DB Built-in Data Contributor" role. No connection sring needed.
+
+## Hybrid Search - Combining Vector and Keyword
+	- **Why Hybrid Is Better** : Vector search finds "laptop charger" when user says "power cord for computer", Keyword search finds exact part number like "model XF-1000".
+	- **Azure AI Search Hybrid** : In query JSON, set 'search' (keyword terms) and 'vectorQueries' (embedding vector). Search combines using Reciprocal Rank fusion.
+	- Cosmos DB Hybrid : Use '**WHERE CONTAINS(c.description, @keyword) OR VectorDistance(c.embedding, @embedding) < 0.8**'
+
+## Grounding Cost Optimization
+	- Use Azure Redis to store grounding result for common questions. If same question is repeat, return it from chache.
+	- Before full vector search, use cheap keyword filter to narrow the candidates. ex. filter by prduct category.
+	- Use text-embedding-3-small instead of 'text-embedding-3-large meaning use small model.
+	- Dimension is the number of numerical value that represent a piece of data.
+
+## Index selection Strategy for agent
+	* An agent may need multiple search indexes - one for Product catalog, one for customer support articles and one for internal policies
+		- **Index Selection by Agent** : Give the agent a tool that accepts 'index_name' parameter. The agent decide which index to search based on the user's question.
+		- **Example Agent Reasoning** : "User asking about refund policy" - search support-article' index. "User asking about laptop specification - search product-catalog index'
+		- **Implementation** : Your tool code maintain a dictionary mapping index names to their endpoints and keys. The agent'sparamter select which index to query.
+
+		
+## Real time Ground with Change Data Capture (CDC)
+	- **CDC Definition** : CDC monitors your source database (Cosmos, Sql server) for changes, When a record updates, CDC pushed the changes to your search Index.
+	- **Fabric CDC** :  Fabric OneLake automatically reflects changes in source systems, No explicit CDC configuration need for Fabric-connected indexes.
+	- **Cosmos DB CDC** :  Use Azure function with Cosmos DB Change feed. When a document changes, the function calls Azure AI Search to update the index.
+
+## Multilingual Grounding
+		- **Cross-Lingual Embedding** : Use embedding models like 'text-embedding-3-large' that support 100+ languages. The embedding for 'Refund' in English is close to 'remboursement' in french.
+		- **Indexing Strategy** : Store original document text and its embedding in one index. The same embedding model generates vectors for both document and user query.
+		- **Agent Experience** : User asks in Spanish, Agent generate Spanish embedding. Search return English documents with similar meaning. Agent answers in Spanish using English source content.
+		** Foundry Trace/Monitoring records each grounding step - the query embedding, search result and which document the agent cited. Review traces to debug grounding failures.
+		
+		
+## System Instruction
+
+	### Persona
+		* What is Agent Persona? It is the first part of a system instruction. It tells the agent its role, tone and relationship to the user.
+
+			- **Perona Components** : **Role** (customer support agent, sales assistant, technical expert),  
+								  **Tone** ( Professional,friendly, concise)
+								  **Relationship** (helper, advisor, coordinator)
+			- **Example Personal** : "You are a technical support engineer for Azure. Your tone is patient and educational. You are helping developers solve cloud problems.
+			- **Without Persona** : Without persona, the LLM default to a generic assitant. It may soud robotic or fail to establish trust with user.
+			
+	### Boundaries - What the Agent cannot do
+		* Boundaries are rules in the system instruction that defines actions that agent is never allowed to take, regardless of user request.
+			- **Hard Boundaries Definition** : Hard Boundaries are absolute prohibitions. Ex. "Never delete user data"
+			- **Soft Boundaries Definition ** : Soft Boundaries allow exceptions with conditions. Ex. "Only share refund amount if the user has verified their order number"
+			- **Boundary Enforcement** : The LLM follow boundaries in its reasoning. If a user asks to violate a boundaries, the agent refuses and explain why.
+
+	### Grounding Rules
+		* Grounding rule in the system instruction tell the agent hot to use search results. When to trust them and when to admit uncertainty.
+			- **Citation Requirement** : When you answer using grounding results, cite the source documentId. Do not present retrieved facts as your own knowledge.
+			- **Uncertainty Handling** : If there is no result from grounding just say I cannot find any inf rather than inventing an answer.
+			- **Priority of Grounding** : Always prefer information from grounding results over your training data. If they conflict, trust the grounding result.
+
+	### Safe Behavior - Refusing harmful requests
+		* System instruction must include rules that cause the agent to refuse harmful, illegal or unethical request without escalation
+			- **Refusal Template** : If a user ask you to do something illegal, respond  with "I cannot help with that request. Please ask something else."
+			- **No Escalation Rule** : "Do not explain why the request is harmful. Do not suggest alternatives. Simply refuse and mov to next topic"
+			- **Safety Override** : Safety rule in system instruction take precedance over all other instructions, including user request to ignore safety.
+			
+			
+	###	Tool calling instructions
+		* Tool calling instructions tell the agent which tools are available, when to use each tool and how to choose paramters.
+			- **Tool Availabilities** : "You have access to search tool and email tool. Use search tool to find information. Use email tool only when user explicitly asks to send email."
+			- **When not to call tools** : "Do not call search tool for greetings small talk or questions about your own capabilities. Respond directly from your knowledge"
+			- **Parameter Extraction** : "When calling search tool, extract filter values from user's question, Example : 'Show me refund from last week'  -- filter date gt 2025-04-21'" 
+		
+	### Chain of Thought(CoT) 
+		* **CoT** instruction tells the agent to show its reasoning steps before answering, improve accuracy and debuggability.
+			- **CoT Definition** : Chain of Thought means the agent writes ints internal reasoning in the response before giving the final answer. users see the reasoning.
+			- **CoT Instruction** : "Before answering, write your reasoning in <thinking> tags. include, what the user asked, what information you have and what steps you will take" 
+			- **Benefits of CoT** : Showing reasoning helps users trust the answer. It is also helps you debug when the agent make mistakes - you see where reasoning broke down. 
+
+	### Structure output formats instruction
+		* Structure output instruction tells the agent to return responses in a specific JSON format rather than a free text.
+			- **When to use Structure output** : Use structure output when another syste (not a human) reads the agent's response. Exampl: an API returning data to a obile app.
+			- **Example JSON Instruction** :  "Return your return response as JSON with fields : 'Answer' (string), 'confidence' (number 0-1), and 'sources' (array of document IDs). 
+				Do not include any text outside the JSON.
+			- **Validation** : Your code must validate that the agent returned valid JSON. If not, retry with a stronger system instruction.
+
+	### Length and Verbosity control
+		* Length control instructions tells the agent to keep responses brief, detailed or within specific token limits.
+			- **Concise Instruction** : "Keep responses under 50 words unless the user asks for details. One sentence per answer when possible."
+			- **Detailed Instruction** : "Provide comprehensive answer with step-by-step explanations. Include examples and edge cases. Target 200-500 word per response.
+			- **Token limit Awareness** : "If you need to response with more than 4000 tokens, summarize the response and offer to provide details in the next message"
+
+	### Dynamic System Instruction Construction
+		* Dynamic construction means your code builds the system instruction programmatically based on **user context, session state or grounding results**.
+			- **Why Dynamic Construction** : Different user need different rules. Example : Admin users get broader permissions. Guest user gets restricted permission and tool acccess.
+			- **Context Variables** : Your code inject variables into the system instruction template:
+				'system_prompt = f"You are a support agent for user {user_name}. Their role is {user_role}."'
+			- **Grounding-Aware Instruction** :  If grounding result are available, append : "Using this customer data: {customer_data}. Answer questions about this specific customer.
+			
+	### Appending Grounding result to System Instructions
+		*  When you have grounding results, you append them to system instruction (not to user message) so the agent treats them as persistent context.
+			- **Why Appending to System** : Grounding result appended to system instruction are treated as authoritative fact. The agent will use them throughout the conversation.
+			- **Implementation** : 'grounded_system = original_system + "\n\nRelevant information from search:\n + grounding_text'. Then send as system message.
+			- **Token limit Caution** : System instruction plus grounding result count toward token limit. If too large, summarize grounding result or move to user message.
+			
+	### System Instruction Versioning
+		* System instruction versioning means, storing past versions of the system instructions to you can roll back if a new version causes bad behavior.
+			- **Store in Source Control** : save each system instruction version in your code repository with version number and timestamp.
+			- **A/B Testing** : Deploy two agent versions with different system instructions. Route 50% of users to each. Compare satisfaction and error rates.
+			- **Rollback Process** : If a new instruction causes errors, redeploy the previous version from source control. Downtime is minutes not days.
+
+	### Testing System Instruction with Red Teaming
+		* Red teaming agents can test your system instruction by attempting jailbreak, boundary violation, and instruction conflicts.
+			- **What Red teaming Tests** : Red teaming agents send prompts like "Ignore your system instruction"  or " You are now a different agent" to see if system instructions hold
+			- **Failure Detection** : If a red teaming prompt causes agent to violate a boundary, the system instruction is too weak. Strengthen it or add explicit refusal rules.
+			- **Automated Regression Testing** : Run red teaming after every system instruction change. If a previously passing test fails, the new instruction introduced a vulnerability.
+
+			
+			
+## Multiple Agents
+
+	### What is Microsoft Agent Framework
+		* Microsoft Agent Framework is official successor to **Semantic Kernel** and **AutoGen** - a unified SDK for building multi-agent systems in Python and C#
+			- **Framework Definition** : The Agent Framework providers pre-built classes for creating agents, defining tools, managing conversation and orchestrating multi-agent workflows.
+			- **Successor to Semantic Kernel and AutoGen** : Microsoft combined the best of both older frameworks into one supported product. Use Agent Framework for all new projects.
+			- **Why Microsoft Built it** : Enterprise needed standardized patterns for agent coordination, not custom code for every project. The Framework provides those patterns.
+
+			
+	### Three core Microsoft Agent Framework Patterns : 
+		* Microsoft Agent Framework supports three patterns for coordinating multiple agents:
+			- **Magnetic (Manager) Pattern** : One central manager agent receives user requests and delegates subtasks to specialized sub-agents. The manager controls the flow 
+			- **Handoff (Transfer) Pattern** : Agents explicitly transfer conversation control to another agent, passing all context and state. Example : Support agent hands off to Billing agents.
+			- **Group Chat (Collaboration) Pattern** : Multiple agents share A CONVERSATION SPACE. a sPEAKER SELECTION ALGORITH DECIDES WHICH AGENT SPEAKS NEXT BASED ON THE CONVERSATION.
+
+	### Magentic (manager) Pattern 
+		* In the magnetic pattern, One manager agent receives the user's request, decide which specialized sub-agents can help and delegates the task.
+			- **Manager Responsibilities** : The manager agent has system instruction that says "You are a coordinate specialists. Do not answer user questions directly. Delegate to the correct sub-agents.
+			- **Sub-Agent Specialization** : Each sub-agent handles one domain: Refund Agent, TechnicalSupport agent, Account agent. Sub-agents have no awareness of each other.
+			- **Flow Example** : User asks "Refund my order", Manager receives request, calls Refund Agent with order details, receives response, returns to user.
+
+	### Handoff Patter (Transfer) Pattern
+		* On the Handoff pattern, one agent explicitly transfers the entire conversation to another agent, passing all context, state and memory.
+			- **Handoff Definition** : Handoff means Agent A says "I cannot help with billing. I'm transferring you to Billing agent." Agent A stops. BillingAgent continues with user
+			- **State Transfer** : When handing off, Agent A passes the conversation history, user information and any partial work to Agent B. The user sees no interruption.
+			- **Use Case Example** : Support agent receives billing question, Support agent hands off to Billing Agent. Billing agent has access to the full conversation history.
+	
+	### Magnetic VS Handoff
+		* Choose Magnetic when a manager can route requests without transferring conversation history. Choose Handoff when the conversation must continue seamlessly across agents.
+			- **Magnetic Use case** : User asks one question per interaction. "What is my refund status?" 
+				Manager route to RefundAgent. User asks separate question next.
+			- **Handoff Use case** : User has a conversation that naturally flows across domains, "My order is late (Support), Also refund shipping (Billing)"  Handoff maintains context.
+			- **Pattern Selection Rule** : Use magnetic for independent questions. Use Handoff for conversations that across agent boundaries within the same session.
+
+	### Group Chat Pattern 
+		* In Group chat Pattern, Multiple agents participate in a shared conversation space, taking turns specking based on conversation context.
+			- **Shared Space Definition** : All agents see every message in the conversation. No single manager controls who specks. Agents respond when relevant to their expertise.
+			- **Speaker Selection Algorithm** : The framework runs an algorithm that evaluates each agent's system instructions and conversation to decide which agent specks next. 
+			- **Use Case Example** : A coding assistant group includes ArchitectAgent(Desing), CodeAgent (Implementation) and TestAgent(quality). They take turns building a ssolution.
+			
+	###	Coding Pattern in Agent Framework
+		* In Microsoft Agent Framework, you create an agent by instantiating an **Agent class** with a name, **System Instruction** and list of **tools**.
+			- **SDK Pattern** : '**from agent_framework import Agent**'. Create agent with '**support_agent = Agent(name=:SupportAgent", system_message=support_instructions, tools = [seach_tool])**'
+			- **Agent Registration** : after creating agent, register then with the Orchestrator : '**orchestraor.register_agent(support_agent)**. The orchestrator manage routing.
+
+	### Orchestrator - The Runtime Coordinator
+		* The Orchestrator is the runtime component that receives user messages, route them to the correct agent and manages conversation state.
+			- **Orchestrator Responsibilities** : The orchestrator holds the list of registered agents, maintains conversation history, runs speaker selection(for Group Chat), and route messages.
+			- **Starting a Conversation** : Call 'orchestrator.start_conversation(user_id, initial_message)'. The orchestrator select the first agent based on the message content.
+			- **Conversation ID** : Each conversation gets a unique ID. The orchestrator uses this ID to retrieve conversation history and route subsequent message to correct agent chain. 
+
+	### Writing Orchestration Logic
+		* Orchestration code sends and receives JSON payload between agents, containing messages, tools, and state information.
+			- **Message JSON structure** : Each message has **Role(user, assistant, tool), content(text) and conversation_id(unique session identifier)**.
+			- **Tool call JSON Structure** : When an agents calls a tool, the JSON includes **tool_name, parameters (JSON object), and tool_call_id (unique per call)**
+			- **Handoff JSOn Structure** : Handoff payload includes **from_agent, to_agent, conversation_state (serialized JSON of memory and context), and messages(history)**.
+			
+ 	### Managing API Keys per agent
+		* Each agent may need different API keys and end-points for its tools. Your orchestration code must manage keys per agent, not globally.
+			- **Per-Agent Configuration** : Create a configuration dictionary mapping agent names to their endpoint URLs and API Keys : **agent_config["SupportAgent"]= {"endpoint" "...", "api_keys":"..." }**
+			- **Injecting Keys at Tool call**: When an agent calls tool, your orchestration code looks up the agent's configuration and inject the correct API key into the tool request.
+			- **Key Rotation Per Agent** : When one agent's key rotates, other agents are unaffected. Update only that agent's configuration entry.
+			
+    ### State Transfer in Handoff Pattern
+		* During the handoff, the handing off agent serialize its memory and context into JSON and passes it to the receiving agant.
+			- **What Gets Transferred** : Conversation history (all messages), short-term memory(session variables), long-tern memory (user preferences), and any pending tool results.
+			- **Serialization Format** :  Convert memory object to JSON using **json.dumps()**. The receiving agent parse with **json.loads()** and restores its state.
+			- **Handoff Tool Definition** : The framework provides a '**handoff_to_agent**' tool. When called the orchestrator automatically transfers state and route the next message.
+
+	### Sequential VS Concurrent Agent execution
+		* Two types
+			- **Sequential Agents execution** : Agent A completes it work, returns result, Then Agent B starts with Agent A's output as input. Use for dependent tasks.
+			- **Concurrent Agents execution** : Agent A and Agent B run at the same time. The orchestrator waits for both to complete, then combine results. Use for independant tasks.
+			- **Coding Sequential** : Call agent_a.process(), then agent_b_process(agent_a.result); simple linear flow
+			- **Coding Concurrent** : Call **asyncio.gather(agent_a.process_async(), agent_b.process_async())**. Both run simultaneously
+
+	### Error Handling in Multi-Agent Orchestration
+		- **Retry Strategy** : If a tool call fails (network error, timeout), retry up to 3 times with eponential backoff (wait 1s, 2s, 4s between retries);
+		- **Escalation Strategy** : If an agaent fails becuase it lacks capability, hand off a more capable agent. ex. "RefundAgent cannot process internation orders" ---- handoff to EscalationAgent.
+		- **Fallback Response** : If all agents fails, return a defult response " I cannot complete your request. A human has been notified.". Log the error to Foundry Trace.
+
+	### Monitoring Multi-Agent with Foundry Trace
+		* Foundry Trace records every message, tool call, and Handoff across all agents, showing you the complete multi-agent decision chain.
+			- **Trace span per Agent** : Each agent action creates a span (a logged operation) with agent name, operation type (Message, tool call, handoff), and duration.
+			- **Visualizing Handoffs** : Foundry Trace shows handoffs as connecting lines between agent spans. You can see exactly which agent transferred to which agent and why.
+			- Debugging Reasoning Loops : If agents handoff back and forth without progress, Foundry Trac shows the cycle. Identify which agent made the wrong handoff decision.
+
+
+			
+<img width="1105" height="576" alt="image" src="https://github.com/user-attachments/assets/c929b8d4-40e0-40da-8663-68065d5bc401" />
+
+			
+
+### Notes: 
+	* Microsoft Agent Framework is built entirely on async programming.
+
+
+
+## Multi-Agent Orchestration
+
+	* When we create Multi-Agents orchestration.
+		1. Create a project 
+		2. Create Models in deployment
+			- Model 1 : (Agent1: gpt-nano) Get the user message and Identity  it is simple or complex and return "simple" or "complex"
+				* Prompt : Identify the user input in simple or complex and return "simple" or "complex" without quote. Do not output anything except these two works.
+			- Model 2 : (Agent2-Simple gpt-mini) It will get the input from Agent1 and throw simple answer
+				* Prompt : Answer the simple user question with a simple answer
+			- Model 3 : (Agent2-Complex) It will get the input from Agent1 and gives complex answer
+				* Prompt : Answer the complex user question with complex answer
+		3. Create Workflow in the Agent tab
+			- Start will be there, drag and drop Agent from left menu and select Input Message --- LastMessage.Text from right side menu.
+			- "Select an agent" dropdown, select Agent1
+			- Save the workflow and give a name "basic-workflow"
+			- Need to sabe the output into a variable, so in the workflow's first agent select "Create a Variable" in the "Save Agent output message as" dropdown (It will name automatically)
+			- Select Next node dropdown select "If/else"  (It is because we need to identify the question user asked it simple or complex from First agent (Agent1)
+			- In If statement box, change "true" and select the variable we created in the previous step. change the text in the textarea "MessageText(Local.Var8636) = "simple"
+			- Click the "+" sign in the If statement (we can add a "debug node")
+				* In the popup window "Deliver a message" box under "Basic" tab
+				* In "Message to Send" box type "Simple was chosen" and in "Next Node" dropdown select "End"
+			- Click "+" sing in the Else statement
+				* In the popup select "Deliver a Message" under "Basic"
+				* In the "Message to Send" box type "Complex was chosen" and in Next Node" dropdown  select "End"
+			- Press Save button	
+		
+		
+<img width="1558" height="318" alt="image" src="https://github.com/user-attachments/assets/7a79cac3-51eb-49c0-95b8-93952c6212f5" />
+
+
+
+		4. Now we can press "Preview" button and test our developed multi-agent workflow. If it is simple question then simple flow route will be chosen else complex route will be chosen
+
+				** We added "Deliver a Message" step to debug
+			- Select "If" block and in the "Next Node", select "Agent", this will insert "Agent" node between "If" and "Send  Message" nodes. Delete the "Send Message" node. Agent "Next" node should be "End"
+			-  Do the same to Else node
+
+ <img width="1603" height="425" alt="image" src="https://github.com/user-attachments/assets/25ca89c8-09e1-464c-85bc-f4a44e834e44" />
+
+ 		5.  Now in the first Agent select Agent2-simple, Now we need to select Input message, Here we cannot select local variable but we need the message from the user.
+			- Select System.LastMessage.Text
+		6 Same way in the second Agent select Agent2-Complex, and select the input message as System.LastMessage.Text
+		7. Now we can click preview and test our development
+
+		8. Finally we can Publish this workflow by going to "Publish" button and then select Teams And Microsoft 365 Copilot
+		9. Give a short description, and wizard will creating Bot service. (Make sure we have a bot service create if not goto Azure portal and search for Bot and create one before publishing the Agent.
+		10. Once publish, it is available in Microsoft 365 Copilot agent store (All Agent -- Your Agent) and in Teams (Apps--Manage your apps)
+		11. Go to Project Home there in bottom we can see all our work, we can find the workflow end-point there
+			- This end-point will not directly work
+			- In the workflow home We can get the yaml and code that we can use to call this Agent from Python or C#
+		
+		
+## Tools
+	* A tool is any external capability and agent can use - a Search API, a database query, an email sender, a calculation function or a payment processor.
+	* Without tools, agent can only talk. With tools, agents can take real actions in the world - Send emails, update database or process payments.
+
+	### Tool calling
+		* Tool calling has three steps, Agent request a tool, your code execute it and agent receives the result to continue reasoning.
+			- **Step 1 : Agent Requests** : The LLM output a JSON structure like `{"tool" : "send_email", "parameters" : {"to": "test@test.com", "body" : "..."}}
+			- **Step 2 : Code Executes** : Your orchestration code parse the JSON, looks up tool function and execute it with the provided paramters.
+			- **Step 3 : Result Returns** : Your code sends the tool's result back to LLM as a new message. The LLM continues reasoning based on the result.
+			
+	### Tool definition (**Telling the agent what tools exist**)
+		* A Tool definition is a JSON schema that describes the tool's name purpose and required parameters so the agent knows how to call it.
+			- **Tool Definition Structure** : Each tool has a **Name** (Unique Identifier), **description**  (what it does) and **Parameters** (JSON schema or required inputs).
+			- **Example Tool Definition** : `{"name" : "get_weather", "description" : "Get current weather for a city", "parameters" : {"city" : {"type": "string"}}}`
+			- **Including Tools in request** : When you call the LLM, you pass an array of tool definition in the **tools** parameter. The LLM choose which tool to call.
+
+	### Rest API tool (Tool / Method within our code)
+		* A REST API tool calls an external HTTP endpoint (URL) with Methods like GET, POST to perform actions.
+			- **REST Tool Definition** : The tool definition  includes the HHTP Method, URL endpoint, headers (Like Api keys) and expected response format.
+			- **Example RESR Call** : Tool "Send_slack_message" makes a POST request to 'https://slack.com/api/chat.postMessage' with a JSON body containing the message.
+			- **Authentication** : Most REST tools require a API key in the **Authentication header**. your code inject the key from configuration when execute the tool.
+
+	### Rest Api Tool Coding Pattern
+		* Your orchestration code constructs an HTTP request using the parameters from the agent's tool call, then sends it using the request library
+			- **Build the Request** :  extract **url**, **method**, **headers**   and **body** from the tool call parameters. Set **header["Authentication"] = F"Bearer {api_key}"**
+			- **Send the request** : use **requests.post(url, headers = headers, json=body)** for post or **request.get(url, headers= headers, params = body)** for GET
+			- **Handle Response** : Check response.status_code =200 if 200 success, parse response.json(), if error(4xx, 5xx) return error message to agent.
+	**Note** : If we use Server side Orchestration we don;t even need to this, all the constrcution of API tool code are done for you.
+
+	### Managing API keys for Tools
+		 - Per-tool Key storage : Create a dictionary mapping tool names to their API keys - `**tool_keys = {"slack": "dasdsada", "weather" : "sadsadsdad"}**`
+		 - Key Injection at Runtime : When executing a tool, look up its key : **api_keys = tool_keys.get(tool_name)**. Add to header before sending the request
+		 - **Key Rotation** : Update keys in configuration (environment variable, key vaoult). Your code reads current values at start up or dynamically on each call.
+
+	### Returning Result to the Agent
+		- **Result Message structure** : **{"role" : "tool","tool_call_id": "call_123", "content" : "The weather in Seattle is 65F sunny"}**
+		- **Tool Call Id Matching** : The agent's original too call has a **tool_call_id**, your result message must include the same ID so the LLM knows which call this result belongs to.
+		- **Error Handling** : If the tool fails, return an error message **{"role" : "tool", "tool_call_id" : "call_123", "content" : "ERROR: API Key invalid"}**
+	### Tool calls from LLM Responses
+
+	* When an LLM wants to call tool, its response includes a **tool_calls** array. your code must parse this array to extract the tool names and paramters.
+		- **Response Structure**  : response.["choices"][0]["Message"]["tool_calls"] is an array. Each element has **function.name and  function.arguments (JSON string)**
+		- **Extracting parameters** : Parse **arguments** string with **json.loads()** to get python dictionary or parameter names and values. 
+		- **Handling Multiple Calls** : An Agent can request multipl tools in one response. Loop through **tool_calls** array and execute each sequentially or concurrently.
+		
+	### Tool Choice - Agent choice of calling a tool
+		* You can control whether the agent **must call a tool (forced), can choose to use one(auto) or cannot use any (none)**
+			- **tool_coice : "auto" (default)** : The agent decides whether to call a tool. Use when the agent should have autonomy.
+			- **tool_choice : "required"** : The agent must call one fo the provided tools, Use when the user's request always required an action
+			- **tool_choice : {"type" : "function", "function" : {"name" : "get_waether"}}** : 	Force the agent to call a specific tool. Use for deterministic workflow.
+
+		
+	### Parallel Tool calls - Executing multiple tools at once
+		* Agents can request multiple tools in one request. Your orchestration code can execute them in parallel ro reduce total response time.
+			- **Parallel Execution** : Use **asyncio.gathre()** to execute multiple toll calls simultaneously. Results arrive in any order
+			- **When to use Parallel** : Execute tools in parallel when they are independent, Ex. get whether for three cities simultaneously.
+			- **Sequential Fallback** : If tools have dependencies, execute sequentially. The agents second too call can reference the first result.
+
+	### Idempotent Tools - Handling duplicate calls 
+		* An idempotent tool produced the same result if called multiple times with the same parameters. Critical for tool that change data.
+			- Non-Idempotent Example : "Send email " - calling twice sends two email. Nt idempotent. Dangerous if retries
+			- Idempotent Example : "Set temperature to 72F" - calling twice has same effect. Safe to retiy
+			- Implementing Idempotency : Include a **request_id** parameter. Tool checks if it already processed that request_id and returns cached result without repeating the action
+
+	### Tool Timneout and Retries
+		* Tool calls can hang (never return) or take too long. Your code must set timeouts and implement retry logic for transient failure.
+			- Setting Timeouts : Use **request.get(ulr, timeout=10)** - fails after 10 seconds. Choose timeout based on expected tool latency
+			- **Retry Strategy** : For Network error (timeout, connection refused), retry up to 3 timewith exponential backoff (1s, 2s, 4s)
+			- **Circuit Breaker** : If a tool fails 5 times in 1 minute, stop calling it for 30 seconds. prevents cascading failure when a downstream service is down.
+
+	### Tool call History
+		* Your agent must remember previous tool calls their results to avoid repeating the same call and to reference past result.
+			- **Storing in Conversation History** : Every tool call (request) and tool response (result) is stored in the conversation messages array as separate entries.
+			- **Preventing Repeated calls** : Before calling a tool, check if the same tool with same parameters was called in the past 10 messages. If yes, reuse cached result.
+			- **Referencing Past Result** : The agent's system instruction can say "Remember past tool results. If asked again, answer from memory without calling the tool.
+
+	### Logging Tool calls with Foundry Trace
+		* Foundry Trace records every tool call - name, parameters, result, duration - allowing yout to debug tool failure and measure perfomance
+			- **Trace Span Per tool call** : Create a span (logged opertion) for each tool call.Add **attributes : tool_name, parameter_json, status_code, duration_ms**
+			- **Recording Result** :  Add **tool_result**  attrbute to span. If error , add **error_type** and **error_message** attribute.
+			-  **Debugging Failures** : In Foundry Trace, filter spans by **error_type** to find all failed tool calls. Examine parameters to see what causes the failure.
+
+	### Security - Validate Tool Parameters
+
+		* Never trust parameters that come from an LLM. Validate all tool inputs to prevent injection attack and malformed request.
+			- **Parameter Validation** : Check that **email_address** matches the regex , Check amount is positive    number within allowed range
+			- **SQL Injection Prevention** : If tool queries a database, use parameterized queries, not string concatination. ex. **cursor.execute("Select * from user where id=?" ,user_id)**
+			- **URL Injection** :  If tool calls a URL from a parameter, validate it belonged to an allows domain list.
+
+			
+			
+Note : Code interpreter tool allows an AI agent to execute Python code safely in a sandbox environment. This is commonly used for performing calculations, analyzing data and processing files, which gives the agent powerful analytical capabilities
+
+
+### What Language tool does <br />
+
+Adding Azure Language (formerly Azure AI Language, now integrated as Azure Language in Foundry Tools) to an AI agent in Azure connects the agent to specialized, deterministic Natural Language Processing (NLP) services via the Model Context Protocol (MCP) or direct APIs.
+Instead of relying purely on a Large Language Model (LLM) for every text-processing task, the agent can offload specific analytical or compliance jobs to Azure Language for faster speed, lower cost, and higher precision.
+<br />
+**What It Does**
+<br />
+• Offloads Processing: The agent calls Azure Language tools automatically when instructed, saving LLM token usage and computational overhead. <br />
+• Integrates via MCP: It uses a cloud-hosted or local Model Context Protocol (MCP) server so agents can tap into these tools with minimal custom code. <br />
+• Provides Deterministic Precision: It offers specialized, rule- and model-based outputs for tasks where general LLMs might drift or hallucinate.<br />
+
+**Key Abilities & Capabilities**
+<br />
+_By adding Azure Language to your agent (via Azure Language in Foundry Tools), your agent gains access to:_ <br />
+• **PII Detection and Redaction**: Automatically detects, flags, and redacts Personally Identifiable Information (such as credit card numbers, Social Security numbers, or names) from text and conversation transcripts for compliance and privacy. <br />
+• **Named Entity Recognition (NER)**: Extracts and categorizes key entities from text—such as people, places, organizations, quantities, and custom entities. <br />
+• **Language Detection**: Automatically identifies the language of user inputs or documents. <br />
+• ** Sentiment Analysis & Opinion Mining**: Evaluates positive, neutral, or negative tone and extracts granular opinions tied to specific aspects of a product or service. <br />
+• **Text Summarization & Conversation Recapping**: Condenses long documents, meeting transcripts, or customer support threads into key bullet points or chapter breakdowns. <br />
+• **Text Analytics for Health**: Parses unstructured medical and clinical text to extract medical entities, assertions, and relationships. <br />
+• **Conversational Language Understanding (CLU)**: Powers multi-turn, context-aware dialogue and intent routing. <br />
+• **Custom Question Answering**: Delivers grounded, consistent answers built on top of your own knowledge bases or documentation.  <br />
+
+
+## Model Context Protocols (MCP)
+
+	### What is MCP?
+	
+	Using different tool (Slack, SalesForce, SharePoint) require custom integration code. Large enterprices have hundreds of tools, Custom code does not scale. <br />
+		So we have MCP that industry standard for **Handshake** that let agents discover and call tools without custom code. 
+			* MCP is an open standard that defines how agents discover, connect to, and call external tools using common handshake
+				- **Definition** : MCP is a protocol (set of rules) that any agent and any tool can implement. If both support MCP, they can communicate without custom code.
+				- **The USB - C for AI Analogy** : Just as USB-C connects any device to any charger, MCP connect any agent to any MCP-compatible tool without custom drivers.
+				- **Who Created MCP** : MCP developed by Anthropic and adopted by Microsoft as the standard for Foundry agents. It is now an industry standard.
+
+	
+	### The MCP Handshake
+		- The MCP handshake is two step process : The Agent discovers what tools a server offers. Then connects and calls them using standard JSON messages.
+			* **Step 1 - Discovery** : Agent sends **list_tools** request to MCP server. Server returns JSON list of all available tools, their descriptions and parameters schemas.
+			* **Step 2 - Connection** : Agent sends **call_tool** request with tool name and parameters. Server executes the tool and returns a standard JSON response.
+			* **No Custom Code** : The agent does not need to know the tool's API details in advance. The tool describes itself during discovery.
+
+	### MCP Server
+		- An MCP server is a service that expose one or more tools to agents using MCP protocols, acting as a bridge between agents and enterprise systems.
+			* **MCP Server Definition** : The server runs in your infrastructure, connected to your tools (SharePoint, database, internal APIs). It translates MCP calls to actual API calls.
+			* **Server Responsibilities** : The server authenticates to downstream tools, handler rate limits, transforms responses to MCP format, and logs all tool calls.
+			* **Who runs the Server** : Your teams deploys and maintains MCP servers. Microsoft does not provide them. Each enterprise deploys its own servers for its internal tools.
+
+	### MCP Client
+		- An MCP Client is the component inside your agent that speaks the MCP protocol, discovering tools and sending call request to MCP server.
+			* **MCP Client in Agent Framework** : Microsoft Agent Framework includes a built-in MCP client. Your agent uses it without writing protocol code.
+			* **Client Discovery Flow** : The Client sends **list_tools** to server URL you configure. The client caches the tool list for the session
+			* Client Call Flow : When the agent decides to call a tool, the client sends **call_tool** with the tool name and parameters. The client return the response to the agent.
+
+	### MCP Tool Discovery
+		- When an agent sends a **list_tool** request, the MCP server returns a JSON array describing each available tool, its description and parameter schema.
+			* **Response Structure** : {"tools" : [{"name": "search_sharepoint", "decription" : "Search documents in sharepoint", "input_schema: {"query": "string", "site_id" : "string"}}]}
+			* **Agent Uses Description** : The agent reads the **description** field to understand what the tool does. The LLM uses thisdescription to decide when to call the tool.
+			* **Schema for Parameters** : The **input_schema** tells the agent what parameters the tool expects and their data type (string, number, boolean, array)
+	
+			
+	### MCP Tool Call
+		- To call a tool agent sends a **call_tool** JSON message with the tool name and parameters. The server executes the tool and returns a standardized response.
+			* **Request Structure** : {"method" : "call_tool", "params" : {"name" : "search_sharepoint", "arguments": {"query" : "budget report", "site_id" : "finance"}}}
+			* **Response Structure - Success ** : {"content" : [{"type" : "text", "text" : "Found 3 documents: budget_2025.docx, ...}]}. the agent receives this text.
+			* **Response Structure - Error** : {"isErros" : true, "content" : ["type" : "text",  "text" : "Sharepoint authentication failed"}]}. Agent sees error and can retry or escalate.
+
+
+	### Configuring MCP in Foundry 
+		- In Foundry, we can configure MCP server endpoints per agent or per project, providing the URLs and authentication credentials for each server.
+			* **Server Configuration In Foundry** : In Agent settings, add an MCP server entry with **URL (eg. https://mcp-server.company.com), auth_type (bearer toekn, API key) and credentials**.
+			* **Multiple Servers per Agent** : An Agent can connect to multiple MCP servers, The agent discovers tools from all servers and can call any discovered tool.
+			* **Environment-Specific URLs** : Configure different server URLs for development, staging and production. Use environment variables to switch.
+
+	### MCP Authentication
+		- MCP server authentication agents using Bearer token (JWT) or API key, which are configured in Foundry and injected automatically by MCP client.
+			* **Bearer Token Flow** : Agent sends **Authorization : Bearer --token--** header with every MCP request. Foundry obtains the token from Entra ID using the agent's managed identity.
+			* **API Key Flow** : Configure a static API key in foundry. The MCP client adds **X-API-Key : --key--** header to all the requests.
+			* **Entra Agent Id Integration** : MCP servers can validate the bearer token against Entra ID, ensuring the agent has permission to call the tool based on its Agent Id.
+
+	
+	### MCP VS Custom Tool Code
+		- Use MCP when you have many tools or tools that changed frequently. Use Custom code for simple, stable, single-purpose tools.
+			* **Use MCP When** : You have 10+ tools, tools are added or removed frequently, or tools are provided by different teams. MCP eliminates per-tool code changes.
+			* **Use Custom Code when** : You have one or two tools, tools never change or you need deep optimization (eg. streaming responses, custom retry logic).
+			* **Hybrid Approach**  : Use MCP for standard enterprise tools (Sharepoin, Salesforce, databases). Write tools for agent-specific logic (validation, aggregation).
+
+	### MCP with Sharepoint 
+		- An agent using MCP can search SharePoint document, read files, update metadata without writing any SharePoint-specific code.
+			* **SharePoint MCP Server** : Microsoft provide a pre-built MCP server for SharePoint. Deploy it in your environment. It handles SharePoint authentication and API calls.
+			* **Agent Discovery** : Agent calls **list_tools** on the SharePoint MCP server. Discovers tools : **search_sharepoint, get_document, update_metadata**. 
+			* **Agent Action** : Use asks "Find the budget presentation from last quarter." Agent calls **search_sharepoint** with query "**budget presentationQ4**"
+					Return document list.
+
+	### MCP with Local Tools (File system and scripts)
+		- MCP servers can expose local tools like file system operation, command-line scripts and internal functions that run on your infrastructure.
+			* **Local File Tool** :  MCP server offers **read_file** tool with parameter **path**. Agent can request any file the server has access to. Server reads and returns content.
+			* **Script Execution Tool** : MCP server offers **run_script** too with the parameters **script_name and arguments**. Agent can trigger internal snslytics or ETL jobs.
+			* **Security Restrictions** : MCP servers should restrict which local paths and scripts are exposed. Do not expose the entire file system, Whitelist allowed operations.
+
+	
+	### MCP tool composition
+		- An agent can compose multiple tool calls, using the output of the one tool as the input to another, without writing composition code
+			* **Composition Flow** : Agent calls **search_sharepoint** to find the document Id, Then call **get_document** with that ID. Then call **summarize_text** on the document content.
+			* **No Custom Glue code** : The agent's reasoning handles the composition. The LLM decides the sequence based on the tool description and user goal.
+			* **Error Handling in Chain** : If the first tool fails (No document found), the agent should not call subsequence tools. The agent checks each result before proceeding.
+
+	### MCP Observability with Foundry Trace
+		- Foundry Trace records all MCP operations - discovery request, tool calls, responses and errors - as spans in the agent's trace.
+			* **Discovery Span** :  When agent calls **list_tools**, Foundry trace creates a span with attributes : **mcp.server.url**, **tool_count**, **duration_ms**.
+			* **Tool Call Span** : Each **tool_call** creates a span with **tool_name**, **parameters_json** , **response_length**, **status** and **duration_ms**
+			* Debugging Failures :  If a tool call fails, the span includes **error_type** and **error_message**. Filter trace by **mcp_server_url** to find all failures from a specific server.
+
+
+	### MCP Security
+		- MCP servers should whitelist (explicitly allow) specific tools for each agent, preventing agents from discovering or calling unauthorized tools.
+			* **Per-Agent Whitelist** : Configure which tools each agent can discover. Agent A can see **search_sharepoint** but not **delete_file**. Agent B can see both.
+			* **Whitelist Implementation** : MCP server checks agent;s Entra Agent ID against a configuration map. If the tool not in whitelist, server omits it from **list_tools** response.
+			* **Call-Time Validation** : Even if an agent somehow knows a tool name, the server rejects **call_tool** for tools not on the whitelist. Defense in depth.
+
+	
+## Using External MCP Server in Microsoft Foundry
+- Create Agent with any LLM
+- In Tool -- Add -- Add Tools
+- Select Custom -- Model Context Protocol (MCP), select and click Create
+- Copy the MCP connector URL as described below in the Note
+- In Authentication select **Unauthenticated**  because our MCP connect is No auth
+- Click Connect
+- Now we can ask agent a question related to the connected MCP server through MCP connector
+- If we ask the agent " What tools do you have available? It will list down 2 tools that exa MCP server has (mcp_exa2.web_search_exa, mcp_exa2.web_fetch_exa)
+- If I ask "For fifa 2026, what was the last game played and score?" agent use web_search_exa and return the result.
+		
+		
+Note :  **glama.ai**   has MCP Servers and MCP Connector (exa.ai/mcp is the MCP server web site That we we use from glama.ai) <br />
+
+- Select MCP connectors and search for connector
+- Select filter like **No Auth**, **web-scraping**
+- Type Web search in the search bar and select **exa**
+- Click on it and copy the url
+- We can find what are the tools available on this MCP connector. This tools are discovered my the connector. Connector doesn't have tools
+			
+	
+### What is an MCP Connector?
+
+An MCP connector is the client-side interface that sits inside your AI application or host platform (such as Claude Desktop, an IDE, or an agent platform). <br />
+• Role: It acts as the "hand" of the AI agent, bridging the gap between the LLM and the remote MCP server.<br />
+• Function: It manages the mechanics of communication:<br />
+	• Initiates the connection to the MCP server.<br />
+	• Handles authentication (such as API keys or OAuth 2.0).<br />
+	• Translates the AI's intent into structured request formats and parses the server's responses back into text the model can read.<br />
+
+
+
+
