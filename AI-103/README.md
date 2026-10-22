@@ -1256,5 +1256,41 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 	• Translates the AI's intent into structured request formats and parses the server's responses back into text the model can read.<br />
 
 
+## Human Approval
+
+### What is Human-In-The Loop (HITL)
+- Human in the loop is a pattern where an agent pauses its execution, requests approval from a human and only continue if the human approves.
+  	* **HITL Definition** : The Agent reaches a point where it cannot proceed without human judgement. It stops, sends a request to human, and waits for a response.
+  	* **Why HITL is Required** : For high-stakes actions - Refund over 1000$, deleting customer data, sending external communications - Automatic agent action s too risky
+  	* **HITL VS No HITL** : Without HITL, the agent would execute the action automatically, With HITL the agent asks "Approve refund of $15000 to customer X?"
+ 
+### Approval Gate
+- An approval gate is a pause point in the agent execution where the agent waits for a human to response with Approve or Reject before continue
+  	* **Approve Gate Definition** : A checkpoint in the agent's workflow. The agent cannot pass the gate until a human provides a decision.
+  	* **Gate Configuration** : You define the gate's trigger condition (eg. "Refund Amount > $500"),the approver(s) and the timeout period (eg. "wait 24 hours").
+  	* **Agent Behavior while waiting** : The agent stops all action for that conversation. It does not process new use message. It only waits for the approval response.
+ 
+        
+### When to use Approval Gates
+	* **Financial Action** : Refunds over a threshold, transferring money between accounts, purchasing subscriptions. Example : "Approve refund of $2000 to customer?"
+	* **Data Destruction** : Deleting customer records, permanently removing files, clearing transaction logs, Example : "Approve deletion of user account #12345?"
+	* **Privileged Access** : Granting admin access, Changing security settings, accessing sensitive personal data. Example : "Approve temporary admin access for support agent?"
+
+### Approval Request
+- An approval request must include the **action being requested, the reason, the risk level and any supporting evidence** for the approver to decide.
+  	* **Required Fields** : **Action description** ("Refund customer $1500"),  **Reason**  ("Customer claims product defective"), **risk_level**  ("High financial loss"), **evidence** (Link to order or chat log)
+  	* **Approver Identification** : Send the request to a specific user (email), a group (group email), role (manager of customer's region).
+  	* **Timeout Setting** : Include a deadline, Example: "Approve within 24 hours. If no response the request will be rejected automatically"
+ 
+### Approval Response 
+	* **Approval Response** : Human click Approve in Email or Teams. Agent receives **{"decision": "Approve", "approved_by": "test.test.com", "timestamp": "..."}**
+	* **Reject Response** : Human clicks Reject and may provide a reason. Agent recives **{"decision" : "rejected", "reason" : "...", "rejected_by" : "..."}**
+	* **Agent Action After Reject** : Agent notifies user " Your refund request was rejected bacause [reason]. Please contact support." Agent ends the workflow.
+
+### Approval Timeout
+	* **Timeout Behavior - Reject** : Default behavior. After 24 hours with no response, agent treat as reject, notify user. "No approval received. Request cancelled"
+	* **Timeout - Escalate** : After 24 hours, escalate to different approver or manager. Second timeout 24 hours the reject
+	* **Timeout Behavior - Retry** : Resent the approval request. Limited to 3 retries. After timeout, reject.
 
 
+	
