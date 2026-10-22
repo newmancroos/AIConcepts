@@ -1283,13 +1283,13 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **Timeout Setting** : Include a deadline, Example: "Approve within 24 hours. If no response the request will be rejected automatically"
  
 ### Approval Response 
-
+- Behavior of Agent for Approve or Reject
 	* **Approval Response** : Human click Approve in Email or Teams. Agent receives **{"decision": "Approve", "approved_by": "test.test.com", "timestamp": "..."}**
 	* **Reject Response** : Human clicks Reject and may provide a reason. Agent recives **{"decision" : "rejected", "reason" : "...", "rejected_by" : "..."}**
 	* **Agent Action After Reject** : Agent notifies user " Your refund request was rejected bacause [reason]. Please contact support." Agent ends the workflow.
 
 ### Approval Timeout
-
+- Behavior of Agent when no approval received 
 	* **Timeout Behavior - Reject** : Default behavior. After 24 hours with no response, agent treat as reject, notify user. "No approval received. Request cancelled"
 	* **Timeout - Escalate** : After 24 hours, escalate to different approver or manager. Second timeout 24 hours the reject
 	* **Timeout Behavior - Retry** : Resent the approval request. Limited to 3 retries. After timeout, reject.
