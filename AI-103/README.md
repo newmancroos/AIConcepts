@@ -1294,5 +1294,46 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 	* **Timeout - Escalate** : After 24 hours, escalate to different approver or manager. Second timeout 24 hours the reject
 	* **Timeout Behavior - Retry** : Resent the approval request. Limited to 3 retries. After timeout, reject.
 
+### Azure Logic Apps - HITL Integration Plateform
+- Azure Logic apps is a service with over 1400 connections (email, Teams, Slack, SAP, SalesForce) that agents use to send approval requests to humen
+	* **Logic App Definition** : Logic apps is a low-code workflow engine. You build workflow visually by connecting triggers and actions	from a library of connectors.
+ 	* **Why Logic Apps for HITL** : Logic apps has pre-built connections for email, Microsoft Teams, Slack, ServiceNow and many human approval systems. No custom code needed.
+  	*  **Agent to Logic Apps** : Agent calls a logic apps endpoint via REST. Logic app sends the approval request via email/Teams. Agent waits for logic app to return the decision.
+ 
+### Logic Apps Approver Connector
+- Logic Apps includes a built-in Approval connector that sends request to the user via email or Teams and waits for Approval or Reject.
+  	* **Approval Trigger** : In Logic Apps, add "Send Approval email" action. Set the approver email address, subject, body (including action details) and timeout
+  	* **Approval Response** : Logic App waits. When human click Approve or Reject, Logic App resume and returns the decision as JSOn to the called (Agent).
+  	* **Response Available** : The Logic Apps output includes, **Outcome (Approve / Reject), Approver (email), Comments (Optional Reason) and ResponseTime**
+ 
+ ### Agent Call Logic App - Coding Pattern
+ - Your agent code calls a logic app endpoint via REST POST with approval details, then wait for the synchronous response containing Approve or Reject
+   	* **Request Body** : **{"approver_email" : "...", "action" : "Refund $1500 to customer X", "reason" : "Defective Product", "timeout_hours": 24}**
+   	* **REST CALL** : response = request.POST(logic_app_url, headers= {"Content-Type" : "application/json"}, json=approval_request, timeout=60)
+   	* **Wait for Response** : Logic Apps can block (wait for human response) up to the timeout. Your agent must set a long timeout (eg. 120 seconds) or use async polling.
+  
+ ### Asynchronous Approval
+ - For approvals that may takes hours, Your agent should not wait synchronously. Use an async pattern: call the Logic app, receive a requestId then Poll for completion.
+   	* **Step 1 : Submit Request** : Call logic app with **async:true** parameter. Logic app return **request_id** immediately. Agent saved that ID with the conversation
+   	* **Step 2 : Poll for Status** :  Agent calls **GET/Approval/{request_id}**  every minute. Logic app return **status:pending**  until human response.
+   	* **Step 3 : Retrieve Result** : When human responds, Logic App return **status:completed**, **decision:approve/reject**. Agent continues execution.
+  
+### Escalation Chain
+- How Agent behave on Status and how escalate to next level
+  	* **Chain Definition **: approvers = ["manager@company.com","director@company.com","vp@company.com"]. Agent sends to first approver, If reject or timeout, move to next.
+  	* **Escalation on Reject** : If manager reject, agent does not go to director. Escalation only on no-response (timeout), not on explicit reject.
+  	* **Escalation on Timeout** : Manager does not respond in 24 hrs. Agent escalates to director and then vp.
+ 
+### HITL In Multi-Agent system
+- In a multi agent system, The manager decide when to trigger approval gate, then pause the entire conversation until approval completes
+  	* **Manager Decision** : Manager agent evaluates risk. "Refund over $1000 requires approval". Manager calls ApprovalGate toolinstead executing refudn directly.
+  	* **Conversation Pause** : Agent Framework pauses the entire multi-agent conversation. No agent process messages until approval completes.
+  	* **Resume on Approval** : When approval returns (Approve), Manager calls the RefundAgent. If Reject, Manager returns "Your request was rejected by [approver].
 
-	
+### Security - Approver Identity Verification
+- Approval request mut verify that the responding humanis the intended approver, not an attcker impersonating them
+	* **Logic Apps Authentication** : Logic App approval connector sends a unique link to the approver's email. Only that email address can clck the link
+	* **Entra Id integration ** : For Teams approval, Logic app checks the responder's Entra ID. Only the user matching the approver_email can approve.
+ 	* **Audit Log **: Record who approved, when and from which IP address. If approval came from unusual location, raise security alert.
+   
+     
