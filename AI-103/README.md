@@ -1351,3 +1351,15 @@ An MCP connector is the client-side interface that sits inside your AI applicati
  	* **Why OpenTelemetry Matters**: Because  OTel is a standard, you can use the same tracing code whether you send traces to Foundry, Azure Monitor or third-part tools.
   	* **OTel Components** : The OTel provides 'Tracer' (Create Spans), 'Span' (records operation), and 'SpanProcessor' (export spans to Foundry trace)/
   
+### Foundry Trace
+- Foundry trace is Microsoft's fully managed distributed tracing service, integrated with Azure Monitor, that visualizes agent execution as interactive timeline
+	* **Foundry Trace Definition** : Foundry Trace automatically capture traces from agents running in foundry agent service.You can also send custom spans from code.
+ 	* **Integration with Azure Monitor** : Foundry trace send trace to Azure Monitor log analytice. You query traces using KQL (Kusto Query Language)
+  	* **Trace Visualization** : In Foundry portal, you select a conversation ID and see an interactive waterfall diagram of every span, its duration and its attributes.
+ 
+###  Reason Loop - The most common Agent Failure
+- A reason loop occurs when an agent repeats the same action over and over again, making no progress, because it lacks information or misinterprets result.
+  	* **Loop Example** : Agent calls Search too with query "Refund Policy".Receives result. Call again with same query. Receives same result. Never proceeds to answer.
+  	*  **Why Loops Happen** : The LLM does not see a required field in the results, so it calls the tool again with identical parameters, expecting different results.
+  	*  **Cost of Loops** : Each loop iteration cost tokens, time and API calls. A loop of 10 iterations cost 10X the normal execution.
+      
