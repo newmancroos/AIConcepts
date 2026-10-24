@@ -1349,7 +1349,7 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 - OpenTelemetry is an open standard that defines how application create, format and send traces to monitoring system like foundry.
 	* **OpenTelemetry Definition** : OpenTelemetry(OTel) is a vendor-neutral API, SDK and protocol for collecting traces. Microsoft Foundry implements this standard.
  	* **Why OpenTelemetry Matters**: Because  OTel is a standard, you can use the same tracing code whether you send traces to Foundry, Azure Monitor or third-part tools.
-  	* **OTel Components** : The OTel provides 'Tracer' (Create Spans), 'Span' (records operation), and 'SpanProcessor' (export spans to Foundry trace)/
+  	* **OTel Components** : The OTel provides ** 'Tracer' **(Create Spans), **'Span'** (records operation), and **'SpanProcessor'** (export spans to Foundry trace)/
   
 ### Foundry Trace
 - Foundry trace is Microsoft's fully managed distributed tracing service, integrated with Azure Monitor, that visualizes agent execution as interactive timeline
@@ -1363,3 +1363,21 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	*  **Why Loops Happen** : The LLM does not see a required field in the results, so it calls the tool again with identical parameters, expecting different results.
   	*  **Cost of Loops** : Each loop iteration cost tokens, time and API calls. A loop of 10 iterations cost 10X the normal execution.
       
+### Detecting Loops in Foundry Trace
+- In Foundry Trace, a reasoning loop appears as a repeating sequence of identical span = same operation name, same parameters - with no progress span between them.
+	* **Loop Signature** :  Span A (Search Tool Call)  -- Span B (Search Tool Call) -- Span C (Search Tool Call). All Three have the same query attribute. No Answer span.
+ 	* **Duration Pattern** : Each loop iteration takes the same amount of time. If three spans each take 500ms, total 1500 ms wated before failure.
+    * **Identifying the Cause** : Examine span attributes. If Search result contain no "policy_text" field but agent expects it, the agent loops because of it never sees the field.
+ 
+ ### Span Attributes
+ - Span attributes are Key-Value pairs you add to a span to record context:tool name. query string, HTTP status code error message or any relevant metadata.
+	* **Attribute Definition** : Attributes are structured metadata. Example : span.set_attribute("tool.name","search_sharepoint"),  span.set_attribut("query", "budget report")
+ 	* Searching by Attributes L In Foundry Trace, filer traces by **"attribute.tool.name == "search_sharepoint"** to find all calls to a specific tool.
+
+### Coding Pattern - Creating a Custom Span
+- Your agent code creates a custom span using OpenTelemetry SDK, records attributes and ends the span when the operation completes.
+	* **Create Tracer** :  **from opentelemetry import trace; tracer = trace.get_tracer("my.agent")**
+ 	* **Start Span** : **with tracer.start_as_current_span("tool_call") as span: span.set_attrbute("tool.name","search")** then execute the tool
+  	* **Record Result** :  after tool completes, add **span.set_attribute("result_length", len(result)** . If error, span.set_attribute("error", True);
+  	* **Span Ends automatically** : When **with**  block exits, span ends and sends to Foundry trace.
+ 
