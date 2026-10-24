@@ -1337,3 +1337,17 @@ An MCP connector is the client-side interface that sits inside your AI applicati
  	* **Audit Log **: Record who approved, when and from which IP address. If approval came from unusual location, raise security alert.
    
      
+## Distributed Tracing
+
+### What is Distributed Tracing
+- Distributed tracing records every operation an agent performs - LLM calls, tool calls, memory lookups - as a timeline of spans with timing and metadata.
+  	* **Trace Definition** : A tract is a complete record of a single agent conversation, from first user message to final response. It contains many spans (Indivitual operations)
+    * **Span Definition** :  A span represents one operation : an LLM call (duration 500ms), a tool call (duration 200ms) or a memory lookup (duration 5ms).
+    * **Why Distributed** : Agent operations span multiple services (LLM, database, search). Tracing connects them into a single timeline.
+
+### OpenTelemetry
+- OpenTelemetry is an open standard that defines how application create, format and send traces to monitoring system like foundry.
+	* **OpenTelemetry Definition** : OpenTelemetry(OTel) is a vendor-neutral API, SDK and protocol for collecting traces. Microsoft Foundry implements this standard.
+ 	* **Why OpenTelemetry Matters**: Because  OTel is a standard, you can use the same tracing code whether you send traces to Foundry, Azure Monitor or third-part tools.
+  	* **OTel Components** : The OTel provides 'Tracer' (Create Spans), 'Span' (records operation), and 'SpanProcessor' (export spans to Foundry trace)/
+  
