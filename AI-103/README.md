@@ -1381,3 +1381,52 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **Record Result** :  after tool completes, add **span.set_attribute("result_length", len(result)** . If error, span.set_attribute("error", True);
   	* **Span Ends automatically** : When **with**  block exits, span ends and sends to Foundry trace.
  
+### Instrumenting LLM Calls with Spans
+- Each LLM call should have its own span recording prompt token, response tokens, model name and letency.
+  	* **Span Name** : **llm_call** . Attributes: 'model_name' (gpt-5.6), 'prompt_token'(from response usage),, 'complwetion_token', 'total_tokens', 'latency_ms.
+  	* **Recording Tokens ** : After LLM response, extract 'response.usage.prompt_token'. add as span attributes.
+  	* **Error Recording** :  If LLM error (429 rate limit, 500 server error), add 'error=true', 'error.type=http_error', 'error.message = "Rate Limit Exceed"'.
+ 
+### Instrumenting Tool Calls Token
+- Each tool call requires a spn recording the tool name, parameters, HTTP status code, response size, and any error
+  	* **Span Name** : **tool_call**. Attributes: **tool.name, tool.parameters (JSOn string),http.status_code, response.size_bytes**
+  	* **Before Call** : Start span, add **tool.name, and tool.parameters**. Execute REST call.
+  	* **After Call** : add **http.status_code**, If 200, add **response.size_bytes**. If 4xx/5xx, add **error=true, error_message.**
+  	* **Duration** : OpenTelemetry automatically records span duration. No manual timing needed.
+ 
+### Instrumenting  Handoffs with span
+- In multi-agent system, each handoff between agants should a span recording from_agent to_agent and state size.
+	* **Span Name** : "handoff" , Attributes : 'from_agent' (name of the handing-off agent), to_agent (receiving agent), conversation_state_size_bytes
+ 	* **Before Handoff** : Start span, add **from_agent, to_agent. Calculate state size** with len(json.dumps(state))
+  	* **After Handoff** : Add **success = true**  if handoff completed or error=true if receiving agent rejectied ot timeout
+  	* **Trace Visualization** : Foundry Trace shows handoff as arrrow connecting agent spans. Loop appear as repeated handoff between same agents.
+
+### Span Events - Recording Discrete moments
+- Span events are timestamped records within a span for discrete moments like sending a request, receiving headers or parsing JSON.
+  	* **Event Definition** : Events are point-in-time records. Unlike attributes (set once), events can occur multiple times within a span with different timestamps.
+  	* **Adding an Event** : apan.add_event("request_sent", attributes = {"url" : endpoint, "method" : "POST"})
+  	* **When to use events** : Use events for logging within an peration. example, "sending request", "receiving response", "staring parsing", "parsing completed"
+  	* **Event vs Attributes** :  Attributes describe the span outcome, Event  describ the span progress.
+
+### Querying Trace with KQL
+- You query Foundry Trace data in Azure Monitor Log Analytics using Kusto Query Language (KQL) to find failed tool calls or slow LLM response.
+  	* **KQL Definition** : KQL is the query language for Azure Monitor. You write queries to filer, aggregate and visualize trace data.
+  	* **Find Failed Tool Calls** : **traces | where span.name == "tool_call" | where attributes.error == true | project timestamp, attributes.tool.name, attributes.error.message**
+  	* **Find Slow LLM calls** :** trace | where span.name = "llm_call" | where duration > 2000 | project timestamp, attributes.model_name, duration, attributes.total_tokens**.
+  	* **Time Range** : Always include a time filter:** | where timestamp > ago(1h)** to limit to last hour.
+ 
+### Trace Sampling - Reducing Overhead
+- Trace sampling means recording only a percentage of traces (eg. 10%) to reduce performance overhead and storage cost in high-volume agents.
+	* **Why Sample** : Recording every trace for an agent handling 1 million conversations per day creates massive overhead and storage costs.
+ 	* **Head-Based Sampling** : Decision made at trace start. Example : '**TraceIdRatioBased(0.1)**',  records 10% of traces. The same trace either fully recorded or fully skipped.
+  	* **Tail-Based Sampling** : Record all traces briefly, then  decide which to keep based on criteria (e.g :   keep only traces with error). More accurate but complex.
+  	* **Configuring in Foundry** : In Foundry project settings, set sampling rate. Default 100% for development, 10% for production.
+ 
+### Debugging Workflow with Foundry Trace
+- The debugging workflow starts with a user report of agent failure, then searching traces by conversation ID or error flag, then examining spans to find root cause.
+	* **Step 1 - Identify Failure** : User reports "Agent gave wrong answer at 3:15 PM on Tuesday for conversation XYZ". Find conversation ID in your logs.
+ 	* **Step 2 - Search Trace** : In Foundry Trace, search by **conversation_id= "XYZ"**. Load the complete trace waterfall
+  	* **Step 3 - Locate Error span** : Find the first span with **error = true**  or unusually long duration. Examine its attributes and events.
+  	* **Step 4 - Fix and Verify** : Fix code, redeploy, reproduce user request, verify trace shows no error.
+ 
+ 
