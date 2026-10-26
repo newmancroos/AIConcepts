@@ -1430,3 +1430,91 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **Step 4 - Fix and Verify** : Fix code, redeploy, reproduce user request, verify trace shows no error.
  
  
+## KQL (Kusto Query Language
+
+### What is Kusto Query Language
+- Kusto Query Language (KQL) is a read-only query language designed for analyzing large volums of telemetry data.
+	* **Read-only Defined** : KQL queries only read data - They cannot change or delete telemtry records
+ 	* **Pipeline Syntax** : Data flow through a series of commands separated by pipe (|) characters.
+    * **Azure Integration** : Application Insight, Log analytics and Azure Data Explorer all use KQL.
+ 
+### Application Insights
+- Application Insights is the Azure service that receive, store and provides query access to your telemetry data.
+	* **Trace Storage** : All spans, logs and metrics from Telemetry export to Application Insights.
+ 	* **Query Interface** : You write KQL queries in the Azure Portal's Log blade to explore tememetry.
+  	* **Retention Period** : Telemetry is kept for 30 to 90 days depending on your pricing tier.
+
+### Basic KQL Query Structure
+- The **traces** table contains log messages from your application, and **traces | take 10** return the first 10 records
+	* **Table Name** :  Each telemetry type has a table - **traces for log**, **requests for HTTP calls**, **dependencies for external calls**
+ 	* **Pipe Characters** : The Vertical bar separates commands - The output of one command become input to next
+  	* **take Command** : Limits results to a specified number of rows -useful for initial exploration
+ 
+ ### Filtering with Where
+ - The **where** command filters rows based on a condition - only rows that match the condition continue through the pipeline
+	* **Basic Filter** :  **traces | where severityLevel ==3** shows only error -level log messages
+ 	* **Text Search** : **traces | where message contains "embedding failed** finds logs containing specific text.
+  	* **Multiple Condition** :  Use **and**  or **or** - **where severityLevel > 2 and timestamp > age(1h)**
+  
+### The request tablle
+- The **request** table stores one row for each incoming  HTTP request to your application, including duration and result.
+	* **Key Columns** : **name** (operation name), **duration** (milliseconds), **success** (true/false), **resultCode** (HTTP status)
+ 	* **AI Use Case** : Find slow inference requests - **requests | where duration > 5000**     shoes requests over 5 seconds.
+  	* **Correlation** : The **operation_id**  column links a request to its related dependencies and traces.
+
+### The dependencies Table
+- The **dependencies** table stores row for each external call your application makes - database, APIs, caches.
+	* **Key Columns** : **type** (e.g : Azure Cosmos DB), **target** (endpoint called), **duration** , **success**
+ 	* **AI Use Case** : Find slow vector search = **dependencies | where type =="Azure Cosmos Db" and duration > 1000**
+  	* **Bottleneck Detection** : Compare request duration to sum of dependency duration to find hidden work.
+ 
+### Projecting Columns with project - Reducing data
+- The **project** command selects specific columns to display and can create calculated columns
+	* **Basic Projection** : **requests | project timestamp, name, duration** shows only three columns.
+ 	* **Rename Columns** : **requests | project Time = timestamp, Operation = name. LatencyMS = duration**
+  	* **Omit Columns** : Everything not in project is excluded - reduce data volume for analysis.
+
+### Calculating Percentiles with **Percentile** - Latency Analysis
+-	The **percentile** function calculates value blow which a given percentage of values fall.
+	* **P95 Meaning** : 95% of requests are faster than the P95 values - only 5% are slower
+ 	* **Syntax** : **requests | summarize p95_duration = percentile(duration, 95) by name**  
+  	* **AI Use case** : Monitor inference API latency - alert if P95 exceed 2000 ,milliseconds.
+
+### Summarizing Data with Summarize - Grouping and Aggregation
+- The **summarize** command groups and calculate aggregate values like count, sum or average for each group
+ 	* **Basic Summarize** : **requests | summarize TotalRequest = count() by resultCode**  counts request per status code
+  	* **Multiple Aggregates** : **summarize AvgDuration = avg(duration), MaxDuration = max(duration) by name**
+   	* **Time Buckets** : **summarize by bin(timestamp, 1h)** groups result into hourly buckets.
+  
+### Joining tables with **join**
+- the **join** command combine rows from two tables based on matching values in specified columns
+  	* Correlation Pattern : **requests | join kind=inner dependencies on operation_id** links requests to their dependices
+  	* **Operation_Id** : This column is the trace ID - same value for all telemetry from one user request
+  	* **Use Case** : Find requests where any dependency failed - join on success = false from dependencies
+ 
+### Time Range Filter - ago() and between()
+- the **ago()** function creates a time range relative to the current time; **between()** specifies absolute start and end
+  	* **ago Example** : **where timestamp > ago(2h)** returns data from the last 2 hours only.
+  	* **between Example** : **where timestamps between(datetime("2025-05-01), datetime("2025-05-07"))**
+  	* **Performance Tip** : Always include a time filter - KQL is much faster when scanning less data.
+
+ ### Workbook - Interactive Dashboard in Azure
+ - A workbook is an interactive dashboard in Azure portal that combines KQL queries with visualization
+	* **Query + Chart** : Write KQl query, then render results as bar chart, line chart or grid.
+ 	* **Parameters** : Add dropdowns or time picker that change query behaviour - users can filter dynamically
+  	* **Sharing** : Workbook can be pinned to dashboards or share with your team.
+  
+###   Alerts - Proactive Problem detrection
+- An alert is a rule that runs a KQL query on a schedule and notifies you when results matches a condition
+	* **Alert Query** : **request | where success == false | summarize failedCount = count() by bin(timestamp, 5m)**
+ 	* **Threshold Condition** : Trigger when **failedCount > 10** - more than 10 failures in 5 minutes
+  	* **Action Group** : Send email, call webhook or trigger Azure function when alert fires.
+ 
+### AI - specific KQL Queries -  RAG pipeline Monitoring
+- You can write KQL queries to monitor each stage of your RAG pipeline independanctly.
+	* **Embedding Stage** : **dependencies | where type ="Azure OpenAI" and name contains "embedding" summarize avg(duration)**
+ 	* **Vector Search Stage** : **dependencies  | where type == "Azure Cosmos DB" and name contains "VectorDistance"**
+  	* **LLM Generation Stage** : **requests | where name == "generate_response" | project duration, sucess**     
+
+   
+      
