@@ -177,4 +177,16 @@ Above all we need to set the model to a specific assistant  role. ex. You are a 
 	- A plugin is a ready-made bundle of capabilities you install into claude. Once installed, it immediately gives Claude new skills, direct connections to external services, and custom configuration. 
 		Turning Claude into a purpose-built tool for your workflow
 
+	- We say Skill is a recipe and Plugins like a chef. 
+	- If we want to use multiple skills we can develop a Plugin that uses multiple skills for a job.
+	- Skills + Connectors + Commands = Plugin
+	- Skills (The Intelligence Layer) - Written as plan-language SKILL.md files, Encode domain expertise and best practices, trigger by slash command
+	- Connectors (The Reach Layer) - MCP Servers that give Claude live, two-ways access to external apps and data sources in real time.
+	- Commands (Control layer) -  Automatable shortcuts that let users invoke specific actions on demand - or have them run on a schedule.
+
+
+	<img width="1340" height="676" alt="image" src="https://github.com/user-attachments/assets/4a0abec6-47a4-4c21-a904-5341ae3fec2a" />
+
+	
+
 		
