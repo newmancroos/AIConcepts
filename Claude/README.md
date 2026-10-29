@@ -185,7 +185,7 @@ Above all we need to set the model to a specific assistant  role. ex. You are a 
 	- Commands (Control layer) -  Automatable shortcuts that let users invoke specific actions on demand - or have them run on a schedule.
 
 
-	<img width="1340" height="676" alt="image" src="https://github.com/user-attachments/assets/4a0abec6-47a4-4c21-a904-5341ae3fec2a" />
+<img width="1340" height="676" alt="image" src="https://github.com/user-attachments/assets/4a0abec6-47a4-4c21-a904-5341ae3fec2a" />
 
 	
 
