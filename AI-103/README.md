@@ -1517,4 +1517,22 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **LLM Generation Stage** : **requests | where name == "generate_response" | project duration, sucess**     
 
    
-      
+
+## Validating the Agent
+
+### Types of Task Adherence Violations
+- Tasks adherence violations fall into three category: Boundary Violation (did something prohibited), Instruction skipping ( Ignore a require step), Persona drift (changed tone/role)
+	* **Boundary Violation** : System says "Never delete data". Agent deletes a record. Most severe violation. Require immediate fix.
+ 	* **Instruction Skipping** : System says "Always ask for order number before looking up account". Agent looks up account without asking. Less severe but still a violation.
+  	* **Persona Drift** : System says "You are a professional support agent", Agent uses slang or makes jokes. Violation of tone rules.
+ 
+### Intent Resolution - Did the agent understand the user?
+	* **Intent Resolution - Definition** : Intent resolution checks if the agent identified the correct user goal. <br />
+		Example : User says "My order hasn't arrived". Correct intent = "check order status".
+	* **Correct Intent, Failed Execution** :  If agent identifies "Check order status" but tool fails, Intent Resolution is still correct. Execution is Separate.
+	* **Why It Matters** : If the agent misunderstands intent, it will call wrong tool or give irrelevant answers, frustrating users.
+
+### Agent Ready for Production
+	* Tool call accuracy > 95%, Task Adherence > 99%, Intent Resolution > 90%, Below these, agent is not ready for users.
+
+	
