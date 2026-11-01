@@ -1536,3 +1536,19 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 	* Tool call accuracy > 95%, Task Adherence > 99%, Intent Resolution > 90%, Below these, agent is not ready for users.
 
 	
+## Memory
+- There 3 types of memory 1. Short Term Memory, 2. Long Term Memory, 3. Persistent Mempry
+
+### Short Term Memory
+- Short Term memory store information for the duration of a single conversation session, resetting when the session ends or times out.
+	* **Short-term Memory Definition** : The agent remembers what was said 5 messages ago within the same conversation.
+		Information is stored in memory, not re-sent with each prompt
+	* **Session Expiration** : A session typically expires after 1 hour of inactivity or when the user explicitly ends the conversation. Memory is then cleared.
+    * **Storage Location** :  Short-term memory lives in the agent's runtime memory (RAM) or in a fast cache like Redis. Not written to long-term database.
+
+### Long Term Memory
+- Long-term memory stores information that persists across multiple conversation sessions, such as user preferences, history, or profile data.
+	* **Long-term Definition** : The agent remembers "User prefers Celsius", or "User's shipping address is xxx" even if the user returns next week.
+ 	* **Persistence Layer** : Long-term memory written into database (Cosmos DB) or Key-Value store (Redis with persistence). Data survives agent restarts.
+  	* **User Identification** : Long-term memory  requires a stable User Id (Entra Id or session cookie) to retreive the correct user's data on ech conversation.
+
