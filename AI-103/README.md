@@ -1552,3 +1552,10 @@ An MCP connector is the client-side interface that sits inside your AI applicati
  	* **Persistence Layer** : Long-term memory written into database (Cosmos DB) or Key-Value store (Redis with persistence). Data survives agent restarts.
   	* **User Identification** : Long-term memory  requires a stable User Id (Entra Id or session cookie) to retreive the correct user's data on ech conversation.
 
+### Short-Term VS Long-Term Memory
+- Use short-term memory for conversational context within session. Use Long term memory for user preferences and history persist.
+	* **Short-term memory Example** : "You asked about refunds earlier, now you are asking about exchanges". the agent connects the topic. Not saved accoss session.
+ 	* **Long-term Memory Example** : "You prefer Dark mode. your default shipping address is xxx. You have requested refund on 3 previous orders"
+  	* **Memory Hybrid** : Agent first checks long-term memory for user preferences at session start. During the session, short-term memory tracks the current conversation.
+ 
+    
