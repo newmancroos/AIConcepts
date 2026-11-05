@@ -1559,3 +1559,16 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **Memory Hybrid** : Agent first checks long-term memory for user preferences at session start. During the session, short-term memory tracks the current conversation.
  
     
+### Conversation History as Short-Term Memory
+- Most basic for of short-term memory is storing the conversation history - all previous user and agent messages - and sending them with each LLM call.
+	* **How It works** : Agent stores messages in a array : **message=[{"role": "user", "content": "hi"},{"role":"assistant", "content" : "Hello"}]**
+ 	* **Appending to Prompt** : Before each LLm call, agent sends the entire 'messages' history plus the new user message. The LLM sees the full conversation.
+  	* **Token Limit** : Long conversations exceed token limits. Implement **sliding window** : keep last 10 messages or summary older messages.
+ 
+### Sliding Windows
+- A sliding window keeps only most most recent N messages in short-term memory, discarding older messages when the conversation becomes too long.
+	* **Sliding window Definition** : Set maximum messages to 20. When message 21 arrives discard message . Windows always contains most recent 20 messages.
+ 	* **Token-Based Window** : Instead of message count, track token count. Keep adding messages until token limit(eg. 8000 tokens reached), then remove oldest.
+  	* **What is Lost** : When you discard old messages, the agent loses that context. The user may need to repeat information. Inform user : "restarting Conversation to save memory."
+ 
+    
