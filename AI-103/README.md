@@ -1563,7 +1563,7 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 - Most basic for of short-term memory is storing the conversation history - all previous user and agent messages - and sending them with each LLM call.
 	* **How It works** : Agent stores messages in a array : **message=[{"role": "user", "content": "hi"},{"role":"assistant", "content" : "Hello"}]**
  	* **Appending to Prompt** : Before each LLm call, agent sends the entire 'messages' history plus the new user message. The LLM sees the full conversation.
-  	* **Token Limit** : Long conversations exceed token limits. Implement **sliding window** : keep last 10 messages or summary older messages.
+  	* **Token Limit** : Long conversations exceed token limits. Implement **sliding window** : keep last 10 messages or **summary older messages**.
  
 ### Sliding Windows
 - A sliding window keeps only most most recent N messages in short-term memory, discarding older messages when the conversation becomes too long.
@@ -1571,4 +1571,57 @@ An MCP connector is the client-side interface that sits inside your AI applicati
  	* **Token-Based Window** : Instead of message count, track token count. Keep adding messages until token limit(eg. 8000 tokens reached), then remove oldest.
   	* **What is Lost** : When you discard old messages, the agent loses that context. The user may need to repeat information. Inform user : "restarting Conversation to save memory."
  
+### Summarization as short term Memory Compression
+- Instead of discarding old messages, you can summarize them into a shorter form, preserving key information while reducing token count.
+	* **Summarization Flow** : After every 10 messages, call an LLM with prompt: "Summarize this conversation so far, keeping key facts and user intent"
+ 	* **Replacing with Summary** : Replace the original 10 messages with the 200-token summary. Continue appending new messages. Total token count says within limit.
+  	* **Lossy Compression** :  Summaries lost some details. The agent may forget minor point but remains major facts and user preferences.
+
+### Azure Cosmos DB for Long-Term Memory
+- Azure Cosmos is good to have for Long-term memory because it scales infinitely and support JSON documents
+	* **Why Cosmos DB** : Cosmos Db store JSON directly. Agent memory (user preferences, conversation history) is already JSON. No conversion needed.
+ 	* **Partition Key for Users** : Use **user_id**  as partition key. All memory for a user are stored together, enabling fast retrivel.
+   	* **Time-to-Live(TTL)** : Set TTL on memory documents, Example "User preferences expire after 90 days of no interaction." Cosmos DB automatically deletes expired memories.
+ 
+### Coding Pattern - Storing memory in Cosmos DB
+- Your agent code uses the cosmos DB SDK to save memory object as JSON documents, using user_id as partition key and conversation_id as document_id.
+	* **SDK Pattern** : **from azure.cosmos import CosmosClient** , **container.upsert_item({"id" : conversation_id, "user_id" : user_id, "memory": memory_json, "ttl" : 7776000})**
+	* **Upsert Behavior** : Create document when not exist, replaces when exist (update)
+ 	* **Reading Memory** :   **existing = container.read_item(item = conversation_id, partition_key = user_id)** returns the memory JSON. Handle **CosmosResourceNotFoundError** for new users.
+ 
+### Azure Managed Redis for Short-Term memory 
+- Azure Managed Redis is an in memory cache ideal for short-term memory because it is extreamly fast and supports expiration
+	* **Why Redis for short-term memory** : Redis stored data in RAM, not disk. Retrieval is much faster than Cosmos DB (1ms vs 50ms). Perfect for session memory.
+ 	* **Expiration Built-In** :   Set Redis key to expire after 1 hour : **SETEX session:user123 "conversation history" 3600**. Key auto-deletes after 1 hour of inactivity.
+  	* **Redis VS Cosmos** : Use Redis for short-term (session memory, conversation history). Use Cosmos DB for long-term (user preferences, cross-session data).
+ 
+ ### Coding Pattern - Redis for session Memory
+ - Your agent code uses Redis SDK to store session memory with a time-to-live (TTL) and retrieves it at the start of each conversation turn.
+	* **SDK Pattern** : **import redis; r=redis.Redis(host="mycache.redis.cache.windows.net", password=key), r.setex(f"session:{user_id}", 3600,json.dumps(memory))**
+ 	* **Retrieve Memory** : **memory_json = r.get(f"session:{user_id}")**. If None returned, no session exists - create new memory object.
+  	* **Updating Memory** :  After each agent turn, update the stored memory with new conversaion history and call r.setex() again to refresh the 1-hour TTL
+
+  ### Memory Structure - What to Store
+  - A well-structured memory object contains conversation history, user preferences, session state (eg. awaiting approval) and any intermediate results.
+	* **Require Field**s : Conversation_id, user_id, messages (list of recent messages), preferences (dictionary, eg . {"temperature_unit" : "C"})
+  	* **Session State Fields** : state (eg. awaiting_order_number, approval_pending), pending_action (tool call awaiting result), last_activity_timestamp.
+   	* **Size limits** : Keep memory under 10000 tokens for Cosmos DB (2 MD document limit) and under 1MB for Redis to maintain performance.
+   
+ ### Serializing and Deserializing Memory JSON
+ - Your agent code must serialize (convert) memory object into JSON string before storing, and Deserializing (parse) JSON string back to objects after retrieval.
+   	* **Serializing** : **memroy_json = json.dumps({"user_id" : "123", "preferences" : {"unit": "C"}, "messages" : message_list})**
+   	* **Deserialization** : **memory = json.loads(memory_json)**. Access fields: **user_id = memory["user_id"], preferences = memory["preferences"]**.
+   	* **Handling Missing Fields** : Use **memory.get("preferences",{})** to prevent default empty dic if field does not exist in older stored memories.
+  
+ ### Connection string and End Points for Memory Services.
+ - Both Cosmos DB and Redis require connection string or end-point with authentication keys, stored securely in environment variable or Key-Vault.
+	* **Cosmos Db Connection String** : **AccountEndpoint=https://your-account.documents.azure.com;AccountKey={your-secret-key}**. Stored in **COSMOS_CONNECTION_STRING**
+ 	* **Redis Connection String** : **mycache.redis.cache.windows.net:6380, password=[your-key}, ssl=True**. Stored in** REDIS_CONNECTION_STRING**
+  	* **Managed Identity for Cosmos Db** : Enabling managed Identity on Agent services. Grant **Cosmos Db Built-in data contributor** role. No connection string needed.
+  
+ ### Foundry Trace for Memory Operation
+ -
+ 	* **Memory Read Span** : Span name **memory_read**, Attributes : **stored_type** (redis/cosmos), **key, hit** (true if data found, false if new session), **duration_ms**
+	* **Memory Write Span** : Span name **memory_write**, Attributes: **store_type, key, size_bytes** (size of serialized memory), **ttl_seconds, duration_ms**
+	* **Debugging Slow Memory** : If memory operation exeed 100ms, trace shows the span. Investigae network latency or large memory soze. Reduce memory size or move to faster region.
     
