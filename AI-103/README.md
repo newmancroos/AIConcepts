@@ -1663,4 +1663,10 @@ An MCP connector is the client-side interface that sits inside your AI applicati
  	* **Use Case** : Agent processes a refund request and return "Your refund has been approved", TTS converts this into audio for phone call.
   	* **SSML Control** :  **Speech Synthesis Markup Languiage(SSML) ** lets you control pitch, rate and emphasis.
  
-      
+### Azure AI Document Intelligence - Form and Document processing
+- Azure AI document Intelligence extracts structured data from PDFs, Images and office documents - Forms, receipts, contracts
+  	* **Document Intelligence Definition** : Previously called **Form Recognizer**.  Analyzes documents to extract key-value pairs, tables and text
+  	* **Pre-built Models** : Use pre-built models for invoice (Extract vendor, amount, due date), receipts (Merchant, date, total), ID documents (name, document number) and W-2 forms.
+  	*  **Custom Models** : Train custom models for your specific documents layout (eg. purchase orders, inspection reports). Upload 5-10 examples for training.
+ 
+ 
