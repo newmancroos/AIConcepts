@@ -1625,3 +1625,42 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 	* **Memory Write Span** : Span name **memory_write**, Attributes: **store_type, key, size_bytes** (size of serialized memory), **ttl_seconds, duration_ms**
 	* **Debugging Slow Memory** : If memory operation exeed 100ms, trace shows the span. Investigae network latency or large memory soze. Reduce memory size or move to faster region.
     
+## Multimodal Integration
+
+### What is MultiModel
+- Multimodal means an agent can accept multiple types(text, image, audio, document) and produce multiple output types.
+	* **Input Modalities** : User sends a photo of damaged product,  a voice recording of a complaint or a PDF contract. Agent process all three.
+ 	* **Output Modalities** : Agent can response with text or Speak an answer using test-to-speech, or return a highlighted image.
+    * **Multimodal as Tool** : Your agent does not build-in multimodal capabilities. It calls Vision, Speech and Document intelligence as separate tools.
+ 
+### Azure AI Vision ***
+- Azure AI vision is a service that analyzes images to extract descriptions, Objects, text (OCR) and adult content rating.
+  	* **Vision Capabilities** : Image can describe what is in the picture, detect object and faces, read printed/handwritten text, and detect adult or violent content.
+  	* **Use Case for Agents** : User uploads photo of a broken product. Agent calls vision to extract damage description, then processes refund request.
+  	* **Input Format** : Send image as URL or raw binary data (base64-encoded). Vision returns JSON with analysis result.
+ 
+### Optical Character Recognition (OCR) with Vision
+- OCR (Optical Character Recognition) extract text from images - photos of documents, screenshots, whiteboard or street signs.
+	* **OCR Definition** : Vision reads text embedding in images. Extract text including position, line breaks and confidence scores for each character.
+ 	*  **Use Case** : ser sends a photo of a receipt. Agent call Vision to extract receipt text, then process it for date, amount and vendor.
+  	* **Language Support** : Vision OCR supports printed and handwritten text over 100 languages. Automatically detects languages from image.
+ 
+### Coding Pattern
+- Your AGENT CODE CALLS aZURE ai vISION USING adk OR rest, SENDING AN iMAGE URL OR BINARY DATA AND RECIVES json WITH ANALYSIS RESULTS.
+  	* **SDK Definition** : **from azure.ai.vision import ImageAnalysisClient**.  **client.analyze(image_url, visual_features=[VisualFeature.CAPTION, VisualFeatures.OCR]**
+  	* **RESR Pattern** : POST to **https://.cognitivesservices.azure.com/vision/v4.0/analyze**, body included **url or imagedata(base64)**, include **features parameter**
+  	* **Response Handling** : Extract **caption.text (description), ocrResult.lines (text from image), object (detect items)**. return relevant fields to user.
+ 
+### Azure AI Speech - Speech-to-Text ***
+- Azure Ai speech provide speech-to-text (STT) that converts audio input (voice messages, recording) into text for agent processin.
+  	* **Speech-to-Text Definition** : STT takes an audio file or stream and returns a text transcripts. Support real-time or batch transcription
+  	* **Use Case** : User leaves a voice message on a support line. Agent calls STT to transcribe message, then processes intent from text.
+  	* **Language and Customization** : Supports over 100 languages. You can train custom models for domain-specific term (product names, technical jargon)
+ 
+### Azure AI Speech - Text-to-Speech ***
+- Text-To-Speech (TTS) converts agent response text into spoken audio, enableling voice-based interactions for phone and smart speaker agent.
+	* **Text-To-Speech Definition** : TTS takes text and returns a audio file (MP3, WAV) spoken by a neural voice. Supports multiple voices and languages.
+ 	* **Use Case** : Agent processes a refund request and return "Your refund has been approved", TTS converts this into audio for phone call.
+  	* **SSML Control** :  **Speech Synthesis Markup Languiage(SSML) ** lets you control pitch, rate and emphasis.
+ 
+      
