@@ -1669,4 +1669,34 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **Pre-built Models** : Use pre-built models for invoice (Extract vendor, amount, due date), receipts (Merchant, date, total), ID documents (name, document number) and W-2 forms.
   	*  **Custom Models** : Train custom models for your specific documents layout (eg. purchase orders, inspection reports). Upload 5-10 examples for training.
  
+ ### Document Intelligence Use Case for Agents
+ - Agents use Document Intelligence to process user-uploaded documents, extracting data without requiring users to type information manually.
+   	* **Receipt Processing** : User uploads a receipts photo. Agent call Document Intelligence to extract merchant, date, items and total. Agent then processes expense report.
+   	* **Invoice Approval** : Supplier uploads invoice PDF. Agent extract amount and due date, checks against purchase order and submits for approval.
+   	* **Identity Verification** :    User uploads driver's license. Agent extract name and document number, compares to account on file and verifies identity.
+  
+### Document Intelligence Coding Pattern with SDK
+- Your agent code calls Document Intelligence using SDK or REST, sending a document URL or binary data and receives JSON with extracted fields
+ 	* **SDK Pattern** : from **azue.ai.formrecognizer import DocumentAnalysisClient**,    **client.begin_analyze_document(model_id="prebuild-invoice", document=file_binary)**
+	* **Model ID options** : **prebuilt-invoice**, **prebuilt-receipt**, **prebuilt-idDocument**, **prebuild-tax-us-w2** or custom model ID for trained models.
+ 	* **Response Handling** :  **result = poller.result()**.  Access fields : result.document[0].fields["VendorName"].value, fields["invoiceTotal"].value. Each field has confidence.
  
+ ### Multimodal Tool integration - One Agent, Multiple Modalities
+ - A single agent can be equipped with multiple multimodal tools - Vision, Speech, Document Intelligence and decide which to use based on user input type
+	* **Tool Definition** : Define tool for **analyze_image, transcribe_audio, extract_document**. Agent reads tool description and choose based on user upload.
+ 	* **Agent Reasoning** : User says "Here is a photo of receipt". Agent calls analyze_image with OCR. User says "Here is a PDF invoice". Agent calls extract_document
+    * **System Instruction** : If user uploads an audio file, call \'transcribe_audio\' first, then process the transcribed text. Guides tool selection.
+  
+### Managing API keys for multimodal services
+- Vision, Speech and Document Intelligence are separate Azure services, each with its own end-point and API Key. Manage securely n configuration
+	* **Service Provisioning** : In azure portal, create separate resources for Vision, Speech and Document Intelligence. Each has unique end-point and two keys.
+ 	* **Storing Keys** : Use environment variables : **VISION_KEY, VISION_ENDPOINT;, SPEECH_KEY, SPEECH_REGION;, DOC_INTEL_KEY, DOC_INTEL_ENDPOINT**
+  	* **Managing Identity** :  Enable managed Identity on agent service. grant role: **Cognitive services User**  for each services. No keys needed in code
+
+ ### Foundry Trace for Multimodal Calls
+ - Foundry Trace records each multimodal API calls (Vision, Speech, Document Intelligence) as a span, tracking latency, token usage and any error
+   	* **Vision Span** : Span name - **vision_analyze**, Attributes - **image_size_bytes, features_requested (caption, ocr), objects_detected_count, document_ms**
+   	* **Speech Span** : Span name - **speech_to_text or text_to_speech**, Attributes : **audio_duration_seconds, transcript_confidence, voice_name, audio_size_bytes**.
+   	* **Document Intelligence Span** : Span name - **doc_intel_analyze**. Attributes : **model_id, pages_process, fields_extracted_count, average_confidence**
+  
+   
