@@ -1648,7 +1648,7 @@ An MCP connector is the client-side interface that sits inside your AI applicati
 ### Coding Pattern
 - Your AGENT CODE CALLS aZURE ai vISION USING adk OR rest, SENDING AN iMAGE URL OR BINARY DATA AND RECIVES json WITH ANALYSIS RESULTS.
   	* **SDK Definition** : **from azure.ai.vision import ImageAnalysisClient**.  **client.analyze(image_url, visual_features=[VisualFeature.CAPTION, VisualFeatures.OCR]**
-  	* **RESR Pattern** : POST to **https://.cognitivesservices.azure.com/vision/v4.0/analyze**, body included **url or imagedata(base64)**, include **features parameter**
+  	* **REST Pattern** : POST to **https://.cognitivesservices.azure.com/vision/v4.0/analyze**, body included **url or imagedata(base64)**, include **features parameter**
   	* **Response Handling** : Extract **caption.text (description), ocrResult.lines (text from image), object (detect items)**. return relevant fields to user.
  
 ### Azure AI Speech - Speech-to-Text ***
@@ -1699,4 +1699,19 @@ An MCP connector is the client-side interface that sits inside your AI applicati
    	* **Speech Span** : Span name - **speech_to_text or text_to_speech**, Attributes : **audio_duration_seconds, transcript_confidence, voice_name, audio_size_bytes**.
    	* **Document Intelligence Span** : Span name - **doc_intel_analyze**. Attributes : **model_id, pages_process, fields_extracted_count, average_confidence**
   
+## Cleaning User Input Before the Agent (Azure AI Language Services)
+
+### Input Transformation
+- Input transformation is the process of applying NLP (Natural Language Processing) services to user input before sending it to the Agent's LLM or Orchestration logic.
+  	* **Input Transformation Definition** : Row User test -- NLP service  -- Cleaned, structured, enriched text --Agent core. The agent sees improved input.
+  	* **Why Transform Input** : User make typos (wether instead of weather), use vague language (that thing), or accidentally include sensitive data (credit card numbers).
+  	* **Transformation Happens Before Agent** : The agent core never sees raw input. It only sees the transformed version. This improves reliability and security.
+ 
+
+  ### Azure AI Language - The NLP service Suite
+  - Azure AI language is a suite of NLP services that extracts entities, detect sentiment, identify key phrases and redact personally Identifiable Information(PII)
+    * **Service Components** : Language includes **Entity Recognition** (find people, dates, locations), **Sentiment Analysis** (positive/negative/neutral), **Key Phrase Extraction and PII detection**.
+    * **Why use Language** : Instead of building your own spell checker or entity extractor, Language provides  pre-trained models ready to use via API.
+    * **Integration Pattern** : Agent receives user message -- calls Language API -- receives enriched JSON -- passes transformed text to LLM or agent orchestrator.
    
+     
