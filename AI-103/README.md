@@ -1745,4 +1745,15 @@ An MCP connector is the client-side interface that sits inside your AI applicati
   	* **Agent Use Case** : Spanish-speaking user write in spanish. Agent detacts 'es', translates system instruction to spanish, calls Spanish-speaking tools, responds in spanish.
   	* **Confidence Threshold**: If confidence < 0.8, agent may ask "What language are you speaking? " or default to English. Avoids incorrect lanagues detection.
  
-     
+### Coding Pattern - Calling Azure AI Language API
+-
+	* **SDK Pattern** : from **azure.ai.textanalytics import TextAnalyticsClient**. **cliant.recognize_entities([user_message])[0]** return list of entities
+	* **Multiple Capabilities** : Call once with **client.analyze_sentiment()** for sentiment, **client.extract_key_phrases()** for key phrases or batch calls for efficiency.
+	* **Response Handling** : Extract **entities** array (each has text, category, confidence_score). Extract sentiment and confidence_score. extract key_phrases list.      
+
+### Transforming Input With Extracted Entities
+- After calling NER, your code replaces raw text references with structured entity tags, making it easier for the agent to understand parameters.
+	* **Transformation Pattern** : Raw : "**Book flight to Seattle on May 15th**". Transformed : "**Book flight to [LOCATION: Seattle] on [DATE : May 15th]**
+ 	* **Entity Replacement** : For each detected entity, replace the original text span with [CATEGORY: Value].  Agent sees strucutred format.
+    *  **Benefits** : Agent does not need to parse "Seattle" as a city - The NER tag tells it directly. Reduces tool call errors.
+ 
