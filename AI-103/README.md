@@ -1714,4 +1714,35 @@ An MCP connector is the client-side interface that sits inside your AI applicati
     * **Why use Language** : Instead of building your own spell checker or entity extractor, Language provides  pre-trained models ready to use via API.
     * **Integration Pattern** : Agent receives user message -- calls Language API -- receives enriched JSON -- passes transformed text to LLM or agent orchestrator.
    
+### Named Entity Recognition (NER)
+- Named Entity Recognition (NER) scans text and identifies entitles like Person names, Dates, Locations, Organizations, Phone Numbers, and email addresses.
+  	* **NER Definition** : NER tags each entity with a category (Person, Date, Location, Organization, Phone Numbers, Email, URL, etc.) and  its position in the text
+  	* **Agent Use Cases** : User says, "Book a flight to Seattle on May 15th", NER extract City="Seattle", Date="May 15th". Agent uses extracted values directly.
+  	*  **Reducing Ambiguity** :  Instead of Agent parsing "Seattle" as a city or person, NER confirms it is a location entity. Improves tool call accuracy.
+ 
+### Key Phrase Extraction
+- Key Phrase extraction identify the most important concepts and topics in a user's message, ignoring filler words and irrlevent details
+  	* **Key Phrase Definition** : The Service returns a list of phrases that summarize the main topics. Example: "My Laptop screen cracked after I dropped it"
+  	  	-- Key Phrases : ["Laptop Screen", "Cracked", "Dropped it"]
+  	* **Agent Use Case** : User writes a long, rambling complaint. Key Phrase extraction extract core issues. Agent focuses on those instead of reading every word.
+  	* **Reducing Noise** : Key phrases filter out conversational filler ("um", "well", "you know") leaving only meaningful content for agent.
+ 
+### Sentiment Analysis
+- Sentiment analysis determines whether a user's message is positive, negative, neutral or mixed, with confidence scores for each sentment.
+   	* **Sentiment Definition** : Service return 'sentiment' (Positive, Negative, Neutral, mixed) and confidence score (0-1) for positive, negative and neutral.
+   	*  **Agent Use Case** : Negative sentiment (0.9 negative, 0.1 positive) -- escalate to human agent immidiately. Positive sentiment  -- route to automated responses.
+   	*  **Mixed Sentiment** : Message containes both positive ("fast shipping) and negative ("broken product"). Sentiment return "mixed". Agent reads full text instead of relying on sentiment.
+
+### Personally Identifiable Information (PII)
+- PII detection scans text for personally identifiable information - Credit card numbers, social security numbers, bank accounts, -- and optionally redacts them
+  	* **PII Categories** : Detects credit card numbers, Social Security numbers, bank account numbers, driver license numbers, Passport numbers, email addresses, phone and addresses.
+  	* **Redaction Option** : Replaces detected PII with '[REDACTED_CREDIT_CARD]' OR '[REDACTED_EMAIL]'. The agent never sees the actual sensitive data.
+  	* **Use Case** : User types credit card number in chat. PII detection redacts it. Agent processes the request without storing or logging the sensitive numbers.
+ 
+### Language Detection 
+- Language detection identifies which language the user is writing in (English, Spanish, French, Tamil, etc.), Allowing agent to response in the same language.
+  	* **Language Detection Definition** : Service analyzes text and returns language code (eg. 'en', 'es', 'fr') and confidence score (0-1).
+  	* **Agent Use Case** : Spanish-speaking user write in spanish. Agent detacts 'es', translates system instruction to spanish, calls Spanish-speaking tools, responds in spanish.
+  	* **Confidence Threshold**: If confidence < 0.8, agent may ask "What language are you speaking? " or default to English. Avoids incorrect lanagues detection.
+ 
      
