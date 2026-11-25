@@ -1757,3 +1757,22 @@ An MCP connector is the client-side interface that sits inside your AI applicati
  	* **Entity Replacement** : For each detected entity, replace the original text span with [CATEGORY: Value].  Agent sees strucutred format.
     *  **Benefits** : Agent does not need to parse "Seattle" as a city - The NER tag tells it directly. Reduces tool call errors.
  
+### Redacting PII Before Logging
+- Your agent must redact PII from user messages before sending to LLM, logging to Foundry trace or storing in long-term memory
+  	* **Reaction API** : **client.recognize_pii_entities(([user_message])[0]** **extract redacted_text** where sensitive data is replaced with **[REDACTED]**
+  	* **LLM Safety** : Send redacted_text to LLM, not raw user input. LLM never sees credit card numbers.. Reducing complaince risk.
+  	* **Memory Storage** : Store redacted text in Cosmos db or Redis. Never store raw PII. Comply with data protection regulations (GDPR, CCPA)
+ 
+ ### Language Detection for Multi language Agents
+ - For multi language agents, detect user language first, then select language-appropriate system instructions and too response
+   	* **Detection Flow** : Agent receives user message. Call language detection : **detected_language = client.detect_language([user_message])[0].primary_language.iso6391_name**
+   	* **System Instruction Selection** : Load system instruction from language-specific file: **system_prompt = load_prompt(detected_language).** Example : **system_es.txt** for spanish.
+   	* **Response Translation** : Agent generates response in detected language. If tools return English-only data, agent translates before sending to user.
+  
+### Input Transformation Pipeline
+-
+	* **Step1 - Language Detection** : Detect user lanaguage. If not supported (confidence < 0.7), default to English and notify user
+	* **Step2 - PII Detection** : Redact credit cards, SSNs, bacnk accounts. Store original only if complaiance allows. otherwise discard.
+	* **Step3 - Entity Extraction** : Extract Date, locations, people, organizations. Replace with structure tags. [DATE: VALUE].
+	* **Step4 - Key Phrase Extraction** : Exract main topics. Append to prompt as User mentioned these key topic ; [list]
+    
